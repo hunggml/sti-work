@@ -3,7 +3,7 @@
 @section('content')
     <div class="wrapper">
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper iframe-mode" data-widget="iframe" data-loading-screen="750">
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
@@ -11,10 +11,10 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
+                                    <a class="nav-link bg-light" href="#" data-widget="iframe-fullscreen" style="float: right"><i class="fas fa-expand"></i></a>
                                     <h1 style="text-align: center">Work in the Company</h1>
                                 </div>
                                 <div class="card-body">
-
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
@@ -23,7 +23,6 @@
                                             <th>Start-Date</th>
                                             <th>End-Date</th>
                                             <th>Status</th>
-                                            <th>Update status</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -38,11 +37,6 @@
                                                 @else
                                                     <td style="background-color: #ff4a52;color: black">{{ $value->status }}</td>
                                                 @endif
-                                                <td><a class="btn btn-success"
-                                                    href={{route('screen.edit',['id'=>$value->id])}}>
-                                                    <i class="far fa-edit"></i>
-                                                 </a>
-                                             </td>
                                             </tr>
                                         @endforeach
                                         </tbody>

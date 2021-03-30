@@ -13,17 +13,18 @@
                                 <div class="card-header">
                                     <h3 class="card-title">Staff List</h3>
                                 </div>
-                                <div class="card-body"> 
-                                    {{-- <a style="color: white" class="btn btn-primary mb-2 ml-2"
+                                <div class="card-body "> 
+                                    <a style="color: white" class="btn btn-primary mb-2 ml-2"
                                     href={{route('work.create')}}>Add
-                                     Work</a> --}}
-                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+                                     Work</a>
+
+                                     {{-- <button type="button" class="btn btn-primary mb-2 ml-2" data-toggle="modal" data-target="#addModal">
                                         Add Work
-                                    </button>
-                                    <table id="workTable" class="table table-bordered table-striped">
+                                    </button> --}}
+                                    <table id="example1" class="table table-bordered table-striped ">
                                         <thead>
                                             <tr>
-                                                {{-- <th>STT</th> --}}
+                                                <th>STT</th>
                                                 <th>Work detail</th>
                                                 <th>Start-Date</th>
                                                 <th>End-Date</th>
@@ -34,7 +35,7 @@
                                         <tbody >
                                             @foreach($work as $key => $value)
                                             <tr>
-                                                {{-- <td>{{ ++$key }}</td> --}}
+                                                <td>{{ ++$key }}</td>
                                                 <td>{{ $value->detail }}</td>
                                                 <td>{{ $value->start_date }}</td>
                                                 <td>{{ $value->end_date }}</td>
@@ -43,7 +44,7 @@
                                                 @else
                                                     <td style="background-color: #ff4a52;color: black">{{ $value->status }}</td>
                                                 @endif
-                                                <td><a class="btn btn-success"
+                                                <td><a class="btn btn-success edit"
                                                        href={{route('work.edit',['id'=>$value->id])}}>
                                                        <i class="far fa-edit"></i>
                                                     </a>
@@ -90,9 +91,19 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                    
                 </div>
                 <div class="modal-body">
                     <div class="">
+                        @if(count($errors)>0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error )
+                                        <li>{{$error}}</li>
+                                @endforeach    
+                            </ul>    
+                        </div>
+                        @endif
                         <form id="addWork" name="addWork" action={{route('work.store')}} method="post">
                             @csrf
                             <div class="form-group">
@@ -144,8 +155,29 @@
             </div>
         </div>
     </div>
+    {{-- edit --}}
 <script type="text/javascript">
- 
+//   $(document).ready(function () {
+//         $('#addWork').click(function (e) {
+//             addWork();
+//             e.preventDefault();
+//         });
+//             getAll();
+//     });
+//         $.ajax({
+//             type: 'POST',
+//             url: form_action,
+//             data: $('#addWork').serialize(),
+//             success: function (response) {
+//                 console.log(response);
+//                 $('#addWork')[0].reset();
+//                 clear();
+//                 $('#addModal').modal('hide');
+//             },
+//             error: function (data) {
+// 			  }
+            
+//         });
 
 </script>
 

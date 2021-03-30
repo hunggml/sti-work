@@ -64,7 +64,7 @@ class WorkController extends Controller
 
 
         toastr()->success('Work added successfully');
-        // return redirect()->route('work.index');
+        return redirect()->route('work.index');
            
         // return Response::json($work);
         
@@ -137,6 +137,7 @@ class WorkController extends Controller
         return redirect()->route('work.index');
         // return redirect()->route('work.index')->with('delete-work','Job delete successfully');
     }
+
 
 
 public function getDateStartAttribute($value)

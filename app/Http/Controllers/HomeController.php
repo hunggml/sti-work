@@ -90,7 +90,8 @@ class HomeController extends Controller
             'status' => $request->status,
         ]);
         toastr()->success('Work update successfully');
-        return redirect()->route('home');    }
+        return redirect()->route('home');    
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -102,4 +103,5 @@ class HomeController extends Controller
     {
         //
     }
+  
 }

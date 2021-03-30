@@ -35,6 +35,9 @@ Route::middleware('auth')->prefix('/')->group(function(){
 
     Route::get('/changePass',[UserController::class,'changePass'])->name('changePass');
     Route::post('/changePass',[UserController::class,'updatePass'])->name('updatePass');
+
+    Route::post('/search-work',[WorkController::class,'search'])->name('search-work');
+
 });
 
 

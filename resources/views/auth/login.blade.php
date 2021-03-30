@@ -43,6 +43,10 @@
                     @enderror
                     <br>
                     <div class="group">
+                        <input id="check" type="checkbox" value="remember" class="check">
+                        <label for="check"><span class="icon"></span> Remember me</label>
+                    </div>
+                    <div class="group">
                         <input type="submit" class="button" value="Sign In">
                     </div>
                     <div class="hr"></div>

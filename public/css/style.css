@@ -170,3 +170,9 @@ h1{
     margin-left: -10px;
 
 }
+.mr-sm-2{
+    width: 250px;
+}
+td{
+    font-size: 26px;
+}

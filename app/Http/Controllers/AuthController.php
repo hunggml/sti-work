@@ -30,7 +30,8 @@ class AuthController extends Controller
             'email' => 'required|exists:users,email',
             'password' => 'required',
         ]);
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+        $remember = $request->has('remember') ? true : false;
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password],$remember)){
             $user = Auth::user();
             $username = $user->username;
             $request->session()->push('login',$username);

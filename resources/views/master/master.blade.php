@@ -16,8 +16,8 @@
           href="{{asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
     <!-- iCheck -->
     <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-    <!-- JQVMap -->
-    <link rel="stylesheet" href="{{asset('plugins/jqvmap/jqvmap.min.css')}}">
+    {{-- <!-- JQVMap -->
+    <link rel="stylesheet" href="{{asset('plugins/jqvmap/jqvmap.min.css')}}"> --}}
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
     <!-- overlayScrollbars -->
@@ -26,8 +26,8 @@
     <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.css')}}">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    {{-- <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> --}}
 
     <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
@@ -42,7 +42,7 @@
 
 
 </head>
-<body class="hold-transition sidebar-mini layout-fixed hold-transition sidebar-mini">
+<body class="sidebar-mini layout-fixed sidebar-mini sidebar-collapse" data-panel-auto-height-mode="height">
 <div class="wrapper">
     <!-- Navbar -->
 @include('core.header')
@@ -62,6 +62,8 @@
 @include('core.footer')
 
 <!-- ./wrapper -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
 
 <!-- jQuery -->
 <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
@@ -94,7 +96,7 @@
 <!-- AdminLTE App -->
 <script src="{{asset('dist/js/adminlte.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-{{-- <script src="{{asset('dist/js/pages/dashboard.js')}}"></script> --}}
+{{--<script src="{{asset('dist/js/pages/dashboard.js')}}"></script>--}}
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('dist/js/demo.js')}}"></script>
 <!-- DataTables -->
@@ -103,37 +105,23 @@
 <script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 {{-- jquery --}}
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+{{--<script src="https://code.jquery.com/jquery-3.6.0.js"   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>--}}
 
 @stack('script')
-<script>
-    // $(function () {
-    //     $("#example1").DataTable({
-    //         "responsive": true,
-    //         "autoWidth": false,
-    //     });
-    //     $('#example2').DataTable({
-    //         "paging": true,
-    //         "lengthChange": false,
-    //         "searching": false,
-    //         "ordering": true,
-    //         "info": true,
-    //         "autoWidth": false,
-    //         "responsive": true,
-    //     });
-    // });
-$(".toggle-password").click(function() {
 
-$(this).toggleClass("fa-eye fa-eye-slash");
-var input = $($(this).attr("toggle"));
-if (input.attr("type") == "password") {
-  input.attr("type", "text");
-} else {
-  input.attr("type", "password");
-}
-});
+<script>
+    $(".toggle-password").click(function() {
+
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
 </script>
-@jquery
+{{--@jquery--}}
 @toastr_js
 @toastr_render
 </body>

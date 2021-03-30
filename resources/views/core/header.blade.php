@@ -8,6 +8,13 @@
             <a href={{route('home')}} class="nav-link">{{__('Home')}}</a>
         </li>
     </ul>
+    <ul class="navbar-nav ml-auto">
+        <li>
+        <a class="nav-link" data-widget="fullscreen" href="#"  role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+    </li>
+    </ul>
 
 
 </nav>
@@ -48,30 +55,23 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                     with font-awesome or any other icon font library -->
-                <li class="nav-item has-treeview menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
+                <li >
+                    <a href="{{route('home')}}" class="nav-link {{ request()->is('/') ? 'active font-weight-bolder' : '' }}" >
+                        <i class="far fa-circle nav-icon"></i>
+                            <p>Dashboard</p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href={{route('work.index')}} class="nav-link ">
-                            <i class="far fa-circle nav-icon"></i>
+                </li>
+                <li>
+                    <a href={{route('work.index')}} class="nav-link {{ request()->routeIs('work*') ? 'active font-weight-bolder' : '' }}" >
+                        <i class="far fa-circle nav-icon"></i>
                             <p>Work</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href={{route('staff.index')}} class="nav-link ">
-                            <i class="far fa-circle nav-icon"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href={{route('staff.index')}} class="nav-link {{ request()->routeIs('staff*') ? 'active font-weight-bolder' : '' }}" >
+                        <i class="far fa-circle nav-icon"></i>
                             <p>Staff</p>
-                            </a>
-                        </li>
-                    </ul>
+                    </a>
                 </li>
             </ul>
 
