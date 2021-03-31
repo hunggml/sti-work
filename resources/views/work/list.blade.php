@@ -17,13 +17,6 @@
                                     <a style="color: white" class="btn btn-primary mb-2"
                                         href={{ route('work.create') }}>Thêm việc
                                     </a>
-                                    {{-- <span style="float: right">
-                                        {{ $work->links() }}
-                                    </span> --}}
-
-                                    {{-- <button type="button" class="btn btn-primary mb-2 ml-2" data-toggle="modal" data-target="#addModal">
-                                        Add Work
-                                    </button> --}}
                                     <table id="example1" class="table table-bordered table-striped ">
                                         <thead>
                                             <tr>

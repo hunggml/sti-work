@@ -212,11 +212,8 @@ td {
     height: 70px;
     font-size: 28px;
     color: black;
-    /* text-align: center; */
-    /* vertical-align: middle;
-    text-align: left; */
-    text-align: left;
-    vertical-align: middle;
+     text-align: left;
+    vertical-align: middle; 
     border: solid black !important;
 }
 
@@ -254,13 +251,11 @@ label {
 .card-title{
     color: #000;
 }
-/* #detail {
+#detail {
     text-align: left;
     vertical-align: middle;
 
-}  */
-
-/*
+} 
 #start_date {
     text-align: left;
     vertical-align: middle;
@@ -276,7 +271,7 @@ label {
 }
 #action{
     border: solid black;
-}  */
+}
 #user_name {
     text-align: left;
     vertical-align: middle;

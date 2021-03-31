@@ -38,18 +38,18 @@
                                                         <td id="user_name" rowspan="{{ $value0->work->count() }}">
                                                             {{ $value->user_name }}
                                                         </td>
-                                                        <td style="background-color: #f13149" id="detail">{{ $value->detail }}</td>
-                                                        <td>{{ $value->start_date }}</td>
-                                                        <td>{{ $value->end_date }}</td>
+                                                        <td style="background-color: #f13149">{{ $value->detail }}</td>
+                                                        <td >{{ $value->start_date }}</td>
+                                                        <td >{{ $value->end_date }}</td>
                                                     </tr>
                                                     @else
                                                     @if ($key1 == 0)
                                                         <tr>
                                                             <td id="user_name" rowspan="{{ $value0->work->count() }}">
                                                                 {{ $value->user_name }}</td>
-                                                            <td>{{ $value->detail }}</td>
-                                                            <td>{{ $value->start_date }}</td>
-                                                            <td>{{ $value->end_date }}</td>
+                                                            <td >{{ $value->detail }}</td>
+                                                            <td >{{ $value->start_date }}</td>
+                                                            <td >{{ $value->end_date }}</td>
                                                         </tr>
                                                     @else
                                                         <tr>
