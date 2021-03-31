@@ -27,7 +27,7 @@ class User extends Authenticatable
     ];
     
     public function work(){
-        return $this->hasMany('App\Work');
+        return $this->hasMany('App\Work')->whereStatus('Chưa hoàn thành');
     }
 
     /**

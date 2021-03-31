@@ -40,15 +40,15 @@
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="group">
+                        {{-- <div class="group">
                             <label for="email" class="label">Email</label>
                             <input id="email" value="{{old('email')}}" name="email" type="email"
                                    class="input">
                             @error('email')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
-                        </div>
-                        <div class="group">
+                        </div> --}}
+                        {{-- <div class="group">
                             <label for="address" class="label">Address</label>
                             <input id="address" value="{{old('address')}}" name="address" type="address"
                                    class="input">
@@ -63,7 +63,7 @@
                             @error('phone')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="group">
                             <label for="password" class="label">Password</label>
                             <input id="password" value="{{old('password')}}" name="password" type="password"
@@ -80,12 +80,13 @@
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <br>
+                        <br> 
                         <div class="group">
                             <input type="submit" class="button" value="Sign Up">
                         </div>
                         <div class="foot-lnk">
-                            <label for="tab-1"><a href={{route('loginShow')}}>Already Member?</a></label>
+                            <hr>
+                            <p for="tab-1"><a href={{route('loginShow')}}>Already Member?</a></p>
                         </div>
                     </div>
                 </div>

@@ -14,7 +14,6 @@
        {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"> --}}
        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
        @toastr_css
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js" integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg==" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="login-wrap">
@@ -28,9 +27,9 @@
                 <div class="sign-in-htm">
 
                     <div class="group">
-                        <label for="email" class="label">Email</label>
-                        <input id="email" value="{{old('email')}}" name="email" type="text" class="input">
-                        @error('email')
+                        <label for="username" class="label">Username</label>
+                        <input id="username" value="{{old('username')}}" name="username" type="text" class="input">
+                        @error('username')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
@@ -44,7 +43,7 @@
                     <br>
                     <div class="group">
                         <input id="check" type="checkbox" value="remember" class="check">
-                        <label for="check"><span class="icon"></span> Remember me</label>
+                        <label id="remember" for="check"><span class="icon"></span> Remember me</label>
                     </div>
                     <div class="group">
                         <input type="submit" class="button" value="Sign In">

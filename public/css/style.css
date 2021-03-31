@@ -155,9 +155,7 @@ a{color:inherit;text-decoration:none}
 img{
     height: 50px;
 }
-th{
-    color: black;
-}
+
 h1{
     color: black;
 }
@@ -174,5 +172,52 @@ h1{
     width: 250px;
 }
 td{
-    font-size: 26px;
+    height: 70px;
+    font-size: 28px;
+    color: black;
+    /* border: solid black !important; */
+    /* text-align: center; */
+    /* vertical-align: middle;
+    text-align: left; */
+
+}
+th{
+    font-size: 25px;
+    color: black;
+    text-align: center;
+    /* border: solid black !important; */
+    background-color: antiquewhite ;
+}
+tr{
+    /* border: solid black; */
+}
+label{
+    color: black;
+    font-size: 25px;
+}
+#remember{
+    font-size: 100%;
+}
+
+#example1{
+    white-space: nowrap;
+}
+#car-body{
+    overflow: scroll;
+}
+#detail{
+    text-align: left;
+    vertical-align: middle;
+}
+#username{
+    text-align: left;
+    vertical-align: middle;
+}
+#start_date{
+    text-align: left;
+    vertical-align: middle;
+}
+#end_date{
+    text-align: left;
+    vertical-align: middle;
 }

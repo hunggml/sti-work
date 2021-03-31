@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Repositories\WorkInterface;
 
 class UserController extends Controller
 {
@@ -15,10 +16,16 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(WorkInterface $workInterface)
+    {
+        $this->workInterface = $workInterface;
+    }
+
     public function index()
     {
-        $user = User::all();
-        return view('staff.list',compact('user'));
+        $user = User::Where('id',Auth::user()->id)->get();
+        return view('auth.profile',compact('user'));
     }
 
     /**
@@ -40,11 +47,11 @@ class UserController extends Controller
     public function store(Request $request)
     {   
         $validatedData = $request->validate([
-            'name' => 'required',
-            'username' => 'required',
-            'phone' => 'required|min:9|max:12|unique:users,phone|',
-            'address' => 'required',
-            'email' => 'required|email|unique:users',
+            'name' => 'required|unique:users,name',
+            'username' => 'required|unique:users,username',
+            // 'phone' => 'required|min:9|max:12|unique:users,phone|',
+            // 'address' => 'required',
+            // 'email' => 'required|email|unique:users',
             'password' => 'required|min:3',
             're-password' => 'required|same:password',
         ]);
@@ -53,13 +60,14 @@ class UserController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->username = $request->username;
-        $user->phone = $request->phone;
-        $user->address = $request->address;
-        $user->email = $request->email;
+        // $user->phone = $request->phone;
+        // $user->address = $request->address;
+        // $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->time_created = Carbon::now('Asia/Ho_Chi_Minh');
         $user->time_updated = Carbon::now('Asia/Ho_Chi_Minh');
         $user->save();
+        $this->workInterface->StoreWork($user->id,$user->name,null,null,null,'Chưa hoàn thành',);
 
         toastr()->success('Register is successfully');
         return redirect()->route('loginShow');
@@ -73,7 +81,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -85,7 +93,7 @@ class UserController extends Controller
     public function edit(Request $request)
     {
         $user = User::findOrFail($request -> id);
-        return view('staff.edit', compact('user'));
+        return view('auth.editProfile', compact('user'));
     }
 
     /**
@@ -100,17 +108,17 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'username' => 'required',
-            'phone' => 'required|min:9|max:12',
-            'address' => 'required',
-            'email' => 'required|email',
+            // 'phone' => 'min:9|max:12',
+            // 'address' => 'required',
+            // 'email' => 'email',
         ]);
 
         $user = User::findOrFail($request ->id);
         $user->fill($request->all());
         $user->save();
 
-        toastr()->success('Update staff is successfully');
-        return redirect()->route('staff.index');
+        toastr()->success('Update profile is successfully');
+        return redirect()->route('profile.index');
         // return redirect()->route('staff.index')->with('update-user','Update staff is successfully');
     }
 
@@ -125,8 +133,8 @@ class UserController extends Controller
         $user = User::findOrFail($request -> id);
         $user->delete();
 
-        toastr()->success('Staff delete successfully');
-        return redirect()->route('staff.index');
+        toastr()->success('proflie delete successfully');
+        return redirect()->route('profile.index');
     }
 
     public function changePass(){
@@ -139,20 +147,21 @@ class UserController extends Controller
             'newPassword' => 'required|min:3',
             'rePassword' => 'required|same:newPassword',
         ]);
-        $account = User::Where('id',Auth::user()->id)->get();
+        $account = User::Where('id',Auth::user()->id)->first();
+        // dd($account);
         $userPassword = $account->password;
         $correctPassword = Hash::check($request->oldPassword, $userPassword);
         $correctPasswordConfirm = $request->newPassword === $request->rePassword;
         if($correctPassword){
             if ($correctPasswordConfirm) {
                 $account->password = Hash::make($request->newPassword);
-                toastr()->success('Change Password is successfully');
                 $account->save();
-                return redirect()->route('home');
+                toastr()->success('Change Password is successfully');
+                return redirect()->route('changePass');
             } else 
             $validatedData = $request->validate([
-                'oldPassword' => 'required|password|min:6',
-                'newPassword' => 'required|min:6',
+                'oldPassword' => 'required|password|min:3',
+                'newPassword' => 'required|min:3',
                 'rePassword' => 'required|same:newPassword',
             ]); 
             {

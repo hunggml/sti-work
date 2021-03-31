@@ -27,11 +27,11 @@ class AuthController extends Controller
    
         $users = User::all();
         $validatedData = $request->validate([
-            'email' => 'required|exists:users,email',
+            'username' => 'required|exists:users,username',
             'password' => 'required',
         ]);
         $remember = $request->has('remember') ? true : false;
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password],$remember)){
+        if(Auth::attempt(['username' => $request->username, 'password' => $request->password],$remember)){
             $user = Auth::user();
             $username = $user->username;
             $request->session()->push('login',$username);
@@ -42,7 +42,7 @@ class AuthController extends Controller
         }
         else
         $validatedData = $request->validate([
-            'email' => 'required|exists:users,email',
+            'username' => 'required|exists:users,username',
             'password' => 'required|password',
         ]);
         {

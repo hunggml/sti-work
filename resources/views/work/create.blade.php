@@ -18,7 +18,8 @@
                 </div>
                 <div class="form-group">
                     <label>Start Date</label>
-                    <input type="datetime-local" value="{{old('start_date')}}"
+                    <input type="datetime-local"  value="{{old('start_date')}}"
+                            style="width: 300px"
                            class="form-control @error('start_date') border-danger @enderror" name="start_date"
                            placeholder="Enter start date">
                     @error('start_date')
@@ -27,7 +28,8 @@
                 </div>
                 <div class="form-group">
                     <label>End Date</label>
-                    <input type="datetime-local" value="{{old('end_date')}}"
+                    <input type="datetime-local"  value="{{old('end_date')}}"
+                            style="width: 300px"
                            class="form-control @error('end_date') border-danger @enderror" name="end_date"
                            placeholder="Enter end date">
                     @error('end_date')
@@ -37,7 +39,7 @@
                 <div class="form-group">
                     <label>Status</label>
                     <select name="status" class="form-control">
-                        <option value="Hoàn thành">Hoàn thành</option>
+                        {{-- <option value="Hoàn thành">Hoàn thành</option> --}}
                         <option value="Chưa hoàn thành">chưa hoàn thành</option>
                     </select>
                 </div>
@@ -50,4 +52,9 @@
         </div>
     </div>
 
+    <script>
+      let a =  document.getElementById('start_date').value;
+      let b = document.getElementById('end_date').value;
+      
+    </script>
 @endsection

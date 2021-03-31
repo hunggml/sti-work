@@ -1,5 +1,5 @@
 @extends('master.master')
-@section('title','All-Work')
+@section('title', 'All-Work')
 @section('content')
     <div class="wrapper">
         <!-- Content Wrapper. Contains page content -->
@@ -11,38 +11,51 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <a class="nav-link bg-light" href="#" data-widget="iframe-fullscreen" style="float: right"><i class="fas fa-expand"></i></a>
-                                    <h1 style="text-align: center">Work in the Company</h1>
+                                    <input type="datetime-Local" style="font-size: 25px;border:0" disabled
+                                        value={{ Carbon\Carbon::now()->format('Y-m-d\TH:i') }}>
+                                    <h1 style="text-align: center; display:inline-block; margin-left:150px">Sáng tạo - Triệt
+                                        để - Cam kết</h1>
+                                    <span style="float: right">
+                                        {{ $user->links() }}
+                                    </span>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body" id="car-body">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
-                                        <tr>
-                                            <th>Staff-Name</th>
-                                            <th>Work detail</th>
-                                            <th>Start-Date</th>
-                                            <th>End-Date</th>
-                                            <th>Status</th>
-                                        </tr>
+                                            <tr>
+                                                <th>Staff-Name</th>
+                                                <th>Work detail</th>
+                                                <th>Start-Date</th>
+                                                <th>End-Date</th>
+                                                {{-- <th>Status</th> --}}
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($allWork as $key => $value)
-                                            <tr>
-                                                <td>{{ $value->user_name }}</td>
-                                                <td>{{ $value->detail }}</td>
-                                                <td>{{ $value->start_date }}</td>
-                                                <td>{{ $value->end_date }}</td>
-                                                @if($value->status == 'Hoàn thành')
-                                                    <td style="background-color: greenyellow;color:black ">{{ $value->status }}</td>
-                                                @else
-                                                    <td style="background-color: #ff4a52;color: black">{{ $value->status }}</td>
-                                                @endif
-                                            </tr>
-                                        @endforeach
+                                            @foreach ($user as $key => $value0)
+                                                @foreach ($value0->work as $key1 => $value)
+                                                
+                                                    @if ($key1 == 0)
+                                                        <tr>
+                                                            <td id="username" rowspan="{{ $value0->work->count() }}">
+                                                                {{ $value->user_name }}</td>
+                                                            <td id="detail">{{ $value->detail }}</td>
+                                                            <td id="start_date">{{ $value->start_date }}</td>
+                                                            <td id="end_date">{{ $value->end_date }}</td>
+                                                        </tr>
+                                                    @else
+                                                        <tr>
+                                                            <td>{{ $value->detail }}</td>
+                                                            <td>{{ $value->start_date }}</td>
+                                                            <td>{{ $value->end_date }}</td>
+                                                        </tr>
+                                                    @endif
+                                                @endforeach
+                                            @endforeach
                                         </tbody>
                                         <tfoot>
 
                                         </tfoot>
+
                                     </table>
                                 </div>
                                 <!-- /.card-body -->

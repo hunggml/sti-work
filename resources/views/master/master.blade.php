@@ -44,13 +44,14 @@
 </head>
 <body class="sidebar-mini layout-fixed sidebar-mini sidebar-collapse" data-panel-auto-height-mode="height">
 <div class="wrapper">
+    
     <!-- Navbar -->
 @include('core.header')
 
 <!-- Content Wrapper. Contains page content -->
 
-@yield('content')
 
+@yield('content')
 
 
 <!-- Control Sidebar -->

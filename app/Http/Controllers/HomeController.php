@@ -19,8 +19,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $allWork = Work::all();
-        return view('screen.screen',compact('allWork'));
+        // $allWork = Work::all();
+        $user = User::with('work')->paginate(5);
+        // dd($user->first());
+        return view('screen.screen',compact('user'));
     }
 
     /**

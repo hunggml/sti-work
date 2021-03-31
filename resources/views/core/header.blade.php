@@ -41,7 +41,7 @@
                          alt="User Image">
                 </a>
                 <div class="dropdown-menu" style="position: fixed" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="{{route('changePass')}}" style="color: black">Change password</a>
+                    <a class="dropdown-item" href="{{route('profile.index')}}" style="color: black">Profile</a>
                     <a class="dropdown-item" href="{{route('logOut')}}" style="color: black">LogOut</a>
                 </div>
             </div>
@@ -67,12 +67,12 @@
                             <p>Work</p>
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href={{route('staff.index')}} class="nav-link {{ request()->routeIs('staff*') ? 'active font-weight-bolder' : '' }}" >
                         <i class="far fa-circle nav-icon"></i>
-                            <p>Staff</p>
+                            <p>Profile</p>
                     </a>
-                </li>
+                </li> --}}
             </ul>
 
         </nav>

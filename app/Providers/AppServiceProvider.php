@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use App\Repositories\WorkInterface;
+use App\Repositories\WorkRepositories;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -14,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->app->bind(WorkInterface::class,WorkRepositories::class);
     }
 
     /**

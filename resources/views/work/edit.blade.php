@@ -22,6 +22,7 @@
                 <div class="form-group">
                     <label>Start date</label>
                     <input type="datetime-local" class="form-control dateform" 
+                            style="width: 300px"
                             value="{{old('time')?? date('Y-m-d\TH:i', strtotime($work->start_date)) }}"   
                             name="start_date">
                     @error('start_date')
@@ -31,6 +32,7 @@
                 <div class="form-group">
                     <label>End date</label>
                     <input type="datetime-local" class="form-control dateform" 
+                            style="width: 300px"
                             value="{{old('time')?? date('Y-m-d\TH:i', strtotime($work->end_date)) }}" 
                              name="end_date">
                     @error('end_date')

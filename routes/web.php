@@ -21,10 +21,10 @@ Route::middleware('auth')->prefix('/')->group(function(){
     Route::get('/update-status',[HomeController::class,'edit'])->name('screen.edit');
     Route::post('/update-status',[HomeController::class,'update'])->name('screen.update');
     
-    Route::get('/staff',[UserController::class,'index'])->name('staff.index');
-    Route::get('/edit-staff',[UserController::class,'edit'])->name('staff.edit');
-    Route::post('/edit-staff',[UserController::class,'update'])->name('staff.update');
-    Route::get('/destroy-staff',[UserController::class,'destroy'])->name('staff.destroy');
+    Route::get('/profile',[UserController::class,'index'])->name('profile.index');
+    Route::get('/edit-profile',[UserController::class,'edit'])->name('profile.edit');
+    Route::post('/edit-profile',[UserController::class,'update'])->name('profile.update');
+    Route::get('/destroy-staff',[UserController::class,'destroy'])->name('profile.destroy');
 
     Route::get('/work',[WorkController::class,'index'])->name('work.index');
     Route::get('/create-work',[WorkController::class,'create'])->name('work.create');
@@ -39,7 +39,6 @@ Route::middleware('auth')->prefix('/')->group(function(){
     Route::post('/search-work',[WorkController::class,'search'])->name('search-work');
 
 });
-
 
 
 

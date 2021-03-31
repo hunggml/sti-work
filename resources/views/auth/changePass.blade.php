@@ -24,6 +24,7 @@
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
+               
                 <div class="form-group">
                     <label>New password</label>
                     <span toggle="#password-new" class="fa fa-fw fa-eye field-icon toggle-password"></span>
@@ -43,7 +44,7 @@
                 
                 <div>
                     <button type="submit" class="btn btn-primary">Update</button>
-                    <a class="btn btn-danger" href="{{route('home')}}">Cancel</a>
+                    <a class="btn btn-danger" href="{{route('profile.index')}}">Cancel</a>
                 </div>
             </form>
         </div>

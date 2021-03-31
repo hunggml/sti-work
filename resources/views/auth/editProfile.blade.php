@@ -1,13 +1,13 @@
 @extends('master.master')
-@section('title','Edit Staff')
+@section('title','Edit Profile')
 @section('content')
     <div class="content-wrapper">
         <div class="container">
-            <h1>Edit Staff</h1>
+            <h1>Edit Profile</h1>
             <hr>
             <form
                 method="post"
-                action="{{ route('staff.update')}}">
+                action="{{ route('profile.update')}}">
                 @csrf
                 <div class="form-group">
                     <label>Name</label>
@@ -54,9 +54,10 @@
                 </div>
                 <div>
                     <button type="submit" class="btn btn-primary">Update</button>
-                    <a class="btn btn-danger" href="{{route('staff.index')}}">Cancel</a>
+                    <a class="btn btn-danger" href="{{route('profile.index')}}">Cancel</a>
                 </div>
             </form>
+            
         </div>
     </div>
 
