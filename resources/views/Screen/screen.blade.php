@@ -15,9 +15,9 @@
                                         value={{ Carbon\Carbon::now()->format('Y-m-d\TH:i') }} > --}}
                                     <span id="time" style="font-size: 30px;border:0;color:black"  disabled></span>
                                     <h1>Sáng tạo - Triệt để - Cam kết</h1>
-                                    <span style="float: right">
+                                    {{-- <span style="float: right">
                                         {{ $user->links() }}
-                                    </span>
+                                    </span> --}}
                                 </div>
                                 <div class="card-body" id="car-body">
                                     <table id="example1" class="table table-bordered table-striped">
@@ -35,8 +35,9 @@
                                                 @foreach ($value0->work as $key1 => $value)
                                                     @if ($value->detail == null)
                                                     <tr >
-                                                        <td rowspan="{{ $value0->work->count() }}">
-                                                            {{ $value->user_name }}</td>
+                                                        <td id="user_name" rowspan="{{ $value0->work->count() }}">
+                                                            {{ $value->user_name }}
+                                                        </td>
                                                         <td style="background-color: #f13149" id="detail">{{ $value->detail }}</td>
                                                         <td>{{ $value->start_date }}</td>
                                                         <td>{{ $value->end_date }}</td>
@@ -44,7 +45,7 @@
                                                     @else
                                                     @if ($key1 == 0)
                                                         <tr>
-                                                            <td rowspan="{{ $value0->work->count() }}">
+                                                            <td id="user_name" rowspan="{{ $value0->work->count() }}">
                                                                 {{ $value->user_name }}</td>
                                                             <td>{{ $value->detail }}</td>
                                                             <td>{{ $value->start_date }}</td>

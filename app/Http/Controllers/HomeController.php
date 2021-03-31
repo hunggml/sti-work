@@ -20,7 +20,7 @@ class HomeController extends Controller
     public function index()
     {
         // $allWork = Work::all();
-        $user = User::with('work')->paginate(1);
+        $user = User::with('work')->get();
         return view('screen.screen',compact('user'));
     }
 

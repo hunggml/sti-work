@@ -30,7 +30,7 @@ class WorkController extends Controller
 
     public function index()
     {
-        $work = Work::Where('user_id', Auth::user()->id)->paginate(5);
+        $work = Work::Where('user_id', Auth::user()->id)->get();
         return view('work.list', compact('work'));
     }
 
