@@ -212,15 +212,16 @@ td {
     height: 70px;
     font-size: 28px;
     color: black;
-     text-align: left;
-    vertical-align: middle; 
+    text-align: left !important;
     border: solid black !important;
+    vertical-align: middle !important;
+
 }
 
 th {
     font-size: 25px;
-    color: black;
-    text-align: center;
+    color: black !important;
+    text-align: center !important;
     /* border: solid black !important; */
     background-color: antiquewhite;
     border: solid black !important; 
@@ -251,30 +252,4 @@ label {
 .card-title{
     color: #000;
 }
-#detail {
-    text-align: left;
-    vertical-align: middle;
 
-} 
-#start_date {
-    text-align: left;
-    vertical-align: middle;
-    border: solid black;
-
-}
-
-#end_date {
-    text-align: left;
-    vertical-align: middle;
-    border: solid black;
-
-}
-#action{
-    border: solid black;
-}
-#user_name {
-    text-align: left;
-    vertical-align: middle;
-    border: solid black;
-
-}

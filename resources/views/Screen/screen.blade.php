@@ -35,7 +35,7 @@
                                                 @foreach ($value0->work as $key1 => $value)
                                                     @if ($value->detail == null)
                                                     <tr >
-                                                        <td id="user_name" rowspan="{{ $value0->work->count() }}">
+                                                        <td rowspan="{{ $value0->work->count() }}">
                                                             {{ $value->user_name }}
                                                         </td>
                                                         <td style="background-color: #f13149">{{ $value->detail }}</td>
@@ -45,7 +45,7 @@
                                                     @else
                                                     @if ($key1 == 0)
                                                         <tr>
-                                                            <td id="user_name" rowspan="{{ $value0->work->count() }}">
+                                                            <td rowspan="{{ $value0->work->count() }}">
                                                                 {{ $value->user_name }}</td>
                                                             <td >{{ $value->detail }}</td>
                                                             <td >{{ $value->start_date }}</td>
