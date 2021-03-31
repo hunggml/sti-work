@@ -1,23 +1,23 @@
 @extends('master.master')
-@section('title','Add Work')
+@section('title','Thêm việc')
 @section('content')
     <div class="content-wrapper">
         <div class="container">
-            <h1>Add Work</h1>
+            <h1>Thêm việc</h1>
             <hr>
             <form action={{route('work.store')}} method="post">
                 @csrf
                 <div class="form-group">
-                    <label>Work Detail</label>
+                    <label>Công Việc</label>
                     <textarea type="text"
                               class="form-control @error('detail') border-danger @enderror" name="detail"
-                              placeholder="Enter work detail ">{{old('detail')}}</textarea>
+                              placeholder="Nhập công việc cụ thể">{{old('detail')}}</textarea>
                     @error('detail')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label>Start Date</label>
+                    <label>Ngày bắt đầu</label>
                     <input type="datetime-local"  value="{{old('start_date')}}"
                             style="width: 300px"
                            class="form-control @error('start_date') border-danger @enderror" name="start_date"
@@ -27,7 +27,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label>End Date</label>
+                    <label>Ngày kết thúc</label>
                     <input type="datetime-local"  value="{{old('end_date')}}"
                             style="width: 300px"
                            class="form-control @error('end_date') border-danger @enderror" name="end_date"
@@ -37,7 +37,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label>Status</label>
+                    <label>Trạng thái</label>
                     <select name="status" class="form-control">
                         {{-- <option value="Hoàn thành">Hoàn thành</option> --}}
                         <option value="Chưa hoàn thành">chưa hoàn thành</option>

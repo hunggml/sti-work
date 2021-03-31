@@ -11,16 +11,17 @@ use App\Repositories\WorkInterface;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
 
     public function __construct(WorkInterface $workInterface)
     {
         $this->workInterface = $workInterface;
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
     public function index()
     {
@@ -107,7 +108,7 @@ class UserController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'username' => 'required',
+            // 'username' => 'required',
             // 'phone' => 'min:9|max:12',
             // 'address' => 'required',
             // 'email' => 'email',
@@ -117,9 +118,8 @@ class UserController extends Controller
         $user->fill($request->all());
         $user->save();
 
-        toastr()->success('Update profile is successfully');
+        toastr()->success('Cập nhật hồ sơ thành công');
         return redirect()->route('profile.index');
-        // return redirect()->route('staff.index')->with('update-user','Update staff is successfully');
     }
 
     /**
@@ -156,7 +156,7 @@ class UserController extends Controller
             if ($correctPasswordConfirm) {
                 $account->password = Hash::make($request->newPassword);
                 $account->save();
-                toastr()->success('Change Password is successfully');
+                toastr()->success('Thay đổi mật khẩu thành công');
                 return redirect()->route('changePass');
             } else 
             $validatedData = $request->validate([

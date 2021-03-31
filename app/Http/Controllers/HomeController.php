@@ -20,8 +20,7 @@ class HomeController extends Controller
     public function index()
     {
         // $allWork = Work::all();
-        $user = User::with('work')->paginate(5);
-        // dd($user->first());
+        $user = User::with('work')->paginate(1);
         return view('screen.screen',compact('user'));
     }
 
@@ -91,7 +90,7 @@ class HomeController extends Controller
             'end_date' => $request->end_date,
             'status' => $request->status,
         ]);
-        toastr()->success('Work update successfully');
+        toastr()->success('Cập nhật công việc thành công');
         return redirect()->route('home');    
     }
 

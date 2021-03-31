@@ -32,7 +32,6 @@ class WorkRepositories implements WorkInterface
     }
 
     public function update(){
-
     }
 
     public function check() {

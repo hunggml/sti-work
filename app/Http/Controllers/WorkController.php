@@ -54,16 +54,15 @@ class WorkController extends Controller
     public function store(Request $request)
     {
         $id = $this->workInterface->check();
-        if($id) {
+        if ($id) {
             $work = DB::table('works', $id)->where('id', $id)->update([
                 'detail' => $request->detail,
                 'start_date' => $request->start_date,
                 'end_date' => $request->end_date,
                 'status' => $request->status,
             ]);
-            toastr()->success('Work added successfully');
-        }
-        else {
+            toastr()->success('Thêm công việc thành công');
+        } else {
             $validatedData = $request->validate([
                 'detail' => 'required',
                 'start_date' => 'required',
@@ -79,9 +78,9 @@ class WorkController extends Controller
             $work->end_date = $request->end_date;
             $work->status = $request->status;
             $check =  Carbon::create($work->start_date)->diffInMinutes(Carbon::create($work->end_date), false);
-    
+
             if ($check <= 0) {
-                toastr()->error('the starting time must be smaller than the ending time');
+                toastr()->error('Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
                 return redirect()->route('work.create');
             } else
                 $validatedData = $request->validate([
@@ -91,12 +90,12 @@ class WorkController extends Controller
                     'status' => 'required',
                 ]); {
                 $work->save();
-                toastr()->success('Work added successfully');
+                toastr()->success('Thêm ');
             }
         }
         return redirect()->route('work.index');
 
-       
+
 
 
 
@@ -149,7 +148,7 @@ class WorkController extends Controller
         $check =  Carbon::create($request->start_date)->diffInMinutes(Carbon::create($request->end_date), false);
 
         if ($check <= 0) {
-            toastr()->error('the starting time must be smaller than the ending time');
+            toastr()->error('Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
             return back();
         } else
             $validatedData = $request->validate([
@@ -164,7 +163,7 @@ class WorkController extends Controller
                 'end_date' => $request->end_date,
                 'status' => $request->status,
             ]);
-            toastr()->success('Work added successfully');
+            toastr()->success('Cập nhật công việc thành công');
             $works = Work::Where('user_id', Auth::user()->id)->get();
             foreach ($works as $work) {
                 if ($work->status === "Chưa hoàn thành") {
@@ -173,7 +172,6 @@ class WorkController extends Controller
             }
             // dd(($works)[0]->status);
             $user = Auth::user();
-
             $this->workInterface->StoreWork($user->id, $user->name, null, null, null, 'Chưa hoàn thành',);
 
             return redirect()->route('work.index');
@@ -195,9 +193,16 @@ class WorkController extends Controller
     public function destroy(Request $request)
     {
         $work = Work::findOrFail($request->id);
+        if($work->status === "Chưa hoàn thành"){
+            toastr()->error('Công việc cần phải hoàn thành');
+            return back();
+        }
+        else{
         $work->delete();
-        toastr()->success('Work delete successfully');
+        toastr()->success('Xoá công việc thành công');
         return redirect()->route('work.index');
+        }
+        
         // return redirect()->route('work.index')->with('delete-work','Job delete successfully');
     }
 

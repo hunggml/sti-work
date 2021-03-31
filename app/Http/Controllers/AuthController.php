@@ -36,7 +36,7 @@ class AuthController extends Controller
             $username = $user->username;
             $request->session()->push('login',$username);
 
-            toastr()->success('Logged in successfully');
+            toastr()->success('Đăng nhập thành công!');
             return redirect()->route('home',compact('users'));
             // return redirect()->route('home',compact('users'))->with('login-correct','Logged in successfully');
         }
@@ -53,7 +53,7 @@ class AuthController extends Controller
 
     public function logOut(Request $request){
         Auth::logout();
-        toastr()->success('Logout is successfully');
+        toastr()->success('Đăng xuất thành công!');
         return redirect()->route('loginShow');
     }
 }

@@ -1,5 +1,5 @@
 @extends('master.master')
-@section('title', 'Staff List')
+@section('title', 'Danh sách công việc cá nhân')
 @section('content')
     <div class="wrapper">
         <!-- Content Wrapper. Contains page content -->
@@ -11,15 +11,15 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Work List</h3>
+                                    <h3 class="card-title">Danh sách công việc cá nhân</h3>
                                 </div>
                                 <div class="card-body" id="car-body">
-                                    <a style="color: white" class="btn btn-primary mb-2 ml-2"
-                                        href={{ route('work.create') }}>Add
-                                        Work</a>
-                                        <span style="float: right">
-                                            {{ $work->links() }}
-                                        </span>
+                                    <a style="color: white" class="btn btn-primary mb-2"
+                                        href={{ route('work.create') }}>Thêm việc
+                                    </a>
+                                    <span style="float: right">
+                                        {{ $work->links() }}
+                                    </span>
 
                                     {{-- <button type="button" class="btn btn-primary mb-2 ml-2" data-toggle="modal" data-target="#addModal">
                                         Add Work
@@ -28,11 +28,11 @@
                                         <thead>
                                             <tr>
                                                 <th>STT</th>
-                                                <th>Work detail</th>
-                                                <th>Start-Date</th>
-                                                <th>End-Date</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
+                                                <th>Công việc</th>
+                                                <th>Ngày bắt đầu</th>
+                                                <th>Ngày kết thúc</th>
+                                                <th>Trạng thái</th>
+                                                <th>Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -41,8 +41,8 @@
                                                     <tr hidden>
                                                         <td>{{ ++$key }}</td>
                                                         <td id="detail">{{ $value->detail }}</td>
-                                                        <td>{{ $value->start_date }}</td>
-                                                        <td>{{ $value->end_date }}</td>
+                                                        <td >{{ $value->start_date }}</td>
+                                                        <td id="end_date">{{ $value->end_date }}</td>
                                                         @if ($value->status == 'Hoàn thành')
                                                             <td style="background-color: greenyellow;color:black">
                                                                 {{ $value->status }}</td>
@@ -65,7 +65,7 @@
                                                 @else
                                                     <tr>
                                                         <td>{{ ++$key }}</td>
-                                                        <td id="detail">{{ $value->detail }}</td>
+                                                        <td>{{ $value->detail }}</td>
                                                         <td>{{ $value->start_date }}</td>
                                                         <td>{{ $value->end_date }}</td>
                                                         @if ($value->status == 'Hoàn thành')
@@ -114,100 +114,6 @@
         </aside>
         <!-- /.control-sidebar -->
     </div>
-    {{-- Add work modal --}}
-    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Work</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-
-                </div>
-                <div class="modal-body">
-                    <div class="">
-                        @if (count($errors) > 0)
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        <form id="addWork" name="addWork" action={{ route('work.store') }} method="post">
-                            @csrf
-                            <div class="form-group">
-                                <label>Work Detail</label>
-                                <textarea type="text" id="detail"
-                                    class="form-control @error('detail') border-danger @enderror" name="detail"
-                                    placeholder="Enter work detail ">{{ old('detail') }}</textarea>
-                                @error('detail')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label>Start Date</label>
-                                <input type="datetime-local" value="{{ old('start_date') }}" id="start_date"
-                                    class="form-control @error('start_date') border-danger @enderror" name="start_date"
-                                    placeholder="Enter start date">
-                                @error('start_date')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label>End Date</label>
-                                <input type="datetime-local" value="{{ old('end_date') }}" id="end_date"
-                                    class="form-control @error('end_date') border-danger @enderror" name="end_date"
-                                    placeholder="Enter end date">
-                                @error('end_date')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label>Status</label>
-                                <select name="status" id="status" class="form-control">
-                                    <option value="Hoàn thành">Hoàn thành</option>
-                                    <option value="Chưa hoàn thành">chưa hoàn thành</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <a class="btn btn-danger" data-dismiss="modal" style="color: white">Cancel</a>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {{-- edit --}}
-    <script type="text/javascript">
-        //   $(document).ready(function () {
-        //         $('#addWork').click(function (e) {
-        //             addWork();
-        //             e.preventDefault();
-        //         });
-        //             getAll();
-        //     });
-        //         $.ajax({
-        //             type: 'POST',
-        //             url: form_action,
-        //             data: $('#addWork').serialize(),
-        //             success: function (response) {
-        //                 console.log(response);
-        //                 $('#addWork')[0].reset();
-        //                 clear();
-        //                 $('#addModal').modal('hide');
-        //             },
-        //             error: function (data) {
-        // 			  }
-
-        //         });
-
-    </script>
+ 
 
 @endsection

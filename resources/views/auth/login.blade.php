@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Login</title>
+    <title>Đăng nhập</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,23 +18,21 @@
 <body>
 <div class="login-wrap">
     <div class="login-html">
-
-        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Đăng nhập</label>
         <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
         <div class="login-form">
             <form  action={{route('checkLogin')}} method="post">
                 @csrf
                 <div class="sign-in-htm">
-
                     <div class="group">
-                        <label for="username" class="label">Username</label>
+                        <label for="username" class="label">Tài khoản</label>
                         <input id="username" value="{{old('username')}}" name="username" type="text" class="input">
                         @error('username')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="group">
-                        <label for="password" class="label">Password</label>
+                        <label for="password" class="label">Mật khẩu</label>
                         <input id="password" name="password" type="password" class="input" data-type="password">
                     </div>
                     @error('password')
@@ -43,16 +41,15 @@
                     <br>
                     <div class="group">
                         <input id="check" type="checkbox" value="remember" class="check">
-                        <label id="remember" for="check"><span class="icon"></span> Remember me</label>
+                        <label id="remember" for="check"><span class="icon"></span> Nhớ tài khoản</label>
                     </div>
                     <div class="group">
                         <input type="submit" class="button" value="Sign In">
                     </div>
                     <div class="hr"></div>
                     <div class="foot-lnk">
-                        <a href={{route('registerShow')}}>Register</a>
+                        <a style="color: white" href={{route('registerShow')}} >Đăng ký</a>
                     </div>
-
                 </div>
             </form>
 

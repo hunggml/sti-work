@@ -5,7 +5,7 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href={{route('home')}} class="nav-link">{{__('Home')}}</a>
+            <a href={{route('home')}} class="nav-link">{{__('Trang chủ')}}</a>
         </li>
     </ul>
     <ul class="navbar-nav ml-auto">
@@ -41,13 +41,13 @@
                          alt="User Image">
                 </a>
                 <div class="dropdown-menu" style="position: fixed" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="{{route('profile.index')}}" style="color: black">Profile</a>
-                    <a class="dropdown-item" href="{{route('logOut')}}" style="color: black">LogOut</a>
+                    <a class="dropdown-item" href="{{route('profile.index')}}" style="color: black">Hồ sơ</a>
+                    <a class="dropdown-item" href="{{route('logOut')}}" style="color: black">Đăng xuất</a>
                 </div>
             </div>
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="info">
-                    <a class="d-block">Hello: {{\Illuminate\Support\Facades\Auth::user()->name}}</a>
+                    <a class="d-block">Xin chào: {{\Illuminate\Support\Facades\Auth::user()->name}}</a>
                 </div>
             </div>  
 
@@ -58,21 +58,15 @@
                 <li >
                     <a href="{{route('home')}}" class="nav-link {{ request()->is('/') ? 'active font-weight-bolder' : '' }}" >
                         <i class="far fa-circle nav-icon"></i>
-                            <p>Dashboard</p>
+                            <p>Danh sách công việc</p>
                     </a>
                 </li>
                 <li>
                     <a href={{route('work.index')}} class="nav-link {{ request()->routeIs('work*') ? 'active font-weight-bolder' : '' }}" >
                         <i class="far fa-circle nav-icon"></i>
-                            <p>Work</p>
+                            <p>Công việc cá nhân</p>
                     </a>
                 </li>
-                {{-- <li>
-                    <a href={{route('staff.index')}} class="nav-link {{ request()->routeIs('staff*') ? 'active font-weight-bolder' : '' }}" >
-                        <i class="far fa-circle nav-icon"></i>
-                            <p>Profile</p>
-                    </a>
-                </li> --}}
             </ul>
 
         </nav>
