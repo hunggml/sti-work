@@ -90,18 +90,11 @@ class WorkController extends Controller
                     'status' => 'required',
                 ]); {
                 $work->save();
-                toastr()->success('Thêm ');
+                toastr()->success('Thêm công việc thành công');
             }
         }
         return redirect()->route('work.index');
 
-
-
-
-
-        // return Response::json($work);
-
-        // return redirect()->route('work.index')->with('add-work','job added successfully');
     }
 
     /**
@@ -177,11 +170,6 @@ class WorkController extends Controller
             return redirect()->route('work.index');
         }
 
-
-
-
-
-        // return redirect()->route('work.index')->with('update-work','Job update successfully');
     }
 
     /**
@@ -203,18 +191,17 @@ class WorkController extends Controller
         return redirect()->route('work.index');
         }
         
-        // return redirect()->route('work.index')->with('delete-work','Job delete successfully');
     }
 
 
 
     public function getDateStartAttribute($value)
     {
-        return Carbon::parse($value)->format('Y-m-d\TH:i');
+        return Carbon::parse($value)->format('Y-m-d');
     }
 
     public function getDateEndAttribute($value)
     {
-        return Carbon::parse($value)->format('Y-m-d\TH:i');
+        return Carbon::parse($value)->format('Y-m-d');
     }
 }

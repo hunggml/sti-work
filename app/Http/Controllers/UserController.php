@@ -50,9 +50,6 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|unique:users,name',
             'username' => 'required|unique:users,username',
-            // 'phone' => 'required|min:9|max:12|unique:users,phone|',
-            // 'address' => 'required',
-            // 'email' => 'required|email|unique:users',
             'password' => 'required|min:3',
             're-password' => 'required|same:password',
         ]);
@@ -61,9 +58,6 @@ class UserController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->username = $request->username;
-        // $user->phone = $request->phone;
-        // $user->address = $request->address;
-        // $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->time_created = Carbon::now('Asia/Ho_Chi_Minh');
         $user->time_updated = Carbon::now('Asia/Ho_Chi_Minh');
@@ -108,10 +102,7 @@ class UserController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            // 'username' => 'required',
-            // 'phone' => 'min:9|max:12',
-            // 'address' => 'required',
-            // 'email' => 'email',
+
         ]);
 
         $user = User::findOrFail($request ->id);

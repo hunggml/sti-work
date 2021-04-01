@@ -16,7 +16,7 @@
        @toastr_css
 
 </head>
-<body>
+<body style='background-image: url("../img/backkkk.jpg");'>
 <div class="login-wrap">
     <div class="login-html">
         

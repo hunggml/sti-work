@@ -2,7 +2,7 @@ body {
     margin: 0;
     color: #6a6f8c;
     font: 600 16px/18px 'Open Sans', sans-serif;
-    background-image: url("../img/backkkk.jpg");
+    /* background-image: url("../img/backkkk.jpg"); */
     background-size: contain;
     background-attachment: fixed;
 }
@@ -190,8 +190,6 @@ img {
 h1 {
     color: black;
     text-align: center;
-    margin-left: 130px;
-    display: inline-block;
 }
 
 #dropdownMenuLink {
@@ -247,9 +245,25 @@ label {
 
 #car-body {
     overflow: scroll;
-    height: 480px;
+    /* height: 100%; */
 }
 .card-title{
     color: #000;
+}
+.content-wrapper{
+    display: flex !important;
+}
+.content{
+    width: 100% !important;
+}
+.card{
+    width: 100% !important;
+    height: 100% !important;
+}
+.profile{
+    border: 0 !important;
+}
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221) !important;
 }
 

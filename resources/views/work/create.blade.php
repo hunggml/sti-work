@@ -18,7 +18,7 @@
                 </div>
                 <div class="form-group">
                     <label>Ngày bắt đầu</label>
-                    <input type="datetime-local"  value="{{old('start_date')}}"
+                    <input type="date"  value="{{old('start_date')}}"
                             style="width: 300px"
                            class="form-control @error('start_date') border-danger @enderror" name="start_date"
                            placeholder="Enter start date">
@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group">
                     <label>Ngày kết thúc</label>
-                    <input type="datetime-local"  value="{{old('end_date')}}"
+                    <input type="date"  value="{{old('end_date')}}"
                             style="width: 300px"
                            class="form-control @error('end_date') border-danger @enderror" name="end_date"
                            placeholder="Enter end date">
@@ -52,9 +52,4 @@
         </div>
     </div>
 
-    <script>
-      let a =  document.getElementById('start_date').value;
-      let b = document.getElementById('end_date').value;
-      
-    </script>
 @endsection

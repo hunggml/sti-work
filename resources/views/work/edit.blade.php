@@ -21,9 +21,9 @@
                 </div>
                 <div class="form-group">
                     <label>Start date</label>
-                    <input type="datetime-local" class="form-control dateform" 
+                    <input type="date" class="form-control dateform" 
                             style="width: 300px"
-                            value="{{old('time')?? date('Y-m-d\TH:i', strtotime($work->start_date)) }}"   
+                            value="{{old('time')?? date('Y-m-d', strtotime($work->start_date)) }}"   
                             name="start_date">
                     @error('start_date')
                     <div class="text-danger">{{ $message }}</div>
@@ -31,9 +31,9 @@
                 </div>
                 <div class="form-group">
                     <label>End date</label>
-                    <input type="datetime-local" class="form-control dateform" 
+                    <input type="date" class="form-control dateform" 
                             style="width: 300px"
-                            value="{{old('time')?? date('Y-m-d\TH:i', strtotime($work->end_date)) }}" 
+                            value="{{old('time')?? date('Y-m-d', strtotime($work->end_date)) }}" 
                              name="end_date">
                     @error('end_date')
                     <div class="text-danger">{{ $message }}</div>
@@ -56,20 +56,3 @@
 
  
 @endsection
-{{-- @push('script')
-    <script>
-        
-
-        $('.dateform').daterangepicker(
-            {
-                singleDatePicker : true,
-                timePicker :true,
-                timePickerSeconds :true,
-                timePicker24Hour:true,
-                locate : {
-                    format : 'Y-m-d\TH:i'
-                }
-            }
-        )
-</script>
-@endpush --}}

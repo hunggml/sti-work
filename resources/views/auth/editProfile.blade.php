@@ -20,14 +20,6 @@
                 <div class="form-group">
                     <input type="text" style="display: none" readonly value="{{$user->id}}" name="id">
                 </div>
-                {{-- <div class="form-group">
-                    <label>tài khoản đăng nhập</label>
-                    <input type="text" class="form-control" name="username"
-                           value="{{ $user->username }}">
-                    @error('username')
-                    <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div> --}}
                 <div class="form-group">
                     <label>Số điện thoại</label>
                     <input type="number" class="form-control" name="phone"
