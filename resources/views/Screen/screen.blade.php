@@ -6,7 +6,6 @@
         <div class="content-wrapper">
             <!-- Main content -->
             <section class="content">
-
                 <div class="card">
                     <div class="card-header">
                         <span id="time" style="font-size: 30px;border:0;color:black" disabled></span>
