@@ -60,7 +60,7 @@
                         </div>
                         <br> 
                         <div class="group">
-                            <input type="submit" class="button" value="Sign Up">
+                            <input type="submit" class="button" value="Đăng ký">
                         </div>
                         <div class="foot-lnk">
                             <a style="color: white" href={{route('loginShow')}}>Bạn đã có tài khoản?</a>

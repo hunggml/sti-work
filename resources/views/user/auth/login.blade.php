@@ -47,7 +47,7 @@
                             <label id="remember" for="check"><span class="icon"></span> Nhớ tài khoản</label>
                         </div>
                         <div class="group">
-                            <input type="submit" class="button" value="Sign In">
+                            <input type="submit" class="button" value="Đăng nhập">
                         </div>
                         <div class="hr"></div>
                         <div class="foot-lnk">
