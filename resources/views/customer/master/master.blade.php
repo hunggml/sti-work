@@ -19,8 +19,7 @@
     @toastr_css
     {{-- css/style --}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
-
+   
 
 </head>
 
@@ -55,7 +54,7 @@
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
-
+  
     @stack('script')
 
     <script>
@@ -69,7 +68,7 @@
                 input.attr("type", "password");
             }
         });
-
+  
     </script>
     {{-- @jquery --}}
     @toastr_js
