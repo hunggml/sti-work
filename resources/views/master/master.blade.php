@@ -19,7 +19,6 @@
     @toastr_css
     {{-- css/style --}}
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <link rel="stylesheet" href="../../js/app.js">
 
 
 
@@ -47,7 +46,6 @@
 <!-- ./wrapper -->
 
 {{-- js --}}
-<script src="../../js/app.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
 <!-- jQuery -->
@@ -61,7 +59,7 @@
 <!-- Bootstrap 4 -->
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="{{asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+{{-- <script src="{{asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script> --}}
 <!-- overlayScrollbars -->
 <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 
@@ -81,28 +79,6 @@ if (input.attr("type") == "password") {
     input.attr("type", "password");
 }
 });
-function time() {
-    let time = new Date();
-    let day = time.getDay();
-    let month = time.getMonth();
-    let years = time.getFullYear();
-    let hour = time.getHours();
-    let minute = time.getMinutes();
-    let sescord = time.getSeconds();
-    if (hour < 10) {
-        hour = "0" + hour;
-    }
-    if (minute < 10) {
-        minute = "0" + minute;
-    }
-    if (sescord < 10) {
-        sescord = "0" + sescord;
-    }
-    document.getElementById('time').innerHTML = day + "/" + month + "/" + years + "-" + hour + ":" + minute + ":" +
-        sescord;
-    setTimeout("time()", 1000);
-}
-time();
 </script>
 </body>
 </html>
