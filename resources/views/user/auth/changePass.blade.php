@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('user.master.master')
 @section('title','Đổi mật khẩu')
 @section('content')
 <style>

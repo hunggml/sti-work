@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('user.master.master')
 @section('title','Edit Work')
 @section('content')
     <div class="content-wrapper">

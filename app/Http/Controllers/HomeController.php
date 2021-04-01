@@ -21,7 +21,16 @@ class HomeController extends Controller
     {
         // $allWork = Work::all();
         $user = User::with('work')->get();
-        return view('screen.screen',compact('user'));
+
+        return view('user.screen.screen',compact('user'));
+    }
+
+    public function home()
+    {
+        // $allWork = Work::all();
+        $user = User::with('work')->get();
+        $auth = Auth::user();
+        return view('customer.home.home',compact('user','auth'));
     }
 
     /**
@@ -66,7 +75,7 @@ class HomeController extends Controller
     {
         $work = Work::findOrFail($request -> id);
         
-        return view('screen.edit',compact('work'));
+        return view('user.screen.edit',compact('work'));
     }
 
     /**

@@ -31,7 +31,7 @@ class WorkController extends Controller
     public function index()
     {
         $work = Work::Where('user_id', Auth::user()->id)->get();
-        return view('work.list', compact('work'));
+        return view('user.work.list', compact('work'));
     }
 
     /**
@@ -42,7 +42,7 @@ class WorkController extends Controller
     public function create(Request $request)
     {
 
-        return view('work.create');
+        return view('user.work.create');
     }
 
     /**
@@ -79,7 +79,7 @@ class WorkController extends Controller
             $work->status = $request->status;
             $check =  Carbon::create($work->start_date)->diffInMinutes(Carbon::create($work->end_date), false);
 
-            if ($check <= 0) {
+            if ($check < 0) {
                 toastr()->error('Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
                 return redirect()->route('work.create');
             } else
@@ -118,7 +118,7 @@ class WorkController extends Controller
     {
         $work = Work::findOrFail($request->id);
 
-        return view('work.edit', compact('work'));
+        return view('user.work.edit', compact('work'));
     }
 
     /**
@@ -140,7 +140,7 @@ class WorkController extends Controller
         ]);
         $check =  Carbon::create($request->start_date)->diffInMinutes(Carbon::create($request->end_date), false);
 
-        if ($check <= 0) {
+        if ($check < 0) {
             toastr()->error('Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
             return back();
         } else

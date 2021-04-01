@@ -208,7 +208,7 @@ h1 {
 
 td {
     height: 70px;
-    font-size: 28px;
+    font-size: 20px;
     color: black;
     text-align: left !important;
     border: solid black !important;
@@ -220,7 +220,6 @@ th {
     font-size: 25px;
     color: black !important;
     text-align: center !important;
-    /* border: solid black !important; */
     background-color: antiquewhite;
     border: solid black !important; 
 
@@ -245,7 +244,6 @@ label {
 
 #car-body {
     overflow: scroll;
-    /* height: 100%; */
 }
 .card-title{
     color: #000;
@@ -255,10 +253,13 @@ label {
 }
 .content{
     width: 100% !important;
+
 }
 .card{
     width: 100% !important;
     height: 100% !important;
+
+    
 }
 .row{
     width: 100% !important;

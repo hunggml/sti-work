@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Whoops\Run;
 
 class AuthController extends Controller
 {
@@ -16,20 +17,20 @@ class AuthController extends Controller
      */
     public function loginShow()
     {
-        return view('auth.login');
+        return view('user.auth.login');
     }
 
     public function registerShow(){
-        return view('auth.register');
+        return view('user.auth.register');
     }
 
     public function checkLogin(Request $request){
    
         $users = User::all();
-        $validatedData = $request->validate([
-            'username' => 'required|exists:users,username',
-            'password' => 'required',
-        ]);
+        // $validatedData = $request->validate([
+        //     'username' => 'required|exists:users,username',
+        //     'password' => 'required',
+        // ]);
         $remember = $request->has('remember') ? true : false;
         if(Auth::attempt(['username' => $request->username, 'password' => $request->password],$remember)){
             $user = Auth::user();
@@ -41,6 +42,7 @@ class AuthController extends Controller
             // return redirect()->route('home',compact('users'))->with('login-correct','Logged in successfully');
         }
         else
+        
         $validatedData = $request->validate([
             'username' => 'required|exists:users,username',
             'password' => 'required|password',
@@ -53,7 +55,9 @@ class AuthController extends Controller
 
     public function logOut(Request $request){
         Auth::logout();
+        // $request->session()->has('login');
+        
         toastr()->success('Đăng xuất thành công!');
-        return redirect()->route('loginShow');
+        return redirect()->route('trangchu');
     }
 }

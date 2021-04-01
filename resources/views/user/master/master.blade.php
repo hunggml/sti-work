@@ -25,7 +25,7 @@
 <div class="wrapper">
     
     <!-- Navbar -->
-@include('core.header')
+@include('user.core.header')
 
 <!-- Content Wrapper. Contains page content -->
 
@@ -39,7 +39,7 @@
     </aside>
     <!-- /.control-sidebar -->
 </div>
-@include('core.footer')
+@include('user.core.footer')
 
 <!-- ./wrapper -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>

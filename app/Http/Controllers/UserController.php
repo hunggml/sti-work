@@ -26,7 +26,7 @@ class UserController extends Controller
     public function index()
     {
         $user = User::Where('id',Auth::user()->id)->get();
-        return view('auth.profile',compact('user'));
+        return view('user.auth.profile',compact('user'));
     }
 
     /**
@@ -88,7 +88,7 @@ class UserController extends Controller
     public function edit(Request $request)
     {
         $user = User::findOrFail($request -> id);
-        return view('auth.editProfile', compact('user'));
+        return view('user.auth.editProfile', compact('user'));
     }
 
     /**
@@ -129,7 +129,7 @@ class UserController extends Controller
     }
 
     public function changePass(){
-        return view('auth.changePass');
+        return view('user.auth.changePass');
     }
 
     public function updatePass(Request $request){

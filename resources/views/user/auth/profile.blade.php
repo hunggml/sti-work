@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('user.master.master')
 @section('title', 'Hồ sơ')
 @section('content')
     <div class="wrapper">

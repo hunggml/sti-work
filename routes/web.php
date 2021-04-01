@@ -16,7 +16,7 @@ use App\Http\Controllers\WorkController;
 | contains the "web" middleware group. Now create something great!
 |
 */ 
-Route::middleware('auth')->prefix('/')->group(function(){
+Route::middleware('auth')->prefix('/home')->group(function(){
     Route::get('/',[HomeController::class,'index'])->name('home');
     Route::get('/update-status',[HomeController::class,'edit'])->name('screen.edit');
     Route::post('/update-status',[HomeController::class,'update'])->name('screen.update');
@@ -36,9 +36,9 @@ Route::middleware('auth')->prefix('/')->group(function(){
     Route::get('/changePass',[UserController::class,'changePass'])->name('changePass');
     Route::post('/changePass',[UserController::class,'updatePass'])->name('updatePass');
 
-
 });
 
+Route::get('/', [HomeController::class,'home'])->name('trangchu');
 
 
 // Auth 
