@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Work;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\WorkInterface;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -64,7 +66,7 @@ class UserController extends Controller
         $user->save();
         $this->workInterface->StoreWork($user->id,$user->name,null,null,null,'Chưa hoàn thành');
 
-        toastr()->success('Register is successfully');
+        toastr()->success('Đăng ký thành công');
         return redirect()->route('loginShow');
     }
 
@@ -121,11 +123,12 @@ class UserController extends Controller
      */
     public function destroy(Request $request)
     {
-        $user = User::findOrFail($request -> id);
+        $user = User::Where('id', Auth::user()->id)->first();
         $user->delete();
-
-        toastr()->success('proflie delete successfully');
-        return redirect()->route('profile.index');
+        $work = Work::Where('user_id', Auth::user()->id)->first();
+        $work->delete();
+        toastr()->success('Xoá tài khoản thành công');
+        return redirect()->route('trangchu');
     }
 
     public function changePass(){

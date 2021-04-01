@@ -68,7 +68,7 @@
                 input.attr("type", "password");
             }
         });
-  
+   
     </script>
     {{-- @jquery --}}
     @toastr_js
