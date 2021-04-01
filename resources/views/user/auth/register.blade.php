@@ -63,8 +63,11 @@
                             <input type="submit" class="button" value="Sign Up">
                         </div>
                         <div class="foot-lnk">
-                            <div class="hr"></div>
                             <a style="color: white" href={{route('loginShow')}}>Bạn đã có tài khoản?</a>
+                        </div>
+                        <hr>
+                        <div class="foot-lnk">
+                            <a style="color: white" href={{ route('trangchu') }}>Quay lại</a>
                         </div>
                 </div>
             </form>

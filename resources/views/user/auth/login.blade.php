@@ -53,6 +53,10 @@
                         <div class="foot-lnk">
                             <a style="color: white" href={{ route('registerShow') }}>Đăng ký</a>
                         </div>
+                        <hr>
+                        <div class="foot-lnk">
+                            <a style="color: white" href={{ route('trangchu') }}>Quay lại</a>
+                        </div>
                     </div>
                 </form>
 
