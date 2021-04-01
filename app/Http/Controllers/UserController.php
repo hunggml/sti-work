@@ -62,7 +62,7 @@ class UserController extends Controller
         $user->time_created = Carbon::now('Asia/Ho_Chi_Minh');
         $user->time_updated = Carbon::now('Asia/Ho_Chi_Minh');
         $user->save();
-        $this->workInterface->StoreWork($user->id,$user->name,null,null,null,'Chưa hoàn thành',);
+        $this->workInterface->StoreWork($user->id,$user->name,null,null,null,'Chưa hoàn thành');
 
         toastr()->success('Register is successfully');
         return redirect()->route('loginShow');
