@@ -206,14 +206,13 @@ h1 {
     width: 250px;
 }
 
- td {
+td {
     height: 70px;
     font-size: 20px;
     color: black;
     text-align: left !important;
     border: solid black !important;
     vertical-align: middle !important;
-
 }
 
 th {
@@ -221,8 +220,7 @@ th {
     color: black !important;
     text-align: center !important;
     background-color: antiquewhite;
-    border: solid black !important; 
-
+    border: solid black !important;
 }
 
 tr {
@@ -238,37 +236,48 @@ label {
     font-size: 100%;
 }
 
- /* #example1 {
+/* #example1 {
     white-space: nowrap !important;
 }  */
 
 #car-body {
     overflow: scroll;
 }
-.card-title{
+
+.card-title {
     color: #000;
 }
-.content-wrapper{
+
+.content-wrapper {
     display: flex !important;
 }
- .content{
-    width: 100% !important;
 
-}  
-.card{
+.content {
+    width: 100% !important;
+}
+
+.card {
     width: 100% !important;
     height: 100% !important;
 }
-.row{
+
+.row {
     width: 100% !important;
     height: 100% !important;
 }
-.profile{
+
+.profile {
     border: 0 !important;
 }
-.table-user-information > tbody > tr {
+
+.table-user-information>tbody>tr {
     border-top: 1px solid rgb(221, 221, 221) !important;
-} 
-.check-time{
-background-color: orange;
+}
+
+.check-time {
+    background-color: orange;
+}
+
+.check-timeOut {
+    background-color: red;
 }

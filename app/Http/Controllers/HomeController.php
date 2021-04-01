@@ -21,16 +21,20 @@ class HomeController extends Controller
     {
         // $allWork = Work::all();
         $user = User::with('work')->get();
+        $date = Carbon::now();
+        $date->startOfDay();
 
-        return view('user.screen.screen',compact('user'));
+        return view('user.screen.screen',compact('user','date'));
     }
 
     public function home()
     {
         // $allWork = Work::all();
+        $date = Carbon::now();
+        $date->startOfDay();
         $user = User::with('work')->get();
         $auth = Auth::user();
-        return view('customer.home.home',compact('user','auth'));
+        return view('customer.home.home',compact('user','auth','date'));
     }
 
     /**
