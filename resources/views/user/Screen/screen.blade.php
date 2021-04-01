@@ -38,6 +38,22 @@
                                                 <td>{{ $value->start_date }}</td>
                                                 <td>{{ $value->end_date }}</td>
                                             </tr>
+                                        @elseif (Carbon\Carbon::now()->diffInMinutes($value->end_date,false) <= 0)
+                                            @if ($key1 == 0)
+                                                <tr>
+                                                    <td rowspan="{{ $value0->work->count() }}">
+                                                        {{ $value->user_name }}</td>
+                                                    <td class="check-time">{{ $value->detail }}</td>
+                                                    <td class="check-time">{{ $value->start_date }}</td>
+                                                    <td class="check-time">{{ $value->end_date }}</td>
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    <td class="check-time">{{ $value->detail }}</td>
+                                                    <td class="check-time">{{ $value->start_date }}</td>
+                                                    <td class="check-time">{{ $value->end_date }}</td>
+                                                </tr>
+                                            @endif
                                         @else
                                             @if ($key1 == 0)
                                                 <tr>
