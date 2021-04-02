@@ -43,6 +43,11 @@
                         <option value="Chưa hoàn thành">chưa hoàn thành</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <input type="number"  value = 0
+                           class="form-control " name="check"
+                           style="display: none">
+                </div>
 
                 <div>
                     <button type="submit" class="btn btn-primary">Submit</button>

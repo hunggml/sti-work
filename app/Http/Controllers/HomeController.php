@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\User;
 use App\Work;
 use App\WorkDetail;
@@ -19,12 +20,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $allWork = Work::all();
-        $user = User::with('work')->get();
+        $auth = Auth::user();
+        $user = User::with(['work' => function($q){
+            return $q->where('check', '1');
+        }])->get();
+
         $date = Carbon::now();
         $date->startOfDay();
-
-        return view('user.screen.screen',compact('user','date'));
+        // dd($user);
+        return view('user.screen.home', compact('user', 'date','auth'));
     }
 
     public function home()
@@ -34,7 +38,8 @@ class HomeController extends Controller
         $date->startOfDay();
         $user = User::with('work')->get();
         $auth = Auth::user();
-        return view('customer.home.home',compact('user','auth','date'));
+        
+        return view('customer.home.home', compact('user', 'auth', 'date'));
     }
 
     /**
@@ -50,7 +55,7 @@ class HomeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -61,7 +66,7 @@ class HomeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -72,23 +77,23 @@ class HomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request)
     {
-        $work = Work::findOrFail($request -> id);
-        
-        return view('user.screen.edit',compact('work'));
+        $work = Work::findOrFail($request->id);
+
+        return view('user.screen.edit', compact('work'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
-     */ 
+     */
     public function update(Request $request)
     {
         $validatedData = $request->validate([
@@ -97,25 +102,25 @@ class HomeController extends Controller
             'end_date' => 'required',
             'status' => 'required',
         ]);
-        $work = DB::table('works',$request->id)->where('id',$request->id)->update([
+        $work = DB::table('works', $request->id)->where('id', $request->id)->update([
             'detail' => $request->detail,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'status' => $request->status,
         ]);
         toastr()->success('Cập nhật công việc thành công');
-        return redirect()->route('home');    
+        return redirect()->route('home');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
     }
-  
+
 }

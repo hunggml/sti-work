@@ -47,7 +47,7 @@
 
                                                 <a href="{{ route('work.destroy', ['id' => $value->id]) }}"
                                                     class="btn btn-danger"
-                                                    onclick="return confirm('Are you sure you want to delete?')">
+                                                    onclick="return confirm('Bạn có chắc là muốn xoá không?')">
                                                     <i class="far fa-trash-alt"></i>
                                                 </a>
                                             </td>
@@ -72,7 +72,7 @@
 
                                                 <a href="{{ route('work.destroy', ['id' => $value->id]) }}"
                                                     class="btn btn-danger"
-                                                    onclick="return confirm('Are you sure you want to delete?')">
+                                                    onclick="return confirm('Bạn có chắc là muốn xoá không?')">
                                                     <i class="far fa-trash-alt"></i>
                                                 </a>
                                             </td>

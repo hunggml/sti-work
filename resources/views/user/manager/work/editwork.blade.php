@@ -1,16 +1,16 @@
 @extends('user.master.master')
-@section('title','Chỉnh sửa công việc')
+@section('title','Chỉnh sửa công việc nhân viên')
 @section('content')
     <div class="content-wrapper">
         <div class="container">
-            <h1>Chỉnh sửa công việc</h1>
+            <h1>Chỉnh sửa công việc nhân viên</h1>
             <hr>
             <form
                 method="post"
-                action="{{ route('work.update')}}">
+                action="{{route('check-job.update',['id' => $work->id])}}">
                 @csrf
                 <div class="form-group">
-                    <label>Work detail</label>
+                    <label>Công việc</label>
                     <textarea type="text" class="form-control" name="detail">{{$work->detail}}</textarea>
                     @error('detail')
                     <div class="text-danger">{{ $message }}</div>
@@ -20,7 +20,7 @@
                     <input type="text" style="display: none" readonly value="{{$work->id}}" name="id">
                 </div>
                 <div class="form-group">
-                    <label>Start date</label>
+                    <label>Ngày bắt đầu</label>
                     <input type="date" class="form-control dateform" 
                             style="width: 300px"
                             value="{{old('time')?? date('Y-m-d', strtotime($work->start_date)) }}"   
@@ -30,12 +30,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label>End date</label>
-                    @if ($work->end_date == null)
-                    <input type="date" class="form-control dateform" 
-                    style="width: 300px"
-                     name="end_date">
-                    @else
+                    <label>Ngày kết thúc</label>
                     <input type="date" class="form-control dateform" 
                             style="width: 300px"
                             value="{{old('time')?? date('Y-m-d', strtotime($work->end_date)) }}" 
@@ -44,22 +39,16 @@
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-                @endif
                 <div class="form-group">
-                    <label>Status</label>
-                    <select name="status" class="form-control">
-                        <option value="Hoàn thành">Hoàn thành</option>
-                        <option value="Chưa hoàn thành">chưa hoàn thành</option>
+                    <label>Xác nhận</label>
+                    <select name="check" class="form-control">
+                        <option value="1">Xác nhận</option>
+                        <option value="0">Không xác nhận</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <input type="number"  value = 0
-                           class="form-control " name="check"
-                           style="display: none">
-                </div>
                 <div>
-                    <button type="submit" class="btn btn-primary">Update</button>
-                    <a class="btn btn-danger" href="{{route('work.index')}}">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Cập nhật</button>
+                    <a class="btn btn-danger" href="{{route('check.list')}}">Đóng</a>
                 </div>
             </form>
         </div>

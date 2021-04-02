@@ -30,8 +30,9 @@ class WorkController extends Controller
 
     public function index()
     {
+        $auth = Auth::user();
         $work = Work::Where('user_id', Auth::user()->id)->get();
-        return view('user.work.list', compact('work'));
+        return view('user.work.list', compact('work','auth'));
     }
 
     /**
@@ -41,8 +42,8 @@ class WorkController extends Controller
      */
     public function create(Request $request)
     {
-
-        return view('user.work.create');
+        $auth = Auth::user();
+        return view('user.work.create',compact('auth'));
     }
 
     /**
@@ -60,8 +61,10 @@ class WorkController extends Controller
                 'start_date' => $request->start_date,
                 'end_date' => $request->end_date,
                 'status' => $request->status,
+                'check' => $request->check,
             ]);
             toastr()->success('Thêm công việc thành công');
+
         } else {
             $validatedData = $request->validate([
                 'detail' => 'required',
@@ -69,7 +72,7 @@ class WorkController extends Controller
                 'end_date' => 'required',
                 'status' => 'required',
             ]);
-            $user = Auth::user();
+            $user = User::Where('id', Auth::user()->id)->first();
             $work = new Work();
             $work->user_id = $user->id;
             $work->user_name = $user->name;
@@ -77,6 +80,7 @@ class WorkController extends Controller
             $work->start_date = $request->start_date;
             $work->end_date = $request->end_date;
             $work->status = $request->status;
+            $work->check = $request->check;
             $check =  Carbon::create($work->start_date)->diffInMinutes(Carbon::create($work->end_date), false);
 
             if ($check < 0) {
@@ -116,9 +120,9 @@ class WorkController extends Controller
      */
     public function edit(Request $request)
     {
+        $auth = Auth::user();
         $work = Work::findOrFail($request->id);
-
-        return view('user.work.edit', compact('work'));
+        return view('user.work.edit', compact('work','auth'));
     }
 
     /**
@@ -132,6 +136,7 @@ class WorkController extends Controller
     public function update(Request $request)
     {
         // dd($request);
+      
         $validatedData = $request->validate([
             'detail' => 'required',
             'start_date' => 'required',
@@ -155,6 +160,7 @@ class WorkController extends Controller
                 'start_date' => $request->start_date,
                 'end_date' => $request->end_date,
                 'status' => $request->status,
+                'check' => $request->check,
             ]);
             toastr()->success('Cập nhật công việc thành công');
             $works = Work::Where('user_id', Auth::user()->id)->get();
@@ -165,7 +171,7 @@ class WorkController extends Controller
             }
             // dd(($works)[0]->status);
             $user = Auth::user();
-            $this->workInterface->StoreWork($user->id, $user->name, null, null, null, 'Chưa hoàn thành',);
+            $this->workInterface->StoreWork($user->id, $user->name, null, null, null, 'Chưa hoàn thành',1);
 
             return redirect()->route('work.index');
         }

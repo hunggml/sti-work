@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class WorkRepositories implements WorkInterface
 {
 
-    public function StoreWork($user_id, $user_name, $detail, $start, $end, $status)
+    public function StoreWork($user_id, $user_name, $detail, $start, $end, $status,$check)
     {
 
         // dd(Work::create([
@@ -28,10 +28,8 @@ class WorkRepositories implements WorkInterface
             'start_date' => $start,
             'end_date' => $end,
             'status' => $status,
+            'check' => $check,
         ]);
-    }
-
-    public function update(){
     }
 
     public function check() {
@@ -43,6 +41,8 @@ class WorkRepositories implements WorkInterface
         }
         return false;
     }
+
+    
 
 
     

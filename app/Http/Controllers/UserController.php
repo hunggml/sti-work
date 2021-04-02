@@ -27,8 +27,9 @@ class UserController extends Controller
 
     public function index()
     {
+        $auth = Auth::user();
         $user = User::Where('id',Auth::user()->id)->get();
-        return view('user.auth.profile',compact('user'));
+        return view('user.auth.profile',compact('user','auth'));
     }
 
     /**
@@ -61,10 +62,10 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->username = $request->username;
         $user->password = Hash::make($request->password);
+        $user->level = 2;
         $user->time_created = Carbon::now('Asia/Ho_Chi_Minh');
         $user->time_updated = Carbon::now('Asia/Ho_Chi_Minh');
         $user->save();
-        $this->workInterface->StoreWork($user->id,$user->name,null,null,null,'Chưa hoàn thành');
 
         toastr()->success('Đăng ký thành công');
         return redirect()->route('loginShow');
@@ -89,8 +90,10 @@ class UserController extends Controller
      */
     public function edit(Request $request)
     {
+        $auth = Auth::user();
+
         $user = User::findOrFail($request -> id);
-        return view('user.auth.editProfile', compact('user'));
+        return view('user.auth.editProfile', compact('user','auth'));
     }
 
     /**
@@ -125,14 +128,20 @@ class UserController extends Controller
     {
         $user = User::Where('id', Auth::user()->id)->first();
         $user->delete();
-        $work = Work::Where('user_id', Auth::user()->id)->first();
-        $work->delete();
+        $works = Work::Where('user_id', Auth::user()->id)->get();
+        foreach($works as $work){
+            $id = Work::Where('id',$work->id)->first();
+            $id->delete();
+        }
         toastr()->success('Xoá tài khoản thành công');
         return redirect()->route('trangchu');
     }
 
+
     public function changePass(){
-        return view('user.auth.changePass');
+        $auth = Auth::user();
+
+        return view('user.auth.changePass',compact('auth'));
     }
 
     public function updatePass(Request $request){

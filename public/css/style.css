@@ -187,7 +187,7 @@ img {
     height: 50px;
 }
 
-h1 {
+h3 {
     color: black;
     text-align: center;
 }
@@ -207,8 +207,8 @@ h1 {
 }
 
 td {
-    height: 70px;
-    font-size: 20px;
+    height: 50px;
+    /* font-size: 20px; */
     color: black;
     text-align: left !important;
     border: solid black !important;
@@ -216,7 +216,7 @@ td {
 }
 
 th {
-    font-size: 25px;
+    /* font-size: 25px; */
     color: black !important;
     text-align: center !important;
     background-color: antiquewhite;
