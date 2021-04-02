@@ -28,7 +28,7 @@ class HomeController extends Controller
         $date = Carbon::now();
         $date->startOfDay();
         // dd($user);
-        return view('user.screen.home', compact('user', 'date','auth'));
+        return view('user.Screen.home', compact('user', 'date','auth'));
     }
 
     public function home()
@@ -81,9 +81,6 @@ class HomeController extends Controller
      */
     public function edit(Request $request)
     {
-        $work = Work::findOrFail($request->id);
-
-        return view('user.screen.edit', compact('work'));
     }
 
     /**
