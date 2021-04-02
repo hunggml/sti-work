@@ -1,23 +1,17 @@
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
-        <div class="row"> 
-            <div id="time" class="col-md-2 my-text" disabled></div>
-            {{-- <input type="datetime" value="{{Carbon\Carbon::now()}}"> --}}
-            <div class="col-md-8 my-sologan">Sáng tạo -Triệt để - Cam kết</div>
-        </div>
-    <style>
-        .my-text {
-            font-size: 20px;
-            border: 0;
-            color: black;
-        }
-        .my-sologan {
-            font-size: 20px;
-            border: 0;
-            color: black;
-            text-align: center
-        }
-    </style>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href={{ route('trangchu') }} class="nav-link">{{ __('Trang chủ') }}</a>
+        </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+    </ul>
+
+
 </nav>
 <!-- /.navbar -->
 
@@ -32,7 +26,6 @@
 
     <!-- Sidebar -->
    @if ($auth)
-       
 
     @if ($auth->level == 1)
         <div class="sidebar">

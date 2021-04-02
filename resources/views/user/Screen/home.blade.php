@@ -1,6 +1,6 @@
 @extends('user.master.master')
 
-@section('title', 'Danh sách công việc')
+@section('titleCustomer', 'Danh sách công việc')
 @section('content')
     <div class="wrapper">
         <!-- Content Wrapper. Contains page content -->

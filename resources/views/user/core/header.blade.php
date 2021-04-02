@@ -31,6 +31,7 @@
     </a>
    
     <!-- Sidebar -->
+    @auth
     @if ($auth->level == 1)
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
@@ -126,7 +127,9 @@
             @endif
 
         <!-- /.sidebar-menu -->
-    </div>
+    </div>    
+    @endauth
     
+
     <!-- /.sidebar -->
 </aside>

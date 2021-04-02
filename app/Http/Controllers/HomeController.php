@@ -38,7 +38,6 @@ class HomeController extends Controller
         $date->startOfDay();
         $user = User::with('work')->get();
         $auth = Auth::user();
-        
         return view('customer.home.home', compact('user', 'auth', 'date'));
     }
 
