@@ -61,7 +61,6 @@
                                                         <td class="time">{{ $value->end_date }}</td>
                                                 </tr>
                                             @endif
-
                                         @endforeach
                                     @endif
                                 @endforeach

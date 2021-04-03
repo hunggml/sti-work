@@ -30,9 +30,11 @@ class WorkController extends Controller
 
     public function index()
     {
+        $date = Carbon::now();
+        $date->startOfDay();
         $auth = Auth::user();
         $work = Work::Where('user_id', Auth::user()->id)->get();
-        return view('user.work.list', compact('work','auth'));
+        return view('user.work.list', compact('work','auth','date'));
     }
 
     /**

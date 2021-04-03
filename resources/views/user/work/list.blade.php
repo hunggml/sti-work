@@ -51,6 +51,46 @@
                                                 </a>
                                             </td>
                                         </tr>
+                                    @elseif ($date->diffInDays($value->end_date, false) == 0 && $value->status == 'Chưa hoàn thành')
+                                        <tr>
+                                            <td>{{ ++$key }}</td>
+                                            <td class="check-time">{{ $value->detail }}</td>
+                                            <td class="check-time time">{{ $value->start_date }}</td>
+                                            <td class="check-time time">{{ $value->end_date }}</td>
+                                            @if ($value->status == 1)
+                                                <td style="background-color: greenyellow;color:black">
+                                                    {{ $value->status }}</td>
+                                            @else
+                                                <td style="background-color: #ff4a52;color: black">
+                                                    {{ $value->status }}</td>
+                                            @endif
+                                            <td><a class="btn btn-success "
+                                                    href={{ route('work.edit', ['id' => $value->id]) }}>
+                                                    <i class="far fa-edit"></i>
+                                                    {{-- Chỉnh sửa công việc --}}
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @elseif ($date->diffInDays($value->end_date, false) < 0 && $value->status == 'Chưa hoàn thành')
+                                        <tr>
+                                            <td>{{ ++$key }}</td>
+                                            <td class="check-timeOut">{{ $value->detail }}</td>
+                                            <td class="check-timeOut time">{{ $value->start_date }}</td>
+                                            <td class="check-timeOut time">{{ $value->end_date }}</td>
+                                            @if ($value->status == 'Hoàn thành')
+                                                <td style="background-color: greenyellow;color:black">
+                                                    {{ $value->status }}</td>
+                                            @else
+                                                <td style="background-color: #ff4a52;color: black">
+                                                    {{ $value->status }}</td>
+                                            @endif
+                                            <td><a class="btn btn-success "
+                                                    href={{ route('work.edit', ['id' => $value->id]) }}>
+                                                    <i class="far fa-edit"></i>
+                                                    {{-- Chỉnh sửa công việc --}}
+                                                </a>
+                                            </td>
+                                        </tr>
                                     @else
                                         <tr>
                                             <td>{{ ++$key }}</td>
@@ -64,15 +104,10 @@
                                                 <td style="background-color: #ff4a52;color: black">
                                                     {{ $value->status }}</td>
                                             @endif
-                                            <td><a class="btn btn-success edit"
+                                            <td><a class="btn btn-success "
                                                     href={{ route('work.edit', ['id' => $value->id]) }}>
                                                     <i class="far fa-edit"></i>
-                                                </a>
-
-                                                <a href="{{ route('work.destroy', ['id' => $value->id]) }}"
-                                                    class="btn btn-danger"
-                                                    onclick="return confirm('Bạn có chắc là muốn xoá không?')">
-                                                    <i class="far fa-trash-alt"></i>
+                                                    {{-- Chỉnh sửa công việc --}}
                                                 </a>
                                             </td>
                                         </tr>
