@@ -107,7 +107,6 @@ class UserController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-
         ]);
 
         $user = User::findOrFail($request ->id);
@@ -140,7 +139,6 @@ class UserController extends Controller
 
     public function changePass(){
         $auth = Auth::user();
-
         return view('user.auth.changePass',compact('auth'));
     }
 
@@ -151,7 +149,6 @@ class UserController extends Controller
             'rePassword' => 'required|same:newPassword',
         ]);
         $account = User::Where('id',Auth::user()->id)->first();
-        // dd($account);
         $userPassword = $account->password;
         $correctPassword = Hash::check($request->oldPassword, $userPassword);
         $correctPasswordConfirm = $request->newPassword === $request->rePassword;
@@ -162,12 +159,12 @@ class UserController extends Controller
                 toastr()->success('Thay đổi mật khẩu thành công');
                 return redirect()->route('changePass');
             } else 
-            $validatedData = $request->validate([
-                'oldPassword' => 'required|password|min:3',
-                'newPassword' => 'required|min:3',
-                'rePassword' => 'required|same:newPassword',
-            ]); 
             {
+                $validatedData = $request->validate([
+                    'oldPassword' => 'required|password|min:3',
+                    'newPassword' => 'required|min:3',
+                    'rePassword' => 'required|same:newPassword',
+                ]); 
                return redirect()->route('changePass');
             }
         }

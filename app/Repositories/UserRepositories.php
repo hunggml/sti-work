@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserRepositories implements UserInterface
 {
-    public function deleteUser(){
-        return Work::delete([
-
-        ]);
-    }
+    
+       
 }

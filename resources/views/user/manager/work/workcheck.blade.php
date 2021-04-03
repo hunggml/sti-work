@@ -44,8 +44,8 @@
                                                             </td>
                                                         @endif
                                                         <td class="check-time">{{ $value->detail }}</td>
-                                                        <td class="check-time">{{ $value->start_date }}</td>
-                                                        <td class="check-time">{{ $value->end_date }}</td>
+                                                        <td class="check-time tme">{{ $value->start_date }}</td>
+                                                        <td class="check-time time">{{ $value->end_date }}</td>
                                                         <td>Chưa xác nhận</td>
                                                         <td>
                                                             <a class="btn btn-success edit"
@@ -70,8 +70,8 @@
                                                             </td>
                                                         @endif
                                                         <td class="check-timeOut">{{ $value->detail }}</td>
-                                                        <td class="check-timeOut">{{ $value->start_date }}</td>
-                                                        <td class="check-timeOut">{{ $value->end_date }}</td>
+                                                        <td class="check-timeOut time">{{ $value->start_date }}</td>
+                                                        <td class="check-timeOut time">{{ $value->end_date }}</td>
                                                         <td>Chưa xác nhận</td>
                                                         <td>
                                                             <a class="btn btn-success edit"

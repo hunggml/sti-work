@@ -94,20 +94,7 @@ class HomeController extends Controller
      */
     public function update(Request $request)
     {
-        $validatedData = $request->validate([
-            'detail' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
-            'status' => 'required',
-        ]);
-        $work = DB::table('works', $request->id)->where('id', $request->id)->update([
-            'detail' => $request->detail,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
-            'status' => $request->status,
-        ]);
-        toastr()->success('Cập nhật công việc thành công');
-        return redirect()->route('home');
+      
     }
 
     /**

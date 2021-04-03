@@ -75,14 +75,16 @@ class WorkController extends Controller
                 'status' => 'required',
             ]);
             $user = User::Where('id', Auth::user()->id)->first();
-            $work = new Work();
-            $work->user_id = $user->id;
-            $work->user_name = $user->name;
-            $work->detail = $request->detail;
-            $work->start_date = $request->start_date;
-            $work->end_date = $request->end_date;
-            $work->status = $request->status;
-            $work->check = $request->check;
+           
+            $work = $this->workInterface->StoreWork(
+                $user->id, 
+                $user->name, 
+                $request->detail, 
+                $request->start_date, 
+                $request->end_date, 
+                $request->status,
+                $request->check
+            );
             $check =  Carbon::create($work->start_date)->diffInMinutes(Carbon::create($work->end_date), false);
 
             if ($check < 0) {
@@ -157,13 +159,14 @@ class WorkController extends Controller
                 'end_date' => 'required',
                 'status' => 'required',
             ]); {
-            $work = DB::table('works', $request->id)->where('id', $request->id)->update([
-                'detail' => $request->detail,
-                'start_date' => $request->start_date,
-                'end_date' => $request->end_date,
-                'status' => $request->status,
-                'check' => $request->check,
-            ]);
+            $work = $this->workInterface->UpdateWork(
+                $request->id,
+                $request->detail, 
+                $request->start_date, 
+                $request->end_date, 
+                $request->status,
+                $request->check
+            );
             toastr()->success('Cập nhật công việc thành công');
             $works = Work::Where('user_id', Auth::user()->id)->get();
             foreach ($works as $work) {
@@ -171,10 +174,8 @@ class WorkController extends Controller
                     return redirect()->route('work.index');
                 }
             }
-            // dd(($works)[0]->status);
             $user = Auth::user();
             $this->workInterface->StoreWork($user->id, $user->name, null, null, null, 'Chưa hoàn thành',1);
-
             return redirect()->route('work.index');
         }
 
