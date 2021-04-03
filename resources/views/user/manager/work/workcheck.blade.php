@@ -58,7 +58,7 @@
                                                                 style="float: right;"
                                                                 onclick="return confirm('Bạn có chắc là muốn xoá không?')">
                                                                 <i class="far fa-trash-alt"></i>
-                                                                Xoá công việc
+                                                                Xoá 
                                                             </a>
                                                         </td>
                                                     </tr>
@@ -84,7 +84,7 @@
                                                                 style="float: right;"
                                                                 onclick="return confirm('Bạn có chắc là muốn xoá không?')">
                                                                 <i class="far fa-trash-alt"></i>
-                                                                Xoá công việc
+                                                                Xoá 
                                                             </a>
                                                         </td>
                                                     </tr>
@@ -110,7 +110,7 @@
                                                                 style="float: right;"
                                                                 onclick="return confirm('Bạn có chắc là muốn xoá không?')">
                                                                 <i class="far fa-trash-alt"></i>
-                                                                Xoá công việc
+                                                                Xoá 
                                                             </a>
                                                         </td>
                                                     </tr>

@@ -288,3 +288,9 @@ label {
 .time{
     text-align: center;
 }
+.on-time{
+    background-color: greenyellow;
+}
+.out-time{
+    background-color: red;
+}

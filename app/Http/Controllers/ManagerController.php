@@ -21,11 +21,13 @@ class ManagerController extends Controller
         return view('user.manager.staff.stafflist',compact('users','auth'));
     }
 
+
     public function editLevel(Request $request){
         $auth = Auth::user();
         $user = User::findOrFail($request -> id);
         return view('user.manager.staff.editLevel', compact('user','auth'));
     }
+
     
     public function updateLevel(Request $request){
         $user = User::findOrFail($request->id);
@@ -33,24 +35,36 @@ class ManagerController extends Controller
         $user->save();
         toastr()->success('Cập nhật level thành công');
         return redirect()->route('staff.list');
-
     }
+
+    public function statistical(){
+        $users = User::with('work')->get();
+        $auth = Auth::user();
+        $date = Carbon::now();
+        $date->startOfDay();
+        $works = Work::all();
+
+        return view('user.manager.statistical.statistical',compact('auth','date','works','users'));
+    }
+
 
     public function listWorkCheck(){
         $date = Carbon::now();
         $date->startOfDay();
         $user = User::with(['work' => function($q){
-            return $q->where('check', '0');
+            return $q->where('check', '0')->where('status','Chưa hoàn thành');
         }])->get();
         $auth = Auth::user();
         return view('user.manager.work.workcheck', compact('user', 'auth', 'date'));
     }
+
 
     public function editWorkCheck(Request $request){
         $auth = Auth::user();
         $work = Work::findOrFail($request->id);
         return view('user.manager.work.editwork', compact('work','auth'));
     }
+
     
     public function updateWorkCheck(Request $request){
         $this->validation($request);
@@ -59,8 +73,8 @@ class ManagerController extends Controller
         $work->save();
         toastr()->success('Cập nhật công việc thành công');
         return redirect()->route('check.list');
-
     }
+
 
     public function deleteWorkCheck(Request $request){
         $work = Work::findOrFail($request->id);
@@ -68,6 +82,7 @@ class ManagerController extends Controller
         toastr()->success('Xoá công việc thành công');
         return redirect()->route('check.list');
     }
+
 
     public function destroyStaff(Request $request)
     {
@@ -82,6 +97,7 @@ class ManagerController extends Controller
         toastr()->success('Xoá nhân viên thành công');
         return redirect()->route('staff.list');
     }
+
 
     public function validation(Request $request){
         return $this->validate($request,[

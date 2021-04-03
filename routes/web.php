@@ -40,6 +40,9 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     Route::post('/check-job-update',[ManagerController::class,'updateWorkCheck'])->name('check-job.update');
     Route::get('/check-job-destroy',[ManagerController::class,'deleteWorkCheck'])->name('check-job.destroy');
 
+    // Statistical
+    Route::get('/statistical',[ManagerController::class,'statistical'])->name('statistical.list');
+
     // Work
     Route::get('/work',[WorkController::class,'index'])->name('work.index');
     Route::get('/create-work',[WorkController::class,'create'])->name('work.create');

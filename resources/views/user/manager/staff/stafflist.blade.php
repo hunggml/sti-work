@@ -36,6 +36,7 @@
                                         @else 
                                             <td>Nhân viên</td>
                                         @endif
+                                     
                                         <td><a class="btn btn-success edit"
                                                 href="{{ route('staff.editLevel', ['id' => $user->id]) }}">
                                                 <i class="far fa-edit"></i>

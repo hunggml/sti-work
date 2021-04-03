@@ -108,6 +108,18 @@
     //     });
         
     // });
+    // $(function () {
+    //     $("#statiscal").DataTable({
+    //         "responsive": true,
+    //         "autoWidth": true,
+    //         "paging": false,
+    //         "searching": true,
+    //         // "ordering": true,
+    //         "info": true,
+    //     });
+        
+    // });
+   
 
 </script>
 {{--@jquery--}}

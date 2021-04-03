@@ -48,10 +48,9 @@
                 <div class="form-group">
                     <label>Trạng thái</label>
                     <select name="status" class="form-control">
-                        <option value="Hoàn thành">Hoàn thành</option>
-                        <option value="Chậm tiến độ">Chậm tiến độ</option>
-                        <option value="Tạm dừng">Tạm dừng</option>
                         <option value="Chưa hoàn thành">chưa hoàn thành</option>
+                        <option value="Hoàn thành">Hoàn thành</option>
+                        <option value="Tạm dừng">Tạm dừng</option>
                     </select>
                 </div>
                 <div class="form-group">

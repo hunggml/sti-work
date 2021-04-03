@@ -22,7 +22,7 @@ class HomeController extends Controller
     {
         $auth = Auth::user();
         $user = User::with(['work' => function($q){
-            return $q->where('check', '1');
+            return $q->where('check', '1')->where('status','Chưa hoàn thành');
         }])->get();
 
         $date = Carbon::now();

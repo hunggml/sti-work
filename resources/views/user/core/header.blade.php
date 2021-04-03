@@ -84,6 +84,13 @@
                         <p>Công việc cần xác nhận</p>
                     </a>
                 </li>
+                <li>
+                    <a href= {{route('statistical.list')}}
+                        class="nav-link {{ request()->routeIs('statistical*') ? 'active font-weight-bolder' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Danh sách thống kê</p>
+                    </a>
+                </li>
                 @endif
             </ul>
         </nav>
