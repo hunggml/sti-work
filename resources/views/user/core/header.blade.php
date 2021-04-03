@@ -1,10 +1,10 @@
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
+    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         <div class="row"> 
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-            <div id="time" class="col-md-2 my-text" disabled></div>
+            <div id="time" class="col-sm-4 my-text" disabled></div>
             {{-- <input type="datetime" value="{{Carbon\Carbon::now()}}"> --}}
-            <div class="col-md-8 my-sologan">Sáng tạo -Triệt để - Cam kết</div>
+            <div class="col-sm-8 my-sologan">Sáng tạo -Triệt để - Cam kết</div>
         </div>
     <style>
         .my-text {
@@ -16,7 +16,7 @@
             font-size: 20px;
             border: 0;
             color: black;
-            text-align: center
+            /* text-align: center */
         }
     </style>
 </nav>
