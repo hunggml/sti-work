@@ -36,7 +36,7 @@ class WorkController extends Controller
         $work = Work::Where('user_id', Auth::user()->id)->get();
         return view('user.work.list', compact('work','auth','date'));
     }
-
+ 
     /**
      * Show the form for creating a new resource.
      *

@@ -1,16 +1,11 @@
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
-       
-    </ul>
-        <div class="row"> 
-            <div id="time" class="col-md-2 my-text" disabled></div>
-            {{-- <input type="datetime" value="{{Carbon\Carbon::now()}}"> --}}
-            <div class="col-md-8 my-sologan">Sáng tạo -Triệt để - Cam kết</div>
-        </div>
+    <div class="row"> 
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        <div id="time" class="col-md-2 my-text" disabled></div>
+        {{-- <input type="datetime" value="{{Carbon\Carbon::now()}}"> --}}
+        <div class="col-md-8 my-sologan">Sáng tạo -Triệt để - Cam kết</div>
+    </div>
     <style>
         .my-text {
             font-size: 20px;
@@ -36,8 +31,7 @@
     </a>
 
     <!-- Sidebar -->
-   @if ($auth)
-
+@if ($auth)
     @if ($auth->level == 1)
         <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
@@ -138,12 +132,12 @@
             </nav>
         </div>
     @endif
-    @else
+@else
     <div>
         <a href="{{ route('loginShow') }}" class="single-icon"><i class="fa fa-user" aria-hidden="true"></i>Đăng
             nhập</a>
     </div>
-    @endif
+@endif
 
     <!-- /.sidebar-menu -->
     </div>

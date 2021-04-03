@@ -1,5 +1,5 @@
 @extends('customer.master.master')
-@section('title', 'Danh sách công việc')
+@section('titleCustomer', 'Danh sách công việc')
 @section('contain')
     <div class="wrapper">
         <!-- Content Wrapper. Contains page content -->
@@ -7,7 +7,6 @@
             <!-- Main content -->
             <section class="content">
                 <div class="card">
-                   
                     <div class="card-body" id="car-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
