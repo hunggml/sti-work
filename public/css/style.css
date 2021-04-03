@@ -210,7 +210,7 @@ td {
     height: 50px;
     /* font-size: 20px; */
     color: black;
-    text-align: left !important;
+    /* text-align: center ; */
     border: solid black !important;
     vertical-align: middle !important;
 }
@@ -242,6 +242,7 @@ label {
 
 #car-body {
     overflow: scroll;
+    padding: unset;
 }
 
 .card-title {
@@ -280,4 +281,10 @@ label {
 
 .check-timeOut {
     background-color: red;
+}
+/* .check-time .time{
+    text-align: center !important;
+} */
+.time{
+    text-align: center;
 }

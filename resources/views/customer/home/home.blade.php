@@ -7,9 +7,7 @@
             <!-- Main content -->
             <section class="content">
                 <div class="card">
-                    <div class="card-header ">
-                        
-                    </div>
+                   
                     <div class="card-body" id="car-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -33,47 +31,35 @@
                                     @else
                                         @foreach ($value0->work as $key1 => $value)
                                             @if ($date->diffInDays($value->end_date, false) == 0)
-                                                @if ($key1 == 0)
-                                                    <tr>
+                                                <tr>
+                                                    @if ($key1 == 0)
                                                         <td rowspan="{{ $value0->work->count() }}">
                                                             {{ $value0->name }}</td>
+                                                    @endif
                                                         <td class="check-time">{{ $value->detail }}</td>
-                                                        <td class="check-time">{{ $value->start_date }}</td>
-                                                        <td class="check-time">{{ $value->end_date }}</td>
-                                                    </tr>
-                                                @else
-                                                    <tr>
-                                                        <td class="check-time">{{ $value->detail }}</td>
-                                                        <td class="check-time">{{ $value->start_date }}</td>
-                                                        <td class="check-time">{{ $value->end_date }}</td>
-                                                    </tr>
-                                                @endif
+                                                        <td class="check-time time">{{ $value->start_date }}</td>
+                                                        <td class="check-time time">{{ $value->end_date }}</td>
+                                                </tr>
                                             @elseif ($date->diffInDays($value->end_date,false) < 0) 
-                                                @if ($key1 == 0) 
-                                                    <tr>
+                                                <tr>
+                                                    @if ($key1 == 0) 
                                                         <td rowspan="{{ $value0->work->count() }}">
                                                             {{ $value0->name }}</td>
+                                                    @endif 
                                                         <td class="check-timeOut">{{ $value->detail }}</td>
-                                                        <td class="check-timeOut">{{ $value->start_date }}</td>
-                                                        <td class="check-timeOut">{{ $value->end_date }}</td>
-                                                    </tr>
-                                                @else
-                                                    <tr>
-                                                        <td class="check-timeOut">{{ $value->detail }}</td>
-                                                        <td class="check-timeOut">{{ $value->start_date }}</td>
-                                                        <td class="check-timeOut">{{ $value->end_date }}</td>
-                                                    </tr> 
-                                                @endif 
+                                                        <td class="check-timeOut time">{{ $value->start_date }}</td>
+                                                        <td class="check-timeOut time">{{ $value->end_date }}</td>
+                                                </tr>
                                             @else 
                                                 <tr>
                                                     @if ($key1 == 0)
                                                         <td rowspan="{{ $value0->work->count() }}">
                                                             {{ $value0->name }}</td>
                                                     @endif
-                                                    <td>{{ $value->detail }}</td>
-                                                    <td>{{ $value->start_date }}</td>
-                                                    <td>{{ $value->end_date }}</td>
-                                                    </tr>
+                                                        <td>{{ $value->detail }}</td>
+                                                        <td class="time">{{ $value->start_date }}</td>
+                                                        <td class="time">{{ $value->end_date }}</td>
+                                                </tr>
                                             @endif
 
                                         @endforeach

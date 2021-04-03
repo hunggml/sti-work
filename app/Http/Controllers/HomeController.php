@@ -36,7 +36,9 @@ class HomeController extends Controller
         // $allWork = Work::all();
         $date = Carbon::now();
         $date->startOfDay();
-        $user = User::with('work')->get();
+        $user = User::with(['work' => function($q){
+            return $q->where('check', '1');
+        }])->get();
         $auth = Auth::user();
         return view('customer.home.home', compact('user', 'auth', 'date'));
     }

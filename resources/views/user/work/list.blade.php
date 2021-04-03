@@ -6,7 +6,6 @@
         <div class="content-wrapper">
             <!-- Main content -->
             <section class="content">
-
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Danh sách công việc cá nhân</h3>
@@ -14,7 +13,7 @@
                     <div class="card-body" id="car-body">
                         <a style="color: white" class="btn btn-primary mb-2" href={{ route('work.create') }}>Thêm việc
                         </a>
-                        <table id="example1" class="table table-bordered table-striped ">
+                        <table id="worktable" class="table table-bordered table-striped ">
                             <thead>
                                 <tr>
                                     <th>STT</th>
@@ -56,8 +55,8 @@
                                         <tr>
                                             <td>{{ ++$key }}</td>
                                             <td>{{ $value->detail }}</td>
-                                            <td>{{ $value->start_date }}</td>
-                                            <td>{{ $value->end_date }}</td>
+                                            <td class="time">{{ $value->start_date }}</td>
+                                            <td class="time">{{ $value->end_date }}</td>
                                             @if ($value->status == 'Hoàn thành')
                                                 <td style="background-color: greenyellow;color:black">
                                                     {{ $value->status }}</td>

@@ -96,8 +96,8 @@
                                                             </td>
                                                         @endif
                                                         <td>{{ $value->detail }}</td>
-                                                        <td>{{ $value->start_date }}</td>
-                                                        <td>{{ $value->end_date }}</td>
+                                                        <td class="time">{{ $value->start_date }}</td>
+                                                        <td class="time">{{ $value->end_date }}</td>
                                                         <td>Chưa xác nhận</td>
                                                         <td>
                                                             <a class="btn btn-success edit"

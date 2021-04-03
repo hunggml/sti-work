@@ -51,6 +51,7 @@ class ManagerController extends Controller
         $work = Work::findOrFail($request->id);
         return view('user.manager.work.editwork', compact('work','auth'));
     }
+    
     public function updateWorkCheck(Request $request){
         $work = Work::findOrFail($request->id);
         $work->fill($request->all());

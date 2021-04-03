@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     @stack('mycss')
 
+    <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+
 
 </head>
 <body class="sidebar-mini layout-fixed sidebar-mini sidebar-collapse" data-panel-auto-height-mode="height">
@@ -52,6 +55,11 @@
 <!-- AdminLTE App -->
 <script src="{{asset('dist/js/adminlte.js')}}"></script>
 
+<!-- DataTables -->
+<script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 @stack('script')
 
 <script>
@@ -65,8 +73,7 @@
             input.attr("type", "password");
         }
     });
-</script>
-<script>
+
     function time() {
         let time = new Date();
         let day = time.getDate();
@@ -89,6 +96,18 @@
         setTimeout("time()", 1000);
     }
     time();
+
+    // $(function () {
+    //     $("#worktable").DataTable({
+    //         "responsive": true,
+    //         "autoWidth": true,
+    //         "paging": false,
+    //         "searching": true,
+    //         // "ordering": true,
+    //         "info": true,
+    //     });
+        
+    // });
 
 </script>
 {{--@jquery--}}

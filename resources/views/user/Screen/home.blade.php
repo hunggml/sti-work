@@ -1,5 +1,4 @@
 @extends('user.master.master')
-
 @section('titleCustomer', 'Danh sách công việc')
 @section('content')
     <div class="wrapper">
@@ -8,9 +7,6 @@
             <!-- Main content -->
             <section class="content">
                 <div class="card">
-                    <div class="card-header ">
-                        
-                    </div>
                     <div class="card-body" id="car-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -39,14 +35,14 @@
                                                         <td rowspan="{{ $value0->work->count() }}">
                                                             {{ $value0->name }}</td>
                                                         <td class="check-time">{{ $value->detail }}</td>
-                                                        <td class="check-time">{{ $value->start_date }}</td>
-                                                        <td class="check-time">{{ $value->end_date }}</td>
+                                                        <td class="check-time time">{{ $value->start_date }}</td>
+                                                        <td class="check-time time">{{ $value->end_date }}</td>
                                                     </tr>
                                                 @else
                                                     <tr>
                                                         <td class="check-time">{{ $value->detail }}</td>
-                                                        <td class="check-time">{{ $value->start_date }}</td>
-                                                        <td class="check-time">{{ $value->end_date }}</td>
+                                                        <td class="check-time time">{{ $value->start_date }}</td>
+                                                        <td class="check-time time">{{ $value->end_date }}</td>
                                                     </tr>
                                                 @endif
                                             @elseif ($date->diffInDays($value->end_date,false) < 0) 
@@ -55,14 +51,14 @@
                                                         <td rowspan="{{ $value0->work->count() }}">
                                                             {{ $value0->name }}</td>
                                                         <td class="check-timeOut">{{ $value->detail }}</td>
-                                                        <td class="check-timeOut">{{ $value->start_date }}</td>
-                                                        <td class="check-timeOut">{{ $value->end_date }}</td>
+                                                        <td class="check-timeOut time">{{ $value->start_date }}</td>
+                                                        <td class="check-timeOut time">{{ $value->end_date }}</td>
                                                     </tr>
                                                 @else
                                                     <tr>
                                                         <td class="check-timeOut">{{ $value->detail }}</td>
-                                                        <td class="check-timeOut">{{ $value->start_date }}</td>
-                                                        <td class="check-timeOut">{{ $value->end_date }}</td>
+                                                        <td class="check-timeOut time">{{ $value->start_date }}</td>
+                                                        <td class="check-timeOut time">{{ $value->end_date }}</td>
                                                     </tr> 
                                                 @endif 
                                             @else 
@@ -72,8 +68,8 @@
                                                             {{ $value0->name }}</td>
                                                     @endif
                                                     <td>{{ $value->detail }}</td>
-                                                    <td>{{ $value->start_date }}</td>
-                                                    <td>{{ $value->end_date }}</td>
+                                                    <td class="time">{{ $value->start_date }}</td>
+                                                    <td class="time">{{ $value->end_date }}</td>
                                                     </tr>
                                             @endif
 
@@ -101,5 +97,6 @@
         </aside>
         <!-- /.control-sidebar -->
     </div>
+
    
 @endsection 
