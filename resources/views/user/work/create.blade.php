@@ -50,8 +50,8 @@
                 </div>
 
                 <div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <a class="btn btn-danger" href="{{route('work.index')}}">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Thêm việc</button>
+                    <a class="btn btn-danger" href="{{route('work.index')}}">Đóng</a>
                 </div>
             </form>
         </div>

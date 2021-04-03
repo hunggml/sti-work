@@ -44,7 +44,7 @@
                                                             </td>
                                                         @endif
                                                         <td class="check-time">{{ $value->detail }}</td>
-                                                        <td class="check-time tme">{{ $value->start_date }}</td>
+                                                        <td class="check-time time">{{ $value->start_date }}</td>
                                                         <td class="check-time time">{{ $value->end_date }}</td>
                                                         <td>Chưa xác nhận</td>
                                                         <td>
@@ -133,11 +133,5 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
     </div>
-
 @endsection

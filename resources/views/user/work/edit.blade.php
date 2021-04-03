@@ -10,7 +10,7 @@
                 action="{{ route('work.update')}}">
                 @csrf
                 <div class="form-group">
-                    <label>Work detail</label>
+                    <label>Công việc</label>
                     <textarea type="text" class="form-control" name="detail">{{$work->detail}}</textarea>
                     @error('detail')
                     <div class="text-danger">{{ $message }}</div>
@@ -20,7 +20,7 @@
                     <input type="text" style="display: none" readonly value="{{$work->id}}" name="id">
                 </div>
                 <div class="form-group">
-                    <label>Start date</label>
+                    <label>Ngày bắt đầu</label>
                     <input type="date" class="form-control dateform" 
                             style="width: 300px"
                             value="{{old('time')?? date('Y-m-d', strtotime($work->start_date)) }}"   
@@ -30,7 +30,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label>End date</label>
+                    <label>Ngày kết thúc</label>
                     @if ($work->end_date == null)
                     <input type="date" class="form-control dateform" 
                     style="width: 300px"
@@ -46,7 +46,7 @@
                 </div>
                 @endif
                 <div class="form-group">
-                    <label>Status</label>
+                    <label>Trạng thái</label>
                     <select name="status" class="form-control">
                         <option value="Hoàn thành">Hoàn thành</option>
                         <option value="Chậm tiến độ">Chậm tiến độ</option>
@@ -60,8 +60,8 @@
                            style="display: none">
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-primary">Update</button>
-                    <a class="btn btn-danger" href="{{route('work.index')}}">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Cập nhật</button>
+                    <a class="btn btn-danger" href="{{route('work.index')}}">Đóng</a>
                 </div>
             </form>
         </div>
