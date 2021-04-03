@@ -22,23 +22,25 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     Route::get('/edit-status',[HomeController::class,'edit'])->name('screen.edit');
     Route::post('/update-status',[HomeController::class,'update'])->name('screen.update');
     
+    // Profile
     Route::get('/profile',[UserController::class,'index'])->name('profile.index');
     Route::get('/edit-profile',[UserController::class,'edit'])->name('profile.edit');
     Route::post('/update-profile',[UserController::class,'update'])->name('profile.update');
     Route::get('/destroy-profile',[UserController::class,'destroy'])->name('profile.destroy');
 
-
+    // Staff
     Route::get('/staff-list',[ManagerController::class,'allStaff'])->name('staff.list');
     Route::get('/edit-staff',[ManagerController::class,'editLevel'])->name('staff.editLevel');
     Route::post('/update-staff',[ManagerController::class,'updateLevel'])->name('staff.updateLevel');
     Route::get('/staff-destroy',[ManagerController::class,'destroyStaff'])->name('staff.destroy');
 
-  
+    // Check Work
     Route::get('/check-job',[ManagerController::class,'listWorkCheck'])->name('check.list');
     Route::get('/check-job-edit',[ManagerController::class,'editWorkCheck'])->name('check-job.edit');
     Route::post('/check-job-update',[ManagerController::class,'updateWorkCheck'])->name('check-job.update');
     Route::get('/check-job-destroy',[ManagerController::class,'deleteWorkCheck'])->name('check-job.destroy');
 
+    // Work
     Route::get('/work',[WorkController::class,'index'])->name('work.index');
     Route::get('/create-work',[WorkController::class,'create'])->name('work.create');
     Route::post('/create-work',[WorkController::class,'store'])->name('work.store');
@@ -46,12 +48,13 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     Route::post('/update-work',[WorkController::class,'update'])->name('work.update');
     Route::get('/destroy-work',[WorkController::class,'destroy'])->name('work.destroy');
 
+    // Change password
     Route::get('/changePass',[UserController::class,'changePass'])->name('changePass');
     Route::post('/changePass',[UserController::class,'updatePass'])->name('updatePass');
 
 });
 
-Route::get('/', [HomeController::class,'home'])->name('trangchu');
+Route::get('/', [HomeController::class,'index'])->name('trangchu');
 
 
 // Auth 

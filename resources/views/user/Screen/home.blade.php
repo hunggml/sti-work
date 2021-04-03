@@ -80,6 +80,4 @@
         <!-- /.content-wrapper -->
 
     </div>
-
-   
 @endsection 

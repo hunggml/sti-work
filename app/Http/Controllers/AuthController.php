@@ -42,12 +42,11 @@ class AuthController extends Controller
             // return redirect()->route('home',compact('users'))->with('login-correct','Logged in successfully');
         }
         else
-        
-        $validatedData = $request->validate([
-            'username' => 'required|exists:users,username',
-            'password' => 'required|password',
-        ]);
-        {
+        { 
+            $validatedData = $request->validate([
+                'username' => 'required|exists:users,username',
+                'password' => 'required|password',
+            ]);
             return redirect()->route('loginShow');
         }
      

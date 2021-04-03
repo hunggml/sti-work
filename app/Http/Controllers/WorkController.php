@@ -68,12 +68,7 @@ class WorkController extends Controller
             toastr()->success('Thêm công việc thành công');
 
         } else {
-            $validatedData = $request->validate([
-                'detail' => 'required',
-                'start_date' => 'required',
-                'end_date' => 'required',
-                'status' => 'required',
-            ]);
+            $this->validation($request);
             $user = User::Where('id', Auth::user()->id)->first();
            
             $work = $this->workInterface->StoreWork(
@@ -90,13 +85,10 @@ class WorkController extends Controller
             if ($check < 0) {
                 toastr()->error('Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
                 return redirect()->route('work.create');
-            } else
-                $validatedData = $request->validate([
-                    'detail' => 'required',
-                    'start_date' => 'required',
-                    'end_date' => 'required',
-                    'status' => 'required',
-                ]); {
+            } 
+            else
+            {
+                $this->validation($request);
                 $work->save();
                 toastr()->success('Thêm công việc thành công');
             }
@@ -141,24 +133,16 @@ class WorkController extends Controller
     {
         // dd($request);
       
-        $validatedData = $request->validate([
-            'detail' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
-            'status' => 'required',
-        ]);
+        $this->validation($request);
         $check =  Carbon::create($request->start_date)->diffInMinutes(Carbon::create($request->end_date), false);
 
         if ($check < 0) {
             toastr()->error('Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
             return back();
-        } else
-            $validatedData = $request->validate([
-                'detail' => 'required',
-                'start_date' => 'required',
-                'end_date' => 'required',
-                'status' => 'required',
-            ]); {
+        } 
+        else
+        {
+            $this->validation($request);
             $work = $this->workInterface->UpdateWork(
                 $request->id,
                 $request->detail, 
@@ -212,5 +196,14 @@ class WorkController extends Controller
     public function getDateEndAttribute($value)
     {
         return Carbon::parse($value)->format('Y-m-d');
+    }
+
+    public function validation(Request $request){
+        return $this->validate($request,[
+            'detail' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'status' => 'required',
+        ]);
     }
 }

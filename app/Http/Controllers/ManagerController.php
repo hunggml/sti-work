@@ -53,6 +53,7 @@ class ManagerController extends Controller
     }
     
     public function updateWorkCheck(Request $request){
+        $this->validation($request);
         $work = Work::findOrFail($request->id);
         $work->fill($request->all());
         $work->save();
@@ -80,6 +81,14 @@ class ManagerController extends Controller
         }
         toastr()->success('Xoá nhân viên thành công');
         return redirect()->route('staff.list');
+    }
+
+    public function validation(Request $request){
+        return $this->validate($request,[
+            'detail' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+        ]);
     }
 
     

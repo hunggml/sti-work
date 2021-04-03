@@ -17,7 +17,7 @@ class WorkRepositories implements WorkInterface
             'user_id' => $user_id,
             'user_name' => $user_name,
             'detail' => $detail,
-            'start_date' => $start,
+            'start_date' => $start, 
             'end_date' => $end,
             'status' => $status,
             'check' => $check,

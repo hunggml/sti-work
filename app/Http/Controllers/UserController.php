@@ -8,16 +8,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use App\Repositories\WorkInterface;
 use Illuminate\Support\Facades\DB;
+use App\Repositories\UserInterface;
 
 class UserController extends Controller
 {
 
 
-    public function __construct(WorkInterface $workInterface)
+    public function __construct(UserInterface $userInterface)
     {
-        $this->workInterface = $workInterface;
+        $this->userInterface = $userInterface;
     }
     /**
      * Display a listing of the resource.
@@ -66,7 +66,7 @@ class UserController extends Controller
         $user->time_created = Carbon::now('Asia/Ho_Chi_Minh');
         $user->time_updated = Carbon::now('Asia/Ho_Chi_Minh');
         $user->save();
-
+      
         toastr()->success('Đăng ký thành công');
         return redirect()->route('loginShow');
     }
@@ -143,11 +143,7 @@ class UserController extends Controller
     }
 
     public function updatePass(Request $request){
-        $validatedData = $request->validate([
-            'oldPassword' => 'required|password|min:3',
-            'newPassword' => 'required|min:3',
-            'rePassword' => 'required|same:newPassword',
-        ]);
+        $this->validation($request);
         $account = User::Where('id',Auth::user()->id)->first();
         $userPassword = $account->password;
         $correctPassword = Hash::check($request->oldPassword, $userPassword);
@@ -160,13 +156,16 @@ class UserController extends Controller
                 return redirect()->route('changePass');
             } else 
             {
-                $validatedData = $request->validate([
-                    'oldPassword' => 'required|password|min:3',
-                    'newPassword' => 'required|min:3',
-                    'rePassword' => 'required|same:newPassword',
-                ]); 
+                $this->validation($request);
                return redirect()->route('changePass');
             }
         }
+    }
+    public function validation(Request $request){
+        return $this->validate($request,[
+            'oldPassword' => 'required|password|min:3',
+            'newPassword' => 'required|min:3',
+            'rePassword' => 'required|same:newPassword',
+        ]);
     }
 }

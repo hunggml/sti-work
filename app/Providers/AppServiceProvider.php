@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\WorkInterface;
+use App\Repositories\UserInterface;
 use App\Repositories\WorkRepositories;
+use App\Repositories\UserRepositories;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -16,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         $this->app->bind(WorkInterface::class,WorkRepositories::class);
+        $this->app->bind(UserInterface::class,UserRepositories::class);
     }
 
     /**
