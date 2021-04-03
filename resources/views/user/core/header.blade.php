@@ -130,7 +130,5 @@
         <!-- /.sidebar-menu -->
     </div>    
     @endauth
-    
 
-    <!-- /.sidebar -->
 </aside>

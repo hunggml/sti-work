@@ -134,13 +134,11 @@
     @endif
 @else
     <div>
-        <a href="{{ route('loginShow') }}" class="single-icon"><i class="fa fa-user" aria-hidden="true"></i>Đăng
-            nhập</a>
+        <a href="{{ route('loginShow') }}" class="single-icon">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            Đăng nhập
+        </a>
     </div>
 @endif
 
-    <!-- /.sidebar-menu -->
-    </div>
-
-    <!-- /.sidebar -->
 </aside>
