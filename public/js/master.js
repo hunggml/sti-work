@@ -19,13 +19,19 @@ function time() {
     if (hour < 10) {
         hour = "0" + hour;
     }
+    if (day < 10) {
+        day = "0" + day;
+    }
+    if (month < 10) {
+        month = "0" + month;
+    }
     if (minute < 10) {
         minute = "0" + minute;
     }
     if (sescord < 10) {
         sescord = "0" + sescord;
     }
-    document.getElementById('time').innerHTML = day + "/" + month + "/" + years + "-" + hour + ":" + minute + ":" +
+    document.getElementById('time').innerHTML = years + "/" + month + "/" + day + " - " + hour + ":" + minute + ":" +
         sescord;
     setTimeout("time()", 1000);
 }
