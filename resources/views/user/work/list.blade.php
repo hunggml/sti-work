@@ -68,6 +68,7 @@
                                             <td class="time">{{ $value->end_date }}</td>
                                         @endif
                                             @if ($value->status == 'Hoàn thành')
+                                            
                                                 <td style="background-color: greenyellow;color:black">
                                                     {{ $value->status }}</td>
                                             @else

@@ -5,11 +5,10 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Work;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use App\Repositories\WorkInterface;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 
 class ManagerController extends Controller
 {
@@ -45,6 +44,14 @@ class ManagerController extends Controller
         $works = Work::all();
 
         return view('user.manager.statistical.statistical',compact('auth','date','works','users'));
+    }
+
+    public function chart(){
+        $auth = Auth::user();
+        $users = User::with('work')->get();
+        // dd($users);
+        // return Response::json($users);
+        return view('user.manager.chart.chart',compact('auth'));
     }
 
 

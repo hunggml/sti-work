@@ -91,6 +91,13 @@
                         <p>Danh sách thống kê</p>
                     </a>
                 </li>
+                <li>
+                    <a href= {{route('chart')}}
+                        class="nav-link {{ request()->routeIs('chart*') ? 'active font-weight-bolder' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Biểu đồ thống kê</p>
+                    </a>
+                </li>
                 @endif
             </ul>
         </nav>
