@@ -11,15 +11,6 @@ body {
     box-sizing: border-box
 }
 
-.clearfix:after, .clearfix:before {
-    content: '';
-    display: table
-}
-
-.clearfix:after {
-    clear: both;
-    display: block
-}
 
 a {
     color: inherit;
@@ -100,11 +91,6 @@ a {
     background: rgba(255, 255, 255, .1);
 }
 
-.login-form .group input[data-type="password"] {
-    text-security: circle;
-    -webkit-text-security: circle;
-}
-
 .login-form .group .label {
     color: #aaa;
     font-size: 12px;
@@ -145,10 +131,6 @@ a {
     transform: scale(0) rotate(0);
 }
 
-.login-form .group .check:checked+label {
-    color: #fff;
-}
-
 .login-form .group .check:checked+label .icon {
     background: #1161ee;
 }
@@ -162,10 +144,6 @@ a {
 }
 
 .login-html .sign-in:checked+.tab+.sign-up+.tab+.login-form .sign-in-htm {
-    transform: rotate(0);
-}
-
-.login-html .sign-up:checked+.tab+.login-form .sign-up-htm {
     transform: rotate(0);
 }
 
@@ -187,10 +165,6 @@ img {
     height: 50px;
 }
 
-h3 {
-    color: black;
-    text-align: center;
-}
 
 #dropdownMenuLink {
     margin-left: -10px;
@@ -208,15 +182,12 @@ h3 {
 
 td {
     height: 50px;
-    /* font-size: 20px; */
     color: black;
-    /* text-align: center ; */
     border: solid black !important;
     vertical-align: middle !important;
 }
 
 th {
-    /* font-size: 25px; */
     color: black !important;
     text-align: center !important;
     background-color: antiquewhite;
@@ -235,10 +206,6 @@ label {
 #remember {
     font-size: 100%;
 }
-
-/* #example1 {
-    white-space: nowrap !important;
-}  */
 
 #car-body {
     overflow: scroll;
@@ -282,9 +249,7 @@ label {
 .check-timeOut {
     background-color: red;
 }
-/* .check-time .time{
-    text-align: center !important;
-} */
+
 .time{
     text-align: center;
 }

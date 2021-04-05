@@ -36,16 +36,25 @@
                                         </tr>
                                     @else
                                         @foreach ($value0->work as $key1 => $value)
-                                            @if ($date->diffInDays($value->end_date, false) == 0)
                                                     <tr>
                                                         @if ($key1 == 0)
                                                             <td rowspan="{{ $value0->work->count() }}">
                                                                 {{ $value0->name }}
                                                             </td>
                                                         @endif
-                                                        <td class="check-time">{{ $value->detail }}</td>
-                                                        <td class="check-time time">{{ $value->start_date }}</td>
-                                                        <td class="check-time time">{{ $value->end_date }}</td>
+                                                        @if ($date->diffInDays($value->end_date, false) == 0)
+                                                            <td class="check-time">{{ $value->detail }}</td>
+                                                            <td class="check-time time">{{ $value->start_date }}</td>
+                                                            <td class="check-time time">{{ $value->end_date }}</td>
+                                                        @elseif ($date->diffInDays($value->end_date,false) < 0)
+                                                            <td class="check-timeOut">{{ $value->detail }}</td>
+                                                            <td class="check-timeOut time">{{ $value->start_date }}</td>
+                                                            <td class="check-timeOut time">{{ $value->end_date }}</td>
+                                                        @else
+                                                            <td>{{ $value->detail }}</td>
+                                                            <td class="time">{{ $value->start_date }}</td>
+                                                            <td class="time">{{ $value->end_date }}</td>
+                                                        @endif
                                                         <td>Chưa xác nhận</td>
                                                         <td>
                                                             <a class="btn btn-success edit"
@@ -62,59 +71,6 @@
                                                             </a>
                                                         </td>
                                                     </tr>
-                                            @elseif ($date->diffInDays($value->end_date,false) < 0) 
-                                                    <tr>
-                                                        @if ($key1 == 0)
-                                                            <td rowspan="{{ $value0->work->count() }}">
-                                                                {{ $value0->name }}
-                                                            </td>
-                                                        @endif
-                                                        <td class="check-timeOut">{{ $value->detail }}</td>
-                                                        <td class="check-timeOut time">{{ $value->start_date }}</td>
-                                                        <td class="check-timeOut time">{{ $value->end_date }}</td>
-                                                        <td>Chưa xác nhận</td>
-                                                        <td>
-                                                            <a class="btn btn-success edit"
-                                                                href="{{ route('check-job.edit', ['id' => $value->id]) }}">
-                                                                <i class="far fa-edit"></i>
-                                                                Chỉnh sửa và xác nhận
-                                                            </a>
-                                                            <a href="{{ route('check-job.destroy', ['id' => $value->id]) }}"
-                                                                class="btn btn-danger"
-                                                                style="float: right;"
-                                                                onclick="return confirm('Bạn có chắc là muốn xoá không?')">
-                                                                <i class="far fa-trash-alt"></i>
-                                                                Xoá 
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                            @else 
-                                                    <tr>
-                                                        @if ($key1 == 0)
-                                                            <td rowspan="{{ $value0->work->count() }}">
-                                                                {{ $value0->name }}
-                                                            </td>
-                                                        @endif
-                                                        <td>{{ $value->detail }}</td>
-                                                        <td class="time">{{ $value->start_date }}</td>
-                                                        <td class="time">{{ $value->end_date }}</td>
-                                                        <td>Chưa xác nhận</td>
-                                                        <td>
-                                                            <a class="btn btn-success edit"
-                                                                href="{{ route('check-job.edit', ['id' => $value->id]) }}">
-                                                                <i class="far fa-edit"></i>
-                                                                Chỉnh sửa và xác nhận
-                                                            </a>
-                                                            <a href="{{ route('check-job.destroy', ['id' => $value->id]) }}"
-                                                                class="btn btn-danger"
-                                                                style="float: right;"
-                                                                onclick="return confirm('Bạn có chắc là muốn xoá không?')">
-                                                                <i class="far fa-trash-alt"></i>
-                                                                Xoá 
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                            @endif
                                         @endforeach
                                     @endif
                                 @endforeach

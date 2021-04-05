@@ -18,7 +18,7 @@
                 </div>
                 <div class="form-group">
                     <label>Ngày bắt đầu</label>
-                    <input type="date"  value="{{old('start_date')}}"
+                    <input type="date"  value="{{old('start_date') }}"
                             style="width: 300px"
                            class="form-control @error('start_date') border-danger @enderror" name="start_date"
                            placeholder="Enter start date">
@@ -46,6 +46,11 @@
                 <div class="form-group">
                     <input type="number"  value = 0
                            class="form-control " name="check"
+                           style="display: none">
+                </div>
+                <div class="form-group">
+                    <input type="number"  value = 0
+                           class="form-control " name="progress"
                            style="display: none">
                 </div>
 

@@ -60,15 +60,14 @@ Route::middleware('auth')->prefix('/home')->group(function(){
 Route::get('/', [HomeController::class,'index'])->name('trangchu');
 
 
-// Auth 
+// Login 
 Route::prefix('/login')->group(function(){
     Route::get('/',[AuthController::class,'loginShow'])->name('loginShow');
     Route::post('/',[AuthController::class,'checkLogin'])->name('checkLogin');
 });
-
+// Logout
 Route::get('/logout',[AuthController::class,'logOut'])->name('logOut');
-
-
+// Register
 Route::prefix('/register')->group(function(){
     Route::get('/',[AuthController::class,'registerShow'])->name('registerShow');         
     Route::post('/register',[UserController::class,'store'])->name('register');         

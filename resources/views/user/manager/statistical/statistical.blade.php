@@ -25,34 +25,39 @@
                             </thead>
                             <tbody>
                                 @foreach ($users as $key => $user)
-                                @foreach ($user->work as $key1 => $value)
-                               
-                                <tr>
-                                    @if ($key1 == 0)
-                                        <td rowspan="{{ $user->work->count() }}">
-                                            {{ $user->name }}
-                                        </td>
-                                    @endif
-                                    <td>{{$value->detail}}</td>
-                                    <td>{{$value->time_updated}}</td>
-                                    <td>{{$value->end_date}}</td>
-                                    @if ($date->diffInDays($value->end_date, false) < 0 && $value->status == 'Chưa hoàn thành')
-                                        <td class="out-time">Quá hạn</td>
-                                    @elseif($date->diffInDays($value->end_date, false) < 0 && $value->status == 'Hoàn thành')
-                                        <td class="out-time">Quá hạn</td>
-                                    @elseif($date->diffInDays($value->end_date, false) > 0 && $value->status == 'Hoàn thành')
-                                        <td class="on-time">Đúng hạn</td>
-                                    @elseif($date->diffInDays($value->end_date, false) > 0 && $value->status == 'Chưa hoàn thành')
-                                        <td>Chưa đến hạn</td>
-                                    @elseif($date->diffInDays($value->end_date, false) == 0 && $value->status == 'Hoàn thành')
-                                        <td class="on-time">Đúng hạn</td>
-                                    @elseif($date->diffInDays($value->end_date, false) == 0 && $value->status == 'Chưa hoàn thành')
-                                        <td>Chưa đến hạn</td>
-                                    @else
-                                        <td>Chưa đến hạn</td>
-                                    @endif
-                                </tr>
-                                @endforeach
+                                    @foreach ($user->work as $key1 => $value)
+                                        @if ($value->detail !== null)
+                                            <tr>
+                                                @if ($key1 == 0)
+                                                    <td rowspan="{{ $user->work->count() }}">
+                                                        {{ $user->name }}
+                                                    </td>
+                                                @endif
+                                                    <td>{{ $value->detail }}</td> 
+                                                    <td>{{ $value->time_updated }}</td>
+                                                    <td>{{ $value->end_date }}</td>
+                                                @if ($value->progress == 2)
+                                                    <td class="out-time">Quá hạn</td>
+                                                @elseif ($value->progress == 1)
+                                                    <td class="on-time">Đúng hạn</td>
+                                                @else
+                                                    <td>Chưa đến hạn</td>
+                                                @endif
+                                            </tr>
+                                        @else
+                                            <tr>
+                                                @if ($key1 == 0)
+                                                    <td rowspan="{{ $user->work->count() }}">
+                                                        {{ $user->name }}
+                                                    </td>
+                                                @endif
+                                                <td ></td>
+                                                <td ></td>
+                                                <td ></td>
+                                                <td ></td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
                                 @endforeach
                             </tbody>
                             <tfoot>

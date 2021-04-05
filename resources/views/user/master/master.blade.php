@@ -45,10 +45,13 @@
 @include('user.core.footer')
 
 <!-- ./wrapper -->
+
 <script src="https://code.jquery.com/jquery-3.6.0.js"   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
 <!-- jQuery -->
 <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+{{-- js --}}
+<script src="{{asset('js/master.js')}}"></script>
 
 <!-- Bootstrap 4 -->
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -62,66 +65,7 @@
 <script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 @stack('script')
 
-<script>
-    $(".toggle-password").click(function() {
 
-        $(this).toggleClass("fa-eye fa-eye-slash");
-        var input = $($(this).attr("toggle"));
-        if (input.attr("type") == "password") {
-            input.attr("type", "text");
-        } else {
-            input.attr("type", "password");
-        }
-    });
-
-    function time() {
-        let time = new Date();
-        let day = time.getDate();
-        let month = time.getMonth() + 1;
-        let years = time.getFullYear();
-        let hour = time.getHours();
-        let minute = time.getMinutes();
-        let sescord = time.getSeconds();
-        if (hour < 10) {
-            hour = "0" + hour;
-        }
-        if (minute < 10) {
-            minute = "0" + minute;
-        }
-        if (sescord < 10) {
-            sescord = "0" + sescord;
-        }
-        document.getElementById('time').innerHTML = day + "/" + month + "/" + years + "-" + hour + ":" + minute + ":" +
-            sescord;
-        setTimeout("time()", 1000);
-    }
-    time();
-
-    // $(function () {
-    //     $("#worktable").DataTable({
-    //         "responsive": true,
-    //         "autoWidth": true,
-    //         "paging": false,
-    //         "searching": true,
-    //         // "ordering": true,
-    //         "info": true,
-    //     });
-        
-    // });
-    // $(function () {
-    //     $("#statiscal").DataTable({
-    //         "responsive": true,
-    //         "autoWidth": true,
-    //         "paging": false,
-    //         "searching": true,
-    //         // "ordering": true,
-    //         "info": true,
-    //     });
-        
-    // });
-   
-
-</script>
 {{--@jquery--}}
 @toastr_js
 @toastr_render

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class WorkRepositories implements WorkInterface
 {
 
-    public function StoreWork($user_id, $user_name, $detail, $start, $end, $status,$check)
+    public function StoreWork($user_id, $user_name, $detail, $start, $end, $status,$check,$progress)
     {
         return Work::create([
             'user_id' => $user_id,
@@ -21,15 +21,19 @@ class WorkRepositories implements WorkInterface
             'end_date' => $end,
             'status' => $status,
             'check' => $check,
-        ]);
+            'progress' => $progress,
+        ]); 
     }
-    public function UpdateWork($id,$detail,$start_date,$end_date,$status,$check){
+    
+    public function UpdateWork($id,$detail,$start_date,$end_date,$status,$check,$progress){
         return DB::table('works', $id)->where('id', $id)->update([
                 'detail' => $detail,
                 'start_date' => $start_date,
                 'end_date' => $end_date,
                 'status' => $status,
                 'check' => $check,
+                'progress' => $progress,
+
             ]);
     }
 
