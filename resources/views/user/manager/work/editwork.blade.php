@@ -42,8 +42,8 @@
                 <div class="form-group">
                     <label>Xác nhận</label>
                     <select name="check" class="form-control">
-                        <option value="1">Xác nhận</option>
                         <option value="0">Không xác nhận</option>
+                        <option value="1">Xác nhận</option>
                     </select>
                 </div>
                 <div>

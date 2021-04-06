@@ -20,7 +20,7 @@
                                     <th>Ngày bắt đầu</th>
                                     <th>Ngày kết thúc</th>
                                     <th>Tình trạng</th>
-                                    <th>Hành động</th>
+                                    <th colspan="2">Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -32,7 +32,7 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <td></td>
+                                            <td colspan="2"></td>
                                         </tr>
                                     @else
                                         @foreach ($value0->work as $key1 => $value)
@@ -62,6 +62,8 @@
                                                                 <i class="far fa-edit"></i>
                                                                 Chỉnh sửa và xác nhận
                                                             </a>
+                                                            </td>
+                                                            <td>
                                                             <a href="{{ route('check-job.destroy', ['id' => $value->id]) }}"
                                                                 class="btn btn-danger"
                                                                 style="float: right;"

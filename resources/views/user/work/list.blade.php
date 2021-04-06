@@ -25,7 +25,7 @@
                                     <th>Ngày bắt đầu</th>
                                     <th>Ngày kết thúc</th>
                                     <th>Trạng thái</th>
-                                    <th>Hành động</th>
+                                    <th colspan="2">Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,7 +47,8 @@
                                                     href={{ route('work.edit', ['id' => $value->id]) }}>
                                                     <i class="far fa-edit"></i>
                                                 </a>
-
+                                            </td>
+                                            <td>
                                                 <a href="{{ route('work.destroy', ['id' => $value->id]) }}"
                                                     class="btn btn-danger"
                                                     onclick="return confirm('Bạn có chắc là muốn xoá không?')">
@@ -84,6 +85,8 @@
                                                     href={{ route('work.edit', ['id' => $value->id]) }}>
                                                     <i class="far fa-edit"></i>
                                                 </a>
+                                            </td>
+                                            <td>
                                                 <a class="btn btn-secondary "
                                                     href={{ route('storage', ['id' => $value->id]) }}>
                                                     <i class="fas fa-warehouse"></i>

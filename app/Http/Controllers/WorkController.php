@@ -72,19 +72,52 @@ class WorkController extends Controller
             );
             toastr()->success('Thêm công việc thành công');
         } else {
+            $date = Carbon::now();
+            $date->startOfDay();
             $this->validation($request);
             $user = User::Where('id', Auth::user()->id)->first();
-            $work = $this->workInterface->StoreWork(
-                $user->id,
-                $user->name,
-                $request->detail,
-                $request->start_date,
-                $request->end_date,
-                $request->status,
-                $request->check,
-                $request->progress,
-                $request->hidden,
-            );
+            if (
+                $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Chưa hoàn thành' ||
+                $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Hoàn thành'
+            ){
+                $work = $this->workInterface->StoreWork(
+                    $user->id,
+                    $user->name,
+                    $request->detail,
+                    $request->start_date,
+                    $request->end_date,
+                    $request->status,
+                    $request->check,
+                    2,
+                    $request->hidden,
+                );
+            }
+            elseif ($date->diffInDays(Carbon::create($request->end_date), false) >= 0 && $request->status == 'Hoàn thành'){
+                $work = $this->workInterface->StoreWork(
+                    $user->id,
+                    $user->name,
+                    $request->detail,
+                    $request->start_date,
+                    $request->end_date,
+                    $request->status,
+                    $request->check,
+                    1,
+                    $request->hidden,
+                );
+            }else{
+                $work = $this->workInterface->StoreWork(
+                    $user->id,
+                    $user->name,
+                    $request->detail,
+                    $request->start_date,
+                    $request->end_date,
+                    $request->status,
+                    $request->check,
+                    $request->progress,
+                    $request->hidden,
+                );
+            }
+          
             $check =  Carbon::create($work->start_date)->diffInMinutes(Carbon::create($work->end_date), false);
 
             if ($check < 0) {

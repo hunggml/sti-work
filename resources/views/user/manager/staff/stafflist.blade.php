@@ -21,7 +21,7 @@
                                     <th>Địa chỉ</th>
                                     <th>Email</th>
                                     <th>Level</th>
-                                    <th>Hành động</th>
+                                    <th colspan="2">Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,6 +42,8 @@
                                                 <i class="far fa-edit"></i>
                                                 Chỉnh sửa level
                                             </a>
+                                        </td>
+                                        <td>
                                             <a href="{{ route('staff.destroy', ['id' => $user->id]) }}"
                                                 class="btn btn-danger"
                                                 style="float: right;"

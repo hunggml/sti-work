@@ -6,10 +6,24 @@
         integrity="sha512-dnUg2JxjlVoXHVdSMWDYm2Y5xcIrJg1N+juOuRi0yLVkku/g26rwHwysJDAMwahaDfRpr1AxFz43ktuMPr/l1A=="
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <div>
-        <canvas id="myChart"></canvas>
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <div class="wrapper">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Main content -->
+            <section class="content">
+                <div class="card">
+                    <div class="card-body" id="car-body">
+                        <div class="card-header">
+                            <h3 class="card-title">Biểu đồ quá trình làm việc</h3>
+                        </div>
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
+    
 
     @push('script')
         <script>
@@ -28,19 +42,28 @@
                                 type: 'bar',
                                 label: 'Quá hạn',
                                 data: outTime(users),
-                                backgroundColor: ['red']
+                                backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                                borderColor: ['rgba(255, 99, 132, 0.2)'],
+                                borderWidth: 1
+
                             }, {
                                 type: 'bar',
                                 label: 'Đúng hạn',
                                 data: onTime(users),
-                                backgroundColor: ['greenyellow']
+                                backgroundColor: ['rgba(75, 192, 192, 0.2)'],
+                                borderColor: ['rgb(75, 192, 192)'],
+                                borderWidth: 1,
+
                             }, {
                                 type: 'bar',
                                 label: 'Chưa đến hạn',
                                 data: inTime(users),
-                                backgroundColor: ['#6a6f8c']
+                                backgroundColor: ['rgba(201, 203, 207, 0.2)'],
+                                borderColor: ['rgb(201, 203, 207)'],
+                                borderWidth: 1
+
                             }],
-                            
+
                             labels: callback(users)
                         },
                         options: {
