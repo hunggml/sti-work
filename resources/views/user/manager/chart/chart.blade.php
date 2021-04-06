@@ -42,7 +42,7 @@
                                 type: 'bar',
                                 label: 'Quá hạn',
                                 data: outTime(users),
-                                backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                                backgroundColor: ['red'],
                                 borderColor: ['rgba(255, 99, 132, 0.2)'],
                                 borderWidth: 1
 
@@ -50,7 +50,7 @@
                                 type: 'bar',
                                 label: 'Đúng hạn',
                                 data: onTime(users),
-                                backgroundColor: ['rgba(75, 192, 192, 0.2)'],
+                                backgroundColor: ['greenyellow'],
                                 borderColor: ['rgb(75, 192, 192)'],
                                 borderWidth: 1,
 
@@ -58,7 +58,7 @@
                                 type: 'bar',
                                 label: 'Chưa đến hạn',
                                 data: inTime(users),
-                                backgroundColor: ['rgba(201, 203, 207, 0.2)'],
+                                backgroundColor: ['rgb(163, 163, 163)'],
                                 borderColor: ['rgb(201, 203, 207)'],
                                 borderWidth: 1
 
