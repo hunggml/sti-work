@@ -78,18 +78,17 @@ class WorkController extends Controller
                 toastr()->success('Thêm công việc thành công');
             }
         } else {
-            $date = Carbon::now();
-            $date->startOfDay();
-            $this->validation($request);
-            $user = User::Where('id', Auth::user()->id)->first();
-            if (
-                $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Chưa hoàn thành' ||
-                $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Hoàn thành'
-            ) {
-                if ($check < 0) {
-                    toastr()->error('Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
-                    return redirect()->route('work.create');
-                } else {
+            if ($check < 0) {
+                toastr()->error('Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
+                return redirect()->route('work.create');
+            } else {
+                $date = Carbon::now();
+                $date->startOfDay();
+                $this->validation($request);
+                $user = User::Where('id', Auth::user()->id)->first();
+                if (
+                    $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Chưa hoàn thành' ||
+                    $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Hoàn thành') {
                     $work = $this->workInterface->StoreWork(
                         $user->id,
                         $user->name,
@@ -101,13 +100,7 @@ class WorkController extends Controller
                         2,
                         $request->hidden,
                     );
-                    toastr()->success('Thêm công việc thành công');
-                }
-            } elseif ($date->diffInDays(Carbon::create($request->end_date), false) >= 0 && $request->status == 'Hoàn thành') {
-                if ($check < 0) {
-                    toastr()->error('Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
-                    return redirect()->route('work.create');
-                } else {
+                } elseif ($date->diffInDays(Carbon::create($request->end_date), false) >= 0 && $request->status == 'Hoàn thành') {
                     $work = $this->workInterface->StoreWork(
                         $user->id,
                         $user->name,
@@ -119,12 +112,6 @@ class WorkController extends Controller
                         1,
                         $request->hidden,
                     );
-                    toastr()->success('Thêm công việc thành công');
-                }
-            } else {
-                if ($check < 0) {
-                    toastr()->error('Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
-                    return redirect()->route('work.create');
                 } else {
                     $work = $this->workInterface->StoreWork(
                         $user->id,
@@ -137,8 +124,8 @@ class WorkController extends Controller
                         $request->progress,
                         $request->hidden,
                     );
-                    toastr()->success('Thêm công việc thành công');
                 }
+                toastr()->success('Thêm công việc thành công');
             }
         }
         return redirect()->route('work.index');
@@ -189,11 +176,9 @@ class WorkController extends Controller
             return back();
         } else {
             $this->validation($request);
-
             if (
                 $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Chưa hoàn thành' ||
-                $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Hoàn thành'
-            ) {
+                $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Hoàn thành') {
                 $work = $this->workInterface->UpdateWork(
                     $request->id,
                     $request->detail,
