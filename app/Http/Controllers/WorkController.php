@@ -58,26 +58,27 @@ class WorkController extends Controller
     public function store(Request $request)
     {
         $id = $this->workInterface->check();
+        // dd($id);
         $check =  Carbon::create($request->start_date)->diffInMinutes(Carbon::create($request->end_date), false);
-        if ($id) {
-            if ($check < 0) {
-                toastr()->error('Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
-                return redirect()->route('work.create');
-            } else {
-                $this->validation($request);
-                $work = $this->workInterface->UpdateWork(
-                    $request->id,
-                    $request->detail,
-                    $request->start_date,
-                    $request->end_date,
-                    $request->status,
-                    $request->check,
-                    $request->progress,
-                    $request->hidden,
-                ); 
-                toastr()->success('Thêm công việc thành công');
-            }
-        } else {
+        // if ($id) {
+        //     if ($check < 0) {
+        //         toastr()->error('Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
+        //         return redirect()->route('work.create');
+        //     } else {
+        //         $this->validation($request);
+        //         $this->workInterface->UpdateWork(
+        //             $request->id,
+        //             $request->detail,
+        //             $request->start_date,
+        //             $request->end_date,
+        //             $request->status,
+        //             $request->check,
+        //             $request->progress,
+        //             $request->hidden,
+        //         ); 
+        //         toastr()->success('Thêm công việc thành công');
+        //     }
+        // } else {
             if ($check < 0) {
                 toastr()->error('Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
                 return redirect()->route('work.create');
@@ -89,7 +90,7 @@ class WorkController extends Controller
                 if (
                     $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Chưa hoàn thành' ||
                     $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Hoàn thành') {
-                    $work = $this->workInterface->StoreWork(
+                     $this->workInterface->StoreWork(
                         $user->id,
                         $user->name,
                         $request->detail,
@@ -101,7 +102,7 @@ class WorkController extends Controller
                         $request->hidden,
                     );
                 } elseif ($date->diffInDays(Carbon::create($request->end_date), false) >= 0 && $request->status == 'Hoàn thành') {
-                    $work = $this->workInterface->StoreWork(
+                     $this->workInterface->StoreWork(
                         $user->id,
                         $user->name,
                         $request->detail,
@@ -113,7 +114,7 @@ class WorkController extends Controller
                         $request->hidden,
                     );
                 } else {
-                    $work = $this->workInterface->StoreWork(
+                     $this->workInterface->StoreWork(
                         $user->id,
                         $user->name,
                         $request->detail,
@@ -127,7 +128,7 @@ class WorkController extends Controller
                 }
                 toastr()->success('Thêm công việc thành công');
             }
-        }
+        // }
         return redirect()->route('work.index');
     }
 
@@ -222,8 +223,8 @@ class WorkController extends Controller
                 }
             }
             // dd(($works)[0]->status);
-            $user = Auth::user();
-            $this->workInterface->StoreWork($user->id, $user->name, null, null, null, 'Chưa hoàn thành', 1, 0, 0);
+            // $user = Auth::user();
+            // $this->workInterface->StoreWork($user->id, $user->name, null, null, null, 'Chưa hoàn thành', 1, 0, 0);
 
             return redirect()->route('work.index');
         }
