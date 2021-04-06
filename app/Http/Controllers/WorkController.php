@@ -74,7 +74,7 @@ class WorkController extends Controller
                     $request->check,
                     $request->progress,
                     $request->hidden,
-                );
+                ); 
                 toastr()->success('Thêm công việc thành công');
             }
         } else {
