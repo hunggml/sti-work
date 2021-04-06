@@ -51,10 +51,10 @@
                                                         {{ $user->name }}
                                                     </td>
                                                 @endif
-                                                <td ></td>
-                                                <td ></td>
-                                                <td ></td>
-                                                <td ></td>
+                                                <td hidden></td>
+                                                <td hidden></td>
+                                                <td hidden></td>
+                                                <td hidden></td>
                                             </tr>
                                         @endif
                                     @endforeach

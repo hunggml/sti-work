@@ -53,6 +53,11 @@
                            class="form-control " name="progress"
                            style="display: none">
                 </div>
+                <div class="form-group">
+                    <input type="number"  value = 0
+                           class="form-control " name="hidden"
+                           style="display: none">
+                </div>
 
                 <div>
                     <button type="submit" class="btn btn-primary">Thêm việc</button>

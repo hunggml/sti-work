@@ -31,17 +31,6 @@ class HomeController extends Controller
         return view('user.Screen.home', compact('user', 'date','auth'));
     }
 
-    // public function home()
-    // {
-    //     // $allWork = Work::all();
-    //     $date = Carbon::now();
-    //     $date->startOfDay();
-    //     $user = User::with(['work' => function($q){
-    //         return $q->where('check', '1');
-    //     }])->get();
-    //     $auth = Auth::user();
-    //     return view('user.Screen.home', compact('user', 'auth', 'date'));
-    // }
 
     /**
      * Show the form for creating a new resource.

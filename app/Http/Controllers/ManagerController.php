@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Response;
 class ManagerController extends Controller
 {
     
+    // list staff
     public function allStaff()
     {
         $auth = Auth::user();
@@ -20,14 +21,14 @@ class ManagerController extends Controller
         return view('user.manager.staff.stafflist',compact('users','auth'));
     }
 
-
+    // form edit level staff
     public function editLevel(Request $request){
         $auth = Auth::user();
         $user = User::findOrFail($request -> id);
         return view('user.manager.staff.editLevel', compact('user','auth'));
     }
 
-    
+    // update level staff
     public function updateLevel(Request $request){
         $user = User::findOrFail($request->id);
         $user->fill($request->all());
@@ -36,16 +37,17 @@ class ManagerController extends Controller
         return redirect()->route('staff.list');
     }
 
+    // list statistical
     public function statistical(){
         $users = User::with('work')->get();
         $auth = Auth::user();
         $date = Carbon::now();
         $date->startOfDay();
         $works = Work::all();
-
         return view('user.manager.statistical.statistical',compact('auth','date','works','users'));
     }
 
+    // bar chart
     public function chart(){
         $auth = Auth::user();
         $users = User::with('work')->get();
@@ -55,6 +57,7 @@ class ManagerController extends Controller
     }
 
 
+    // list check work
     public function listWorkCheck(){
         $date = Carbon::now();
         $date->startOfDay();
@@ -65,7 +68,8 @@ class ManagerController extends Controller
         return view('user.manager.work.workcheck', compact('user', 'auth', 'date'));
     }
 
-
+    
+    // form check + edit work
     public function editWorkCheck(Request $request){
         $auth = Auth::user();
         $work = Work::findOrFail($request->id);
@@ -73,6 +77,7 @@ class ManagerController extends Controller
     }
 
     
+    // update work
     public function updateWorkCheck(Request $request){
         $this->validation($request);
         $work = Work::findOrFail($request->id);
@@ -83,6 +88,7 @@ class ManagerController extends Controller
     }
 
 
+    // delete work
     public function deleteWorkCheck(Request $request){
         $work = Work::findOrFail($request->id);
         $work->delete();
@@ -91,10 +97,10 @@ class ManagerController extends Controller
     }
 
 
+    // delete staff
     public function destroyStaff(Request $request)
     {
         $user = User::findOrFail($request->id);
-        // $user = User::Where('id', Auth::user()->id)->first();
         $user->delete();
         $works = Work::Where('user_id', $user->id)->get();
         foreach($works as $work){
@@ -105,7 +111,7 @@ class ManagerController extends Controller
         return redirect()->route('staff.list');
     }
 
-
+    
     public function validation(Request $request){
         return $this->validate($request,[
             'detail' => 'required',

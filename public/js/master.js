@@ -38,23 +38,25 @@ function time() {
 time();
 // $(function () {
 //     $("#worktable").DataTable({
-//         "responsive": true,
-//         "autoWidth": true,
 //         "paging": false,
-//         "searching": true,
-//         // "ordering": true,
-//         "info": true,
+//         "lengthChange": false,
+//         "searching": false,
+//         "ordering": false,
+//         "info": false,
+//         "autoWidth": false,
+//         "responsive": true,
 //     });
 
 // });
 // $(function () {
 //     $("#statiscal").DataTable({
-//         "responsive": true,
-//         "autoWidth": true,
 //         "paging": false,
-//         "searching": true,
-//         // "ordering": true,
-//         "info": true,
+//       "lengthChange": false,
+//       "searching": true,
+//       "ordering": false,
+//       "info": false,
+//       "autoWidth": false,
+//       "responsive": true,
 //     });
 
 // });

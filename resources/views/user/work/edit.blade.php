@@ -31,11 +31,6 @@
                 </div>
                 <div class="form-group">
                     <label>Ngày kết thúc</label>
-                    @if ($work->end_date == null)
-                    <input type="date" class="form-control dateform" 
-                    style="width: 300px"
-                     name="end_date">
-                    @else
                     <input type="date" class="form-control dateform" 
                             style="width: 300px"
                             value="{{old('time')?? date('Y-m-d', strtotime($work->end_date)) }}" 
@@ -44,13 +39,19 @@
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-                @endif
                 <div class="form-group">
                     <label>Trạng thái</label>
                     <select name="status" class="form-control">
-                        <option value="Chưa hoàn thành">chưa hoàn thành</option>
-                        <option value="Hoàn thành">Hoàn thành</option>
-                        <option value="Tạm dừng">Tạm dừng</option>
+                        @if ($work->status == 'Chưa hoàn thành')
+                            <option value="Hoàn thành">Hoàn thành</option>
+                            <option value="Tạm dừng">Tạm dừng</option>
+                        @elseif ($work->status == 'Hoàn thành')
+                            <option value="Chưa hoàn thành">chưa hoàn thành</option>
+                            <option value="Tạm dừng">Tạm dừng</option>
+                        @else
+                            <option value="Hoàn thành">Hoàn thành</option>
+                            <option value="Chưa hoàn thành">chưa hoàn thành</option>
+                        @endif
                     </select>
                 </div>
                 <div class="form-group">
@@ -61,6 +62,11 @@
                 <div class="form-group">
                     <input type="number"  value = 0
                            class="form-control " name="progress"
+                           style="display: none">
+                </div>
+                <div class="form-group">
+                    <input type="number"  value = 0
+                           class="form-control " name="hidden"
                            style="display: none">
                 </div>
                 <div>

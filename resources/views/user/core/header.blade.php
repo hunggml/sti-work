@@ -70,34 +70,45 @@
                     </a>
                 </li>
                 @if ($auth->level == 1)
-                <li>
-                    <a href= {{route('staff.list')}}
-                        class="nav-link {{ request()->routeIs('staff*') ? 'active font-weight-bolder' : '' }}">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Danh sách nhân viên</p>
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link ">  
+                      <i class="nav-icon fas fa-tachometer-alt"></i>
+                      <p>
+                        Quản lý
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
                     </a>
-                </li>
-                <li>
-                    <a href= {{route('check.list')}}
-                        class="nav-link {{ request()->routeIs('check*') ? 'active font-weight-bolder' : '' }}">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Công việc cần xác nhận</p>
-                    </a>
-                </li>
-                <li>
-                    <a href= {{route('statistical.list')}}
-                        class="nav-link {{ request()->routeIs('statistical*') ? 'active font-weight-bolder' : '' }}">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Danh sách thống kê</p>
-                    </a>
-                </li>
-                <li>
-                    <a href= {{route('chart')}}
-                        class="nav-link {{ request()->routeIs('chart*') ? 'active font-weight-bolder' : '' }}">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Biểu đồ thống kê</p>
-                    </a>
-                </li>
+                    <ul class="nav nav-treeview">
+                        <li>
+                            <a href= {{route('staff.list')}}
+                                class="nav-link {{ request()->routeIs('staff*') ? 'active font-weight-bolder' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách nhân viên</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href= {{route('check.list')}}
+                                class="nav-link {{ request()->routeIs('check*') ? 'active font-weight-bolder' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Xác nhận công việc</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href= {{route('statistical.list')}}
+                                class="nav-link {{ request()->routeIs('statistical*') ? 'active font-weight-bolder' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách thống kê</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href= {{route('chart')}}
+                                class="nav-link {{ request()->routeIs('chart*') ? 'active font-weight-bolder' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Biểu đồ thống kê</p>
+                            </a>
+                        </li>
+                    </ul>
+                  </li>
                 @endif
             </ul>
         </nav>

@@ -142,6 +142,7 @@ class UserController extends Controller
         return view('user.auth.changePass',compact('auth'));
     }
 
+    
     public function updatePass(Request $request){
         $this->validation($request);
         $account = User::Where('id',Auth::user()->id)->first();
@@ -161,6 +162,8 @@ class UserController extends Controller
             }
         }
     }
+
+
     public function validation(Request $request){
         return $this->validate($request,[
             'oldPassword' => 'required|password|min:3',

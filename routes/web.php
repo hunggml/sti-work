@@ -51,6 +51,9 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     Route::get('/edit-work',[WorkController::class,'edit'])->name('work.edit');
     Route::post('/update-work',[WorkController::class,'update'])->name('work.update');
     Route::get('/destroy-work',[WorkController::class,'destroy'])->name('work.destroy');
+    Route::get('/work/hide/{id}',[WorkController::class,'storage'])->name('storage');
+    Route::get('/work/un-hide/{id}',[WorkController::class,'restore'])->name('warehouse.restore');
+    Route::get('/work-warehouse',[WorkController::class,'listWarehouse'])->name('warehouse.list');
 
     // Change password
     Route::get('/changePass',[UserController::class,'changePass'])->name('changePass');

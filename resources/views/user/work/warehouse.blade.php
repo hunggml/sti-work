@@ -11,7 +11,9 @@
                         <h3 class="card-title">Danh sách công việc cá nhân</h3>
                     </div>
                     <div class="card-body" id="car-body">
-                        <a style="color: white" class="btn btn-primary mb-2" href={{ route('work.create') }}>Thêm việc
+                        
+                        <a style="color: white;float:right" class="btn btn-secondary mb-2" href={{ route('work.index') }}>
+                            <i class="fas fa-warehouse"></i> Danh sách
                         </a>
                         <table id="worktable" class="table table-bordered table-striped ">
                             <thead>
@@ -39,16 +41,7 @@
                                                 <td style="background-color: #ff4a52;color: black">
                                                     {{ $value->status }}</td>
                                             @endif
-                                            <td><a class="btn btn-success edit"
-                                                    href={{ route('work.edit', ['id' => $value->id]) }}>
-                                                    <i class="far fa-edit"></i>
-                                                </a>
-
-                                                <a href="{{ route('work.destroy', ['id' => $value->id]) }}"
-                                                    class="btn btn-danger"
-                                                    onclick="return confirm('Bạn có chắc là muốn xoá không?')">
-                                                    <i class="far fa-trash-alt"></i>
-                                                </a>
+                                            <td>
                                             </td>
                                         </tr>
                                     @else 
@@ -75,10 +68,10 @@
                                                 <td style="background-color: #ff4a52;color: black">
                                                     {{ $value->status }}</td>
                                             @endif
-                                            <td><a class="btn btn-success "
-                                                    href={{ route('work.edit', ['id' => $value->id]) }}>
-                                                    <i class="far fa-edit"></i>
-                                                    {{-- Chỉnh sửa công việc --}}
+                                            <td>
+                                                <a class="btn btn-secondary "
+                                                    href={{route('warehouse.restore',['id'=>$value->id])}}>
+                                                    <i class="fas fa-undo-alt"></i> Khôi phục
                                                 </a>
                                             </td>
                                         </tr>
