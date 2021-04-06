@@ -27,7 +27,6 @@ class AuthController extends Controller
 
     public function checkLogin(Request $request)
     {
-
         $users = User::all();
         $remember = $request->has('remember') ? true : false;
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password], $remember)) {

@@ -3,7 +3,7 @@
 @section('content')
 <style>
     input{
-        width: 500px !important;
+        width: 360px !important;
     };
     
 </style>
