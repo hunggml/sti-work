@@ -56,16 +56,9 @@
                             <div class="form-group">
                                 <label>Trạng thái</label>
                                 <select name="status" class="form-control">
-                                    @if ($work->status == 'Chưa hoàn thành')
-                                        <option value="Hoàn thành">Hoàn thành</option>
-                                        <option value="Tạm dừng">Tạm dừng</option>
-                                    @elseif ($work->status == 'Hoàn thành')
-                                        <option value="Chưa hoàn thành">chưa hoàn thành</option>
-                                        <option value="Tạm dừng">Tạm dừng</option>
-                                    @else
-                                        <option value="Hoàn thành">Hoàn thành</option>
-                                        <option value="Chưa hoàn thành">chưa hoàn thành</option>
-                                    @endif
+                                    <option value="Tạm dừng">Tạm dừng</option>
+                                    <option value="Hoàn thành">Hoàn thành</option>
+                                    <option value="Chưa hoàn thành">chưa hoàn thành</option>
                                 </select>
                             </div>
                             <div class="form-group">
