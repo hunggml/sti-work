@@ -19,8 +19,6 @@ use App\Http\Controllers\WorkController;
 */ 
 Route::middleware('auth')->prefix('/home')->group(function(){
     Route::get('/',[HomeController::class,'index'])->name('home');
-    Route::get('/edit-status',[HomeController::class,'edit'])->name('screen.edit');
-    Route::post('/update-status',[HomeController::class,'update'])->name('screen.update');
     
     // Profile
     Route::get('/profile',[UserController::class,'index'])->name('profile.index');
@@ -47,7 +45,7 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     // Work
     Route::get('/work',[WorkController::class,'index'])->name('work.index');
     Route::get('/create-work',[WorkController::class,'create'])->name('work.create');
-    Route::post('/create-work',[WorkController::class,'store'])->name('work.store');
+    Route::post('/store-work',[WorkController::class,'store'])->name('work.store');
     Route::get('/edit-work',[WorkController::class,'edit'])->name('work.edit');
     Route::post('/update-work',[WorkController::class,'update'])->name('work.update');
     Route::get('/destroy-work',[WorkController::class,'destroy'])->name('work.destroy');
