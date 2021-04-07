@@ -57,7 +57,32 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
+        // lỗi
+        // $id = $this->workInterface->check();
+        // dd($id);
+
         $check =  Carbon::create($request->start_date)->diffInMinutes(Carbon::create($request->end_date), false);
+        
+        // lỗi
+        // if ($id) {
+        //     if ($check < 0) {
+        //         toastr()->error('Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
+        //         return redirect()->route('work.create');
+        //     } else {
+        //         $this->validation($request);
+        //         $this->workInterface->UpdateWork(
+        //             $request->id,
+        //             $request->detail,
+        //             $request->start_date,
+        //             $request->end_date,
+        //             $request->status,
+        //             $request->check,
+        //             $request->progress,
+        //             $request->hidden,
+        //         ); 
+        //         toastr()->success('Thêm công việc thành công');
+        //     }
+        // } else {
             if ($check < 0) {
                 toastr()->error('Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
                 return redirect()->route('work.create');
@@ -107,6 +132,7 @@ class WorkController extends Controller
                 }
                 toastr()->success('Thêm công việc thành công');
             }
+        // }
         return redirect()->route('work.index');
     }
 
@@ -191,7 +217,21 @@ class WorkController extends Controller
                     $request->hidden,
                 );
             }
+
+
             toastr()->success('Cập nhật công việc thành công');
+
+            // lỗi
+            // $works = Work::Where('user_id', Auth::user()->id)->get();
+            // foreach ($works as $work) {
+            //     if ($work->status === "Chưa hoàn thành") {
+            //         return redirect()->route('work.index');
+            //     }
+            // }
+            // // dd(($works)[0]->status);
+            // $user = Auth::user();
+            // $this->workInterface->StoreWork($user->id, $user->name, null, null, null, 'Chưa hoàn thành', 1, 0, 0);
+
             return redirect()->route('work.index');
         }
     }

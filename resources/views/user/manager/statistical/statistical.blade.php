@@ -2,17 +2,13 @@
 @section('title', 'Thống kê')
 @section('content')
     <div class="wrapper">
-        <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Main content -->
             <section class="content">
-
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Danh sách thống kê</h3>
                     </div>
                     <div class="card-body" id="car-body">
-
                         <table id="statiscal" class="table table-bordered table-striped ">
                             <thead>
                                 <tr>
@@ -33,9 +29,9 @@
                                                         {{ $user->name }}
                                                     </td>
                                                 @endif
-                                                    <td>{{ $value->detail }}</td> 
-                                                    <td>{{ $value->time_updated }}</td>
-                                                    <td>{{ $value->end_date }}</td>
+                                                <td>{{ $value->detail }}</td>
+                                                <td>{{ $value->time_updated }}</td>
+                                                <td>{{ $value->end_date }}</td>
                                                 @if ($value->progress == 2)
                                                     <td class="out-time">Quá hạn</td>
                                                 @elseif ($value->progress == 1)
@@ -61,21 +57,11 @@
                                 @endforeach
                             </tbody>
                             <tfoot>
-
                             </tfoot>
                         </table>
                     </div>
-                    <!-- /.card-body -->
                 </div>
-                <!-- /.card -->
-
-                <!-- /.container-fluid -->
             </section>
-            <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
-
     </div>
-
-
 @endsection

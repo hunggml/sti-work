@@ -38,18 +38,5 @@ class WorkRepositories implements WorkInterface
             ]);
     }
 
-    public function check() {
-        $works = Work::Where('user_id', Auth::user()->id)->get();
-        foreach ($works as $work) {
-            if ($work->detail == null) {
-               return $work->id;
-            }
-        }
-        return false;
-    }
-
-    
-
-
     
 }

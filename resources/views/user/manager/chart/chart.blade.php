@@ -52,7 +52,7 @@
                                 data: onTime(users),
                                 backgroundColor: ['greenyellow'],
                                 borderColor: ['rgb(75, 192, 192)'],
-                                borderWidth: 1,
+                                borderWidth: 1
 
                             }, {
                                 type: 'bar',

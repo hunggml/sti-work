@@ -42,7 +42,7 @@ Route::middleware('auth')->prefix('/home')->group(function(){
 
     // Statistical
     Route::get('/statistical',[ManagerController::class,'statistical'])->name('statistical.list');
-    Route::get('/chart',[ManagerController::class,'chart'])->name('chart');
+    Route::get('/chart',[ManagerController::class,'chart'])->name('chart'); 
 
     // Work
     Route::get('/work',[WorkController::class,'index'])->name('work.index');

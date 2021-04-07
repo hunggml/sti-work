@@ -30,19 +30,12 @@
                                 @foreach ($work as $key => $value)
                                     @if ($value->detail == null)
                                         <tr hidden>
-                                            <td>{{ ++$key }}</td>
-                                            <td id="detail">{{ $value->detail }}</td>
-                                            <td>{{ $value->start_date }}</td>
-                                            <td id="end_date">{{ $value->end_date }}</td>
-                                            @if ($value->status == 'Hoàn thành')
-                                                <td style="background-color: greenyellow;color:black">
-                                                    {{ $value->status }}</td>
-                                            @else
-                                                <td style="background-color: #ff4a52;color: black">
-                                                    {{ $value->status }}</td>
-                                            @endif
-                                            <td>
-                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
                                     @else 
                                         <tr>
@@ -60,14 +53,13 @@
                                             <td class="time">{{ $value->start_date }}</td>
                                             <td class="time">{{ $value->end_date }}</td>
                                         @endif
-                                            @if ($value->status == 'Hoàn thành')
-                                            
-                                                <td style="background-color: greenyellow;color:black">
-                                                    {{ $value->status }}</td>
-                                            @else
-                                                <td style="background-color: #ff4a52;color: black">
-                                                    {{ $value->status }}</td>
-                                            @endif
+                                        @if ($value->status == 'Hoàn thành')
+                                            <td style="background-color: greenyellow;color:black">
+                                                {{ $value->status }}</td>
+                                        @else
+                                            <td style="background-color: #ff4a52;color: black">
+                                                {{ $value->status }}</td>
+                                        @endif
                                             <td>
                                                 <a class="btn btn-secondary "
                                                     href={{route('warehouse.restore',['id'=>$value->id])}}>

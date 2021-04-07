@@ -1,5 +1,5 @@
 @extends('user.master.master')
-@section('title', 'Chỉnh sửa công việc')
+@section('title', 'Thêm công việc')
 @section('content')
     <style>
         .card-body {

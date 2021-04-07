@@ -27,60 +27,42 @@
                                     <th>Trạng thái</th>
                                     <th colspan="2">Hành động</th>
                                 </tr>
-                            </thead>
+                            </thead> 
                             <tbody>
                                 @foreach ($work as $key => $value)
                                     @if ($value->detail == null)
                                         <tr hidden>
-                                            <td>{{ ++$key }}</td>
-                                            <td id="detail">{{ $value->detail }}</td>
-                                            <td>{{ $value->start_date }}</td>
-                                            <td id="end_date">{{ $value->end_date }}</td>
-                                            @if ($value->status == 'Hoàn thành')
-                                                <td style="background-color: greenyellow;color:black">
-                                                    {{ $value->status }}</td>
-                                            @else
-                                                <td style="background-color: #ff4a52;color: black">
-                                                    {{ $value->status }}</td>
-                                            @endif
-                                            <td><a class="btn btn-success edit"
-                                                    href={{ route('work.edit', ['id' => $value->id]) }}>
-                                                    <i class="far fa-edit"></i>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('work.destroy', ['id' => $value->id]) }}"
-                                                    class="btn btn-danger"
-                                                    onclick="return confirm('Bạn có chắc là muốn xoá không?')">
-                                                    <i class="far fa-trash-alt"></i>
-                                                </a>
-                                            </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                         </tr>
                                     @else
                                         <tr>
                                             <td>{{ ++$key }}</td>
-                                            @if ($date->diffInDays($value->end_date, false) == 0 && $value->status == 'Chưa hoàn thành')
-                                                <td class="check-time">{{ $value->detail }}</td>
-                                                <td class="check-time time">{{ $value->start_date }}</td>
-                                                <td class="check-time time">{{ $value->end_date }}</td>
-                                            @elseif ($date->diffInDays($value->end_date,false) < 0 && $value->status ==
-                                                    'Chưa hoàn thành')
-                                                    <td class="check-timeOut">{{ $value->detail }}</td>
-                                                    <td class="check-timeOut time">{{ $value->start_date }}</td>
-                                                    <td class="check-timeOut time">{{ $value->end_date }}</td>
-                                                @else
-                                                    <td>{{ $value->detail }}</td>
-                                                    <td class="time">{{ $value->start_date }}</td>
-                                                    <td class="time">{{ $value->end_date }}</td>
-                                            @endif
-                                            @if ($value->status == 'Hoàn thành')
-
-                                                <td style="background-color: greenyellow;color:black">
-                                                    {{ $value->status }}</td>
-                                            @else
-                                                <td style="background-color: #ff4a52;color: black">
-                                                    {{ $value->status }}</td>
-                                            @endif
+                                        @if ($date->diffInDays($value->end_date, false) == 0 && $value->status == 'Chưa hoàn thành')
+                                            <td class="check-time">{{ $value->detail }}</td>
+                                            <td class="check-time time">{{ $value->start_date }}</td>
+                                            <td class="check-time time">{{ $value->end_date }}</td>
+                                        @elseif ($date->diffInDays($value->end_date,false) < 0 && $value->status =='Chưa hoàn thành')
+                                            <td class="check-timeOut">{{ $value->detail }}</td>
+                                            <td class="check-timeOut time">{{ $value->start_date }}</td>
+                                            <td class="check-timeOut time">{{ $value->end_date }}</td>
+                                        @else
+                                            <td>{{ $value->detail }}</td>
+                                            <td class="time">{{ $value->start_date }}</td>
+                                            <td class="time">{{ $value->end_date }}</td>
+                                        @endif
+                                        @if ($value->status == 'Hoàn thành')
+                                            <td style="background-color: greenyellow;color:black">
+                                                {{ $value->status }}</td>
+                                        @else
+                                            <td style="background-color: #ff4a52;color: black">
+                                                {{ $value->status }}</td>
+                                        @endif
                                             <td><a class="btn btn-success "
                                                     href={{ route('work.edit', ['id' => $value->id]) }}>
                                                     <i class="far fa-edit"></i>

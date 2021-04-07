@@ -44,17 +44,17 @@
                                                             </td>
                                                         @endif
                                                         @if ($date->diffInDays($value->end_date, false) == 0)
-                                                        <td class="check-time">{{ $value->detail }}</td>
-                                                        <td class="check-time time">{{ $value->start_date }}</td>
-                                                        <td class="check-time time">{{ $value->end_date }}</td>
+                                                            <td class="check-time">{{ $value->detail }}</td>
+                                                            <td class="check-time time">{{ $value->start_date }}</td>
+                                                            <td class="check-time time">{{ $value->end_date }}</td>
                                                         @elseif ($date->diffInDays($value->end_date,false) < 0)
-                                                        <td class="check-timeOut">{{ $value->detail }}</td>
-                                                        <td class="check-timeOut time">{{ $value->start_date }}</td>
-                                                        <td class="check-timeOut time">{{ $value->end_date }}</td>
+                                                            <td class="check-timeOut">{{ $value->detail }}</td>
+                                                            <td class="check-timeOut time">{{ $value->start_date }}</td>
+                                                            <td class="check-timeOut time">{{ $value->end_date }}</td>
                                                         @else
-                                                        <td>{{ $value->detail }}</td>
-                                                        <td class="time">{{ $value->start_date }}</td>
-                                                        <td class="time">{{ $value->end_date }}</td>
+                                                            <td>{{ $value->detail }}</td>
+                                                            <td class="time">{{ $value->start_date }}</td>
+                                                            <td class="time">{{ $value->end_date }}</td>
                                                         @endif
                                                     </tr>
                                             @endif

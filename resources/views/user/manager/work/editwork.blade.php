@@ -46,8 +46,9 @@
                             </div>
                             <div class="form-group">
                                 <label>Ngày kết thúc</label>
-                                <input type="date" class="form-control dateform" 
-                                    value="{{ old('time') ?? date('Y-m-d', strtotime($work->end_date)) }}" name="end_date">
+                                <input type="date" class="form-control dateform"
+                                    value="{{ old('time') ?? date('Y-m-d', strtotime($work->end_date)) }}"
+                                    name="end_date">
                                 @error('end_date')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror

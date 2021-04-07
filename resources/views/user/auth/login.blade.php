@@ -43,8 +43,8 @@
                         @enderror
                         <br>
                         <div class="group">
-                            <input id="check" type="checkbox" value="remember" class="check">
-                            <label id="remember" for="check"><span class="icon"></span> Nhớ tài khoản</label>
+                            <input id="check" name="remember" type="checkbox" value="remember" class="check">
+                            <label id="remember" name="remember" for="check"><span class="icon"></span> Nhớ tài khoản</label>
                         </div>
                         <div class="group">
                             <input type="submit" class="button" value="Đăng nhập">

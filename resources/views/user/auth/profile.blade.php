@@ -40,10 +40,12 @@
                                 <i class="far fa-edit"></i> Cập nhật hồ sơ</a>
                             <a href={{ route('changePass') }} class="btn btn-primary" style="color: white">
                                 <i class="fas fa-exchange-alt"></i> Đổi mật khẩu</a>
+                                <hr>
                             <a href={{ route('home') }} class="btn btn-danger"><i class="fas fa-times"></i> Đóng</a>
+                                <hr>
                             <a style="float: right" href={{route('profile.destroy')}} class="btn btn-danger"
                             onclick="return confirm('Are you sure you want to delete?')">
-                            <i class="fas fa-trash"></i> Xoá tài khoản</a>
+                                <i class="fas fa-trash"></i> Xoá tài khoản</a>
                         </div>
                     </div>
                 </div>

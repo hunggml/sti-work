@@ -1,16 +1,18 @@
 @extends('user.master.master')
 @section('title', 'Chỉnh sửa công việc')
 @section('content')
-<style>
-    .card-body{
-        display: flex;
-        justify-content:center;
-    }
-    form{
-        text-align: center;
-        width: 600px;
-    }
-</style>
+    <style>
+        .card-body {
+            display: flex;
+            justify-content: center;
+        }
+
+        form {
+            text-align: center;
+            width: 600px;
+        }
+
+    </style>
     <div class="wrapper">
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -35,7 +37,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Ngày bắt đầu</label>
-                                <input type="date" class="form-control dateform" 
+                                <input type="date" class="form-control dateform"
                                     value="{{ old('time') ?? date('Y-m-d', strtotime($work->start_date)) }}"
                                     name="start_date">
                                 @error('start_date')
@@ -44,8 +46,9 @@
                             </div>
                             <div class="form-group">
                                 <label>Ngày kết thúc</label>
-                                <input type="date" class="form-control dateform" 
-                                    value="{{ old('time') ?? date('Y-m-d', strtotime($work->end_date)) }}" name="end_date">
+                                <input type="date" class="form-control dateform"
+                                    value="{{ old('time') ?? date('Y-m-d', strtotime($work->end_date)) }}"
+                                    name="end_date">
                                 @error('end_date')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
