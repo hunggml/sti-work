@@ -31,7 +31,7 @@
                                         @foreach ($value0->work as $key1 => $value)
                                             @if ($value->detail == null)
                                                     <tr>
-                                                        <td>{{ $value0->name }}</td>
+                                                        <td>{{ $value0->name }} </td>
                                                         <td style="background-color: #f13149"></td>
                                                         <td></td>
                                                         <td></td>
@@ -78,4 +78,5 @@
         <!-- /.content-wrapper -->
 
     </div>
+
 @endsection

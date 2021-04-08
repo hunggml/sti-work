@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ManagerController;
 use Illuminate\Support\Facades\Route;
@@ -27,10 +28,20 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     Route::get('/destroy-profile',[UserController::class,'destroy'])->name('profile.destroy');
 
     // Staff
-    Route::get('/staff-list',[ManagerController::class,'allStaff'])->name('staff.list');
+    Route::get('/staff-list',[ManagerController::class,'stafflist'])->name('staff.stafflist');
+
     Route::get('/edit-staff',[ManagerController::class,'editLevel'])->name('staff.editLevel');
     Route::post('/update-staff',[ManagerController::class,'updateLevel'])->name('staff.updateLevel');
     Route::get('/staff-destroy',[ManagerController::class,'destroyStaff'])->name('staff.destroy');
+
+
+    // Group
+    Route::get('group-list',[GroupController::class,'index'])->name('group.list');
+    Route::get('/create-group',[GroupController::class,'create'])->name('group.create');
+    Route::post('/store-group',[GroupController::class,'store'])->name('group.store');
+    Route::get('/edit-group',[GroupController::class,'edit'])->name('group.edit');
+    Route::post('/update-group',[GroupController::class,'update'])->name('group.update');
+    Route::get('/destroy-group',[GroupController::class,'destroy'])->name('group.destroy');
 
     // Check Work
     Route::get('/check-job',[ManagerController::class,'listWorkCheck'])->name('check.list');

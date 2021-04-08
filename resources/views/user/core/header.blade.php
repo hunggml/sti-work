@@ -79,8 +79,33 @@
                       </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        {{-- @if ($auth->group_id == 2)
+                            <li class="nav-item">
+                                <a href= {{route('staff.service')}}
+                                    class="nav-link {{ request()->routeIs('staff*') ? 'active font-weight-bolder' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh sách nhân viên</p>
+                                </a>
+                            </li>
+                        @elseif ($auth->group_id == 3)
+                            <li class="nav-item">
+                                <a href= {{route('staff.RandD')}}
+                                    class="nav-link {{ request()->routeIs('staff*') ? 'active font-weight-bolder' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh sách nhân viên</p>
+                                </a>
+                            </li>
+                        @elseif ($auth->group_id == 4)
+                            <li class="nav-item">
+                                <a href= {{route('staff.produce')}}
+                                    class="nav-link {{ request()->routeIs('staff*') ? 'active font-weight-bolder' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh sách nhân viên</p>
+                                </a>
+                            </li>
+                        @endif --}}
                         <li class="nav-item">
-                            <a href= {{route('staff.list')}}
+                            <a href= {{route('staff.stafflist')}}
                                 class="nav-link {{ request()->routeIs('staff*') ? 'active font-weight-bolder' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách nhân viên</p>
@@ -91,6 +116,13 @@
                                 class="nav-link {{ request()->routeIs('check*') ? 'active font-weight-bolder' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Xác nhận công việc</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href={{route('group.list')}}
+                                class="nav-link {{ request()->routeIs('group*') ? 'active font-weight-bolder' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Phòng ban</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -107,6 +139,7 @@
                                 <p>Biểu đồ thống kê</p>
                             </a>
                         </li>
+                        
                     </ul>
                   </li>
                 @endif

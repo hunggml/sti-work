@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Group;
 use App\User;
 use App\Work;
 use Illuminate\Http\Request;
@@ -13,28 +14,34 @@ use Illuminate\Support\Facades\Response;
 class ManagerController extends Controller
 {
     
-    // list staff
-    public function allStaff()
-    {
+
+    public function stafflist(){
         $auth = Auth::user();
-        $users = User::all();
+        $users = User::with('group')->get();
         return view('user.manager.staff.stafflist',compact('users','auth'));
     }
+
+
 
     // form edit level staff
     public function editLevel(Request $request){
         $auth = Auth::user();
+        $groups = Group::all();
         $user = User::findOrFail($request -> id);
-        return view('user.manager.staff.editLevel', compact('user','auth'));
+        return view('user.manager.staff.editLevel', compact('user','auth','groups'));
     }
 
     // update level staff
     public function updateLevel(Request $request){
         $user = User::findOrFail($request->id);
-        $user->fill($request->all());
-        $user->save();
+        $user = DB::table('users', $request->id)->where('id', $request->id)->update([
+            'level' => $request->level,
+            'group_id' => $request->group_id,
+        ]);
+        // $user->save();
         toastr()->success('Cập nhật level thành công');
-        return redirect()->route('staff.list');
+        return redirect()->route('staff.stafflist');
+        
     }
 
     // list statistical
@@ -56,7 +63,7 @@ class ManagerController extends Controller
         return view('user.manager.chart.chart',compact('auth'));
     }
 
-
+ 
     // list check work
     public function listWorkCheck(){
         $date = Carbon::now();
@@ -64,6 +71,7 @@ class ManagerController extends Controller
         $user = User::with(['work' => function($q){
             return $q->where('check', '0')->where('status','Chưa hoàn thành');
         }])->get();
+        // dd($user);
         $auth = Auth::user();
         return view('user.manager.work.workcheck', compact('user', 'auth', 'date'));
     }

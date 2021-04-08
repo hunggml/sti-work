@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Work;
+use App\Group;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Response;
+use App\Repositories\WorkInterface;
+use Illuminate\Support\Facades\Auth;
 class GroupController extends Controller
 {
     /**
@@ -13,7 +20,9 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        $auth = Auth::user();
+        $groups = Group::all();
+        return view('user.group.list', compact('groups', 'auth'));
     }
 
     /**
@@ -23,7 +32,8 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        $auth = Auth::user();
+        return view('user.group.create', compact('auth'));
     }
 
     /**
@@ -34,7 +44,17 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|unique:users,name',
+        ]);
+        $group = new Group();
+        $group->name = $request->name;
+        $group->time_created = Carbon::now('Asia/Ho_Chi_Minh');
+        $group->time_updated = Carbon::now('Asia/Ho_Chi_Minh');
+        $group->save();
+      
+        toastr()->success('Thêm phòng ban thành công');
+        return redirect()->route('group.list');
     }
 
     /**
@@ -54,21 +74,32 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $auth = Auth::user();
+        $group = Group::findOrFail($request -> id);
+        return view('user.group.edit', compact('group','auth'));
     }
 
-    /**
+    /**x
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required'
+        ]);
+        $group = User::findOrFail($request ->id);
+        $group = DB::table('groups', $request ->id)->where('id', $request ->id)->update([
+           'name' => $request->name,
+        ]);
+
+        toastr()->success('Cập nhật phòng ban thành công');
+        return redirect()->route('group.list');
     }
 
     /**
@@ -77,8 +108,11 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $group = Group::findOrFail($request->id);
+        $group->delete();
+        toastr()->success('Xoá công việc thành công');
+        return redirect()->route('group.list');
     }
 }

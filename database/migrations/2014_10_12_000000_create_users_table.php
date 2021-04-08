@@ -26,6 +26,8 @@ class CreateUsersTable extends Migration
             $table->dateTime('time_created')->nullable();
             $table->dateTime('time_updated')->nullable();
             $table->softDeletes()->nullable();
+            $table->string('level');
+            $table->string('group_id');
 
         });
     }

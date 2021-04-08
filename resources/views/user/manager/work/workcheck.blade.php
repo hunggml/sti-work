@@ -24,54 +24,58 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($user as $key => $value0)
-                                    @if ($value0->work->count() == 0)
-                                        <tr>
-                                            <td>{{ $value0->name }}</td>
-                                            <td style="background-color: #f13149"></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td colspan="2"></td>
-                                        </tr>
-                                    @else
-                                        @foreach ($value0->work as $key1 => $value)
-                                            <tr>
-                                                @if ($key1 == 0)
-                                                    <td rowspan="{{ $value0->work->count() }}">
-                                                        {{ $value0->name }}
-                                                    </td>
-                                                @endif
-                                                @if ($date->diffInDays($value->end_date, false) == 0)
-                                                    <td class="check-time detail">{{ $value->detail }}</td>
-                                                    <td class="check-time time">{{ $value->start_date }}</td>
-                                                    <td class="check-time time">{{ $value->end_date }}</td>
-                                                @elseif ($date->diffInDays($value->end_date,false) < 0) 
-                                                    <td class="check-timeOut detail">{{ $value->detail }}</td>
-                                                    <td class="check-timeOut time">{{ $value->start_date }}</td>
-                                                    <td class="check-timeOut time">{{ $value->end_date }}</td>
-                                                @else
-                                                    <td class="detail">{{ $value->detail }}</td>
-                                                    <td class="time">{{ $value->start_date }}</td>
-                                                    <td class="time">{{ $value->end_date }}</td>
-                                                @endif
-                                                    <td>Chưa xác nhận</td>
-                                                    <td>
-                                                        <a class="btn btn-success edit"
-                                                            href="{{ route('check-job.edit', ['id' => $value->id]) }}">
-                                                            <i class="far fa-edit"></i>
-                                                            Chỉnh sửa và xác nhận
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{ route('check-job.destroy', ['id' => $value->id]) }}"
-                                                            class="btn btn-danger" style="float: right;"
-                                                            onclick="return confirm('Bạn có chắc là muốn xoá không?')">
-                                                            <i class="far fa-trash-alt"></i>
-                                                            Xoá
-                                                        </a>
-                                                    </td>
-                                            </tr>
+                                @foreach ($user->groupBy('group_id') as $key => $value0)
+                                    @if ($value0->first()->group_id == Auth::user()->group_id)
+                                        @foreach ($value0 as $key1 => $value)
+                                            @if ($value->work->count() == 0)
+                                                <tr>
+                                                    <td>{{ $value->name }}</td>
+                                                    <td style="background-color: #f13149"></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td colspan="2"></td>
+                                                </tr>
+                                            @else
+                                                @foreach ($value->work as $key2 => $work)
+                                                    <tr>
+                                                        @if ($key2 == 0)
+                                                            <td rowspan="{{ $value->work->count() }}">
+                                                                {{ $value->name }}
+                                                            </td>
+                                                        @endif
+                                                        @if ($date->diffInDays($work->end_date, false) == 0)
+                                                            <td class="check-time detail">{{ $work->detail }}</td>
+                                                            <td class="check-time time">{{ $work->start_date }}</td>
+                                                            <td class="check-time time">{{ $work->end_date }}</td>
+                                                        @elseif ($date->diffInDays($work->end_date,false) < 0) <td
+                                                                class="check-timeOut detail">{{ $work->detail }}</td>
+                                                                <td class="check-timeOut time">{{ $work->start_date }}</td>
+                                                                <td class="check-timeOut time">{{ $work->end_date }}</td>
+                                                            @else
+                                                                <td class="detail">{{ $work->detail }}</td>
+                                                                <td class="time">{{ $work->start_date }}</td>
+                                                                <td class="time">{{ $work->end_date }}</td>
+                                                        @endif
+                                                        <td>Chưa xác nhận</td>
+                                                        <td>
+                                                            <a class="btn btn-success edit"
+                                                                href="{{ route('check-job.edit', ['id' => $work->id]) }}">
+                                                                <i class="far fa-edit"></i>
+                                                                Chỉnh sửa và xác nhận
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ route('check-job.destroy', ['id' => $work->id]) }}"
+                                                                class="btn btn-danger" style="float: right;"
+                                                                onclick="return confirm('Bạn có chắc là muốn xoá không?')">
+                                                                <i class="far fa-trash-alt"></i>
+                                                                Xoá
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
                                         @endforeach
                                     @endif
                                 @endforeach

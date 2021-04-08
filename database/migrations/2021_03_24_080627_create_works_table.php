@@ -18,12 +18,15 @@ class CreateWorksTable extends Migration
             $table->string('user_id');
             $table->string('user_name');
             $table->string('detail');
-            $table->dateTime('start_date')->nullable();
-            $table->dateTime('end_date')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->string('status');
             $table->dateTime('time_created')->nullable();
             $table->dateTime('time_updated')->nullable();
             $table->softDeletes()->nullable();
+            $table->string('check');
+            $table->string('progress');
+            $table->string('hidden');
 
         });
     }

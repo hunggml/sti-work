@@ -75,7 +75,7 @@
                         }
                     });
                 }
-            });
+            }); 
 
             function outTime(users) {
                 let outTime = [];
