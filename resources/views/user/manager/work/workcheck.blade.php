@@ -48,14 +48,14 @@
                                                             <td class="check-time detail">{{ $work->detail }}</td>
                                                             <td class="check-time time">{{ $work->start_date }}</td>
                                                             <td class="check-time time">{{ $work->end_date }}</td>
-                                                        @elseif ($date->diffInDays($work->end_date,false) < 0) <td
-                                                                class="check-timeOut detail">{{ $work->detail }}</td>
-                                                                <td class="check-timeOut time">{{ $work->start_date }}</td>
-                                                                <td class="check-timeOut time">{{ $work->end_date }}</td>
-                                                            @else
-                                                                <td class="detail">{{ $work->detail }}</td>
-                                                                <td class="time">{{ $work->start_date }}</td>
-                                                                <td class="time">{{ $work->end_date }}</td>
+                                                        @elseif ($date->diffInDays($work->end_date,false) < 0) 
+                                                            <td class="check-timeOut detail">{{ $work->detail }}</td>
+                                                            <td class="check-timeOut time">{{ $work->start_date }}</td>
+                                                            <td class="check-timeOut time">{{ $work->end_date }}</td>
+                                                        @else
+                                                            <td class="detail">{{ $work->detail }}</td>
+                                                            <td class="time">{{ $work->start_date }}</td>
+                                                            <td class="time">{{ $work->end_date }}</td>
                                                         @endif
                                                         <td>Chưa xác nhận</td>
                                                         <td>

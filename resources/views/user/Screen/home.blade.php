@@ -19,47 +19,39 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($user as $key => $value0)
-                                    @if ($value0->work->count() == 0)
+                                @foreach ($users as $key => $value0)
+                                    @if ($value0->work_count == 0)
                                         <tr>
                                             <td>{{ $value0->name }}</td>
                                             <td style="background-color: #f13149"></td>
                                             <td></td>
                                             <td></td>
                                         </tr>
-                                    @else
-                                        @foreach ($value0->work as $key1 => $value)
-                                            @if ($value->detail == null)
-                                                    <tr>
-                                                        <td>{{ $value0->name }} </td>
-                                                        <td style="background-color: #f13149"></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                            @else
-                                                    <tr>
-                                                        @if ($key1 == 0)
-                                                            <td rowspan="{{ $value0->work->count() }}">
-                                                                {{ $value0->name }}
-                                                            </td>
-                                                        @endif
-                                                        @if ($date->diffInDays($value->end_date, false) == 0)
-                                                            <td class="check-time">{{ $value->detail }}</td>
-                                                            <td class="check-time time">{{ $value->start_date }}</td>
-                                                            <td class="check-time time">{{ $value->end_date }}</td>
-                                                        @elseif ($date->diffInDays($value->end_date,false) < 0)
-                                                            <td class="check-timeOut">{{ $value->detail }}</td>
-                                                            <td class="check-timeOut time">{{ $value->start_date }}</td>
-                                                            <td class="check-timeOut time">{{ $value->end_date }}</td>
-                                                        @else
-                                                            <td>{{ $value->detail }}</td>
-                                                            <td class="time">{{ $value->start_date }}</td>
-                                                            <td class="time">{{ $value->end_date }}</td>
-                                                        @endif
-                                                    </tr>
-                                            @endif
-                                        @endforeach
                                     @endif
+                                @endforeach
+                                @foreach ($works->groupBy('user_id') as $key1 => $work)
+                                    @foreach ($work as $key2 => $value)
+                                        <tr>
+                                            @if ($key2 == 0)
+                                                <td rowspan="{{ $work->count() }}">
+                                                    {{ $value->user_name }}
+                                                </td>
+                                            @endif
+                                            @if ($date->diffInDays($value->end_date, false) == 0)
+                                                <td class="check-time">{{ $value->detail }}</td>
+                                                <td class="check-time time">{{ $value->start_date }}</td>
+                                                <td class="check-time time">{{ $value->end_date }}</td>
+                                            @elseif ($date->diffInDays($value->end_date,false) < 0) <td
+                                                    class="check-timeOut">{{ $value->detail }}</td>
+                                                    <td class="check-timeOut time">{{ $value->start_date }}</td>
+                                                    <td class="check-timeOut time">{{ $value->end_date }}</td>
+                                                @else
+                                                    <td>{{ $value->detail }}</td>
+                                                    <td class="time">{{ $value->start_date }}</td>
+                                                    <td class="time">{{ $value->end_date }}</td>
+                                            @endif
+                                        </tr>
+                                    @endforeach
                                 @endforeach
                             </tbody>
                             <tfoot>
@@ -78,5 +70,4 @@
         <!-- /.content-wrapper -->
 
     </div>
-
 @endsection

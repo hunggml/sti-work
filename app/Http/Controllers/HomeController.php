@@ -20,15 +20,21 @@ class HomeController extends Controller
     public function index()
     {
         $auth = Auth::user();
-        $user = User::with(['work' => function($q){
-            return $q->where('check', '1')->where('status','Chưa hoàn thành');
-        }])->get();
-
+        $users = User::with(['work' => function ($q) {
+            return $q->where('check', '1')->where('status', 'Chưa hoàn thành');
+        }])->withCount(['work' => function ($a) {
+            return $a->where('check', '1')->where('status', 'Chưa hoàn thành');
+        }])->orderBy('work_count')->get();
         $date = Carbon::now();
         $date->startOfDay();
-        // dd($user);
-        return view('user.Screen.home', compact('user', 'date','auth'));
+        // dd($users);
+        
+        $works = Work::where('check', '1')->where('status', 'Chưa hoàn thành')->orderBy('end_date', 'ASC')->get();
+        return view('user.Screen.home', compact('users', 'date', 'auth', 'works'));
     }
+
+
+
 
 
     /**
@@ -82,7 +88,6 @@ class HomeController extends Controller
      */
     public function update(Request $request)
     {
-      
     }
 
     /**
@@ -95,5 +100,4 @@ class HomeController extends Controller
     {
         //
     }
-
 }
