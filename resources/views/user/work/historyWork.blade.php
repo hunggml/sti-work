@@ -1,5 +1,5 @@
 @extends('user.master.master')
-@section('title', 'Danh sách công việc đã ẩn')
+@section('title', 'Danh sách lịch sử chỉnh sửa')
 @section('content')
     <div class="wrapper">
         <!-- Content Wrapper. Contains page content -->
@@ -8,7 +8,7 @@
             <section class="content">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Danh sách công việc đã ẩn</h3>
+                        <h3 class="card-title">Danh sách lịch sử chỉnh sửa công việc</h3>
                     </div>
                     <div class="card-body" id="car-body">
                       
