@@ -1,26 +1,27 @@
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
-    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+    
     <div class="row">
-        <div class="col-4">
-            <div id="time" class=" my-text" disabled></div>
+        <div class="col-md-4 mb-2">
+            <a class="nav-link" data-widget="pushmenu" href="#" style="display: inline-block;padding:0" role="button"><i class="fas fa-bars"></i></a>
+            <span id="time" class=" my-text" disabled></span>
         </div>
-        <div class="col-5">
+        <div class="col-md-5 mb-2">
             <div class="my-sologan">Sáng tạo - Triệt để - Cam kết</div>
         </div>
-        <div class="col-3">
+        <div class="col-md-3 mb-2">
             <div class="row">
                 <div class="meeting col-9">
                     @yield('metting')
                 </div>
                 <div class="col-3">
                     <div class="nav-item dropdown">
-                        <a gtm-id="Notifications" class="nav-link dropdown-toggle" alt="Notifications"
+                        <a gtm-id="Notifications" class="nav-link " alt="Notifications"
                             id="navbarNotification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <span id="navbarNotificationCounter" class="badge rounded red z-depth-1" alt="Notifications"
-                                style="color:red;font-size:15px;position: absolute;top:0;right:0;z-index:1"></span>
+                            
                             <i class="fas fa-bell" alt="Notifications" style="position: relative">
-                                <div id="bage"></div>
+                                <span id="navbarNotificationCounter" class="badge rounded red z-depth-1" alt="Notifications"
+                                style="color:red;font-size:15px;position: absolute;top:-10px;right:-10px;z-index:1"></span>
                             </i>
                         </a>
 
