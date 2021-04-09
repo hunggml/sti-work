@@ -1,32 +1,54 @@
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        <div class="row"> 
-            <div class="col-4">
-                <div id="time" class=" my-text" disabled></div>
-            </div>
-            <div class="col-5">
-                <div class="my-sologan">Sáng tạo -Triệt để - Cam kết</div>
-            </div>
-            <div class="col-3">
-                <div class="meeting">
+    <div class="row">
+        <div class="col-4">
+            <div id="time" class=" my-text" disabled></div>
+        </div>
+        <div class="col-5">
+            <div class="my-sologan">Sáng tạo - Triệt để - Cam kết</div>
+        </div>
+        <div class="col-3">
+            <div class="row">
+                <div class="meeting col-9">
                     @yield('metting')
                 </div>
+                <div class="col-3">
+                    <div class="nav-item dropdown">
+                        <a gtm-id="Notifications" class="nav-link dropdown-toggle" alt="Notifications"
+                            id="navbarNotification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span id="navbarNotificationCounter" class="badge rounded red z-depth-1" alt="Notifications"
+                                style="color:red;font-size:15px;position: absolute;top:0;right:0;z-index:1"></span>
+                            <i class="fas fa-bell" alt="Notifications" style="position: relative">
+                                <div id="bage"></div>
+                            </i>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" id="navbarNotificationContent"
+                            aria-labelledby="navbarDropdownMenuLink">
+                            <div id="notification-main"></div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-            
         </div>
+
+    </div>
     <style>
         .my-text {
             font-size: 20px;
             border: 0;
             color: black;
         }
+
         .my-sologan {
             font-size: 20px;
             border: 0;
             color: black;
             /* text-align: center */
         }
+
     </style>
 </nav>
 <!-- /.navbar -->
@@ -39,110 +61,112 @@
             style="opacity: .8">
         <span class="brand-text font-weight-light" style="padding-left: 90px"></span>
     </a>
-   
+
     <!-- Sidebar -->
     @auth
-    <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="image">
-            <a href=# class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="image">
+                <a href=# class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
-            </a>
-            <div class="dropdown-menu" style="position: fixed" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="{{ route('profile.index') }}" style="color: black">Hồ sơ</a>
-                @if ($auth->metting == 0 || $auth->metting == 1 )
-                    <a class="dropdown-item" href='{{route('metting',['metting' => 1, 'id' => $auth->id ])}}' style="color: black">Xác nhận công tác</a>
-                    <a class="dropdown-item" href='{{route('metting',['metting' => 2, 'id' => $auth->id ])}}' style="color: black">Xác nhận  họp</a>
-                @endif
-               
-                <a class="dropdown-item" href="{{ route('logOut') }}" style="color: black">Đăng xuất</a>
-            </div>
-        </div>
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="info">
-                <a class="d-block">Xin chào: {{ \Illuminate\Support\Facades\Auth::user()->name }}</a>
-            </div>
-        </div>
+                    <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                </a>
+                <div class="dropdown-menu" style="position: fixed" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="{{ route('profile.index') }}" style="color: black">Hồ sơ</a>
+                    @if ($auth->metting == 0 || $auth->metting == 1)
+                        <a class="dropdown-item" href='{{ route('metting', ['metting' => 1, 'id' => $auth->id]) }}'
+                            style="color: black">Xác nhận công tác</a>
+                        <a class="dropdown-item" href='{{ route('metting', ['metting' => 2, 'id' => $auth->id]) }}'
+                            style="color: black">Xác nhận họp</a>
+                    @endif
 
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li>
-                    <a href="{{ route('home') }}"
-                        class="nav-link {{ request()->routeIs('home*') ? 'active font-weight-bolder' : '' }}">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Danh sách công việc</p>
-                    </a>
-                </li>
-                <li>
-                    <a href={{ route('work.index') }}
-                        class="nav-link {{ request()->routeIs('work*') ? 'active font-weight-bolder' : '' }}">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Công việc cá nhân</p>
-                    </a>
-                </li>
-                @if ($auth->level == 1)
-                <li class="nav-item menu-open">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-tasks"></i>                      
-                    <p> 
-                        Quản lý
-                        <i class="right fas fa-angle-left"></i>
-                      </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href= {{route('staff.stafflist')}}
-                                class="nav-link {{ request()->routeIs('staff*') ? 'active font-weight-bolder' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách nhân viên</p>
+                    <a class="dropdown-item" href="{{ route('logOut') }}" style="color: black">Đăng xuất</a>
+                </div>
+            </div>
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="info">
+                    <a class="d-block">Xin chào: {{ \Illuminate\Support\Facades\Auth::user()->name }}</a>
+                </div>
+            </div>
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <li>
+                        <a href="{{ route('home') }}"
+                            class="nav-link {{ request()->routeIs('home*') ? 'active font-weight-bolder' : '' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Danh sách công việc</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href={{ route('work.index') }}
+                            class="nav-link {{ request()->routeIs('work*') ? 'active font-weight-bolder' : '' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Công việc cá nhân</p>
+                        </a>
+                    </li>
+                    @if ($auth->level == 1)
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-tasks"></i>
+                                <p>
+                                    Quản lý
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href={{ route('staff.stafflist') }}
+                                        class="nav-link {{ request()->routeIs('staff*') ? 'active font-weight-bolder' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Danh sách nhân viên</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href={{ route('check.list') }}
+                                        class="nav-link {{ request()->routeIs('check*') ? 'active font-weight-bolder' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Xác nhận công việc</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href={{ route('group.list') }}
+                                        class="nav-link {{ request()->routeIs('group*') ? 'active font-weight-bolder' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Phòng ban</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href={{ route('statistical.list') }}
+                                        class="nav-link {{ request()->routeIs('statistical*') ? 'active font-weight-bolder' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Danh sách thống kê</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href={{ route('chart') }}
+                                        class="nav-link {{ request()->routeIs('chart*') ? 'active font-weight-bolder' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Biểu đồ thống kê</p>
+                                    </a>
+                                </li>
+
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href= {{route('check.list')}}
-                                class="nav-link {{ request()->routeIs('check*') ? 'active font-weight-bolder' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Xác nhận công việc</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href={{route('group.list')}}
-                                class="nav-link {{ request()->routeIs('group*') ? 'active font-weight-bolder' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Phòng ban</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href= {{route('statistical.list')}}
-                                class="nav-link {{ request()->routeIs('statistical*') ? 'active font-weight-bolder' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách thống kê</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href= {{route('chart')}}
-                                class="nav-link {{ request()->routeIs('chart*') ? 'active font-weight-bolder' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Biểu đồ thống kê</p>
-                            </a>
-                        </li>
-                        
-                    </ul>
-                  </li>
-                @endif
-            </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
-    </div>
+                    @endif
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
     @else
-    <div>
-        <a href="{{ route('loginShow') }}" class="single-icon">
-            <i class="fa fa-user" aria-hidden="true"></i>
-            Đăng nhập
-        </a>
-    </div>    
+        <div>
+            <a href="{{ route('loginShow') }}" class="single-icon">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                Đăng nhập
+            </a>
+        </div>
     @endauth
 
 </aside>

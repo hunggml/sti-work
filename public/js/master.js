@@ -31,7 +31,7 @@ function time() {
     if (sescord < 10) {
         sescord = "0" + sescord;
     }
-    document.getElementById('time').innerHTML = years + "/" + month + "/" + day + " - " + hour + ":" + minute + ":" +
+    document.getElementById('time').innerHTML = day  + "/" + month + "/" + years + " - " + hour + ":" + minute + ":" +
         sescord;
     setTimeout("time()", 1000);
 }

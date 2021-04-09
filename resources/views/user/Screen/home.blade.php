@@ -55,16 +55,28 @@
                                             @endif
                                             @if ($date->diffInDays($value->end_date, false) == 0)
                                                 <td class="check-time">{{ $value->detail }}</td>
-                                                <td class="check-time time">{{ $value->start_date }}</td>
-                                                <td class="check-time time">{{ $value->end_date }}</td>
-                                            @elseif ($date->diffInDays($value->end_date,false) < 0) <td
-                                                    class="check-timeOut">{{ $value->detail }}</td>
-                                                    <td class="check-timeOut time">{{ $value->start_date }}</td>
-                                                    <td class="check-timeOut time">{{ $value->end_date }}</td>
-                                                @else
-                                                    <td>{{ $value->detail }}</td>
-                                                    <td class="time">{{ $value->start_date }}</td>
-                                                    <td class="time">{{ $value->end_date }}</td>
+                                                    <?php
+                                                    $start_date = strtotime($value->start_date);
+                                                    $end_date = strtotime($value->end_date);
+                                                    ?>
+                                                <td class="check-time time">{{ date('d-m-Y', $start_date) }}</td>
+                                                <td class="check-time time">{{ date('d-m-Y', $end_date) }}</td>
+                                            @elseif ($date->diffInDays($value->end_date,false) < 0) 
+                                                <td class="check-timeOut">{{ $value->detail }}</td>
+                                                    <?php
+                                                    $start_date = strtotime($value->start_date);
+                                                    $end_date = strtotime($value->end_date);
+                                                    ?>
+                                                <td class="check-timeOut time">{{ date('d-m-Y', $start_date) }}</td>
+                                                <td class="check-timeOut time">{{ date('d-m-Y', $end_date) }}</td>
+                                            @else
+                                                <td>{{ $value->detail }}</td>
+                                                    <?php
+                                                    $start_date = strtotime($value->start_date);
+                                                    $end_date = strtotime($value->end_date);
+                                                    ?>
+                                                <td class="time">{{ date('d-m-Y', $start_date) }}</td>
+                                                <td class="time">{{ date('d-m-Y', $end_date) }}</td>
                                             @endif
                                         </tr>
                                     @endforeach

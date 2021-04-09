@@ -57,7 +57,7 @@ class HomeController extends Controller
         return view('user.Screen.home', compact('users', 'date', 'auth', 'works', 'metting', 'secorndMetting', 'array'));
     }
 
-    
+
     public function metting(Request $request)
     {
         $auth = Auth::user();
@@ -75,6 +75,33 @@ class HomeController extends Controller
             ]);
         }
         return redirect()->back();
+    }
+
+    // notification
+    public function notification()
+    {
+        $works = Work::where('check',0)->where('status','Chưa hoàn thành')->get();
+        
+        $array = [];
+        foreach($works->groupBy('user_name') as $key=> $work)
+        {
+            
+            $a =  count($work);
+            $array[$key]= $a;
+        }
+        $users = User::where('metting',2)->get();
+        
+        $array1 = [];
+        foreach($users->groupBy('name') as $key1=> $user)
+        {
+            
+            $a1 =  count($user);
+            $array1[$key1]= $a1;
+        }
+        return response()->json([
+            'data'  => $array,
+            'data1' => $array1
+        ]);
     }
 
 

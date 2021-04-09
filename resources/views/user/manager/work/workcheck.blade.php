@@ -45,17 +45,29 @@
                                                             </td>
                                                         @endif
                                                         @if ($date->diffInDays($work->end_date, false) == 0)
-                                                            <td class="check-time detail">{{ $work->detail }}</td>
-                                                            <td class="check-time time">{{ $work->start_date }}</td>
-                                                            <td class="check-time time">{{ $work->end_date }}</td>
-                                                        @elseif ($date->diffInDays($work->end_date,false) < 0) 
-                                                            <td class="check-timeOut detail">{{ $work->detail }}</td>
-                                                            <td class="check-timeOut time">{{ $work->start_date }}</td>
-                                                            <td class="check-timeOut time">{{ $work->end_date }}</td>
-                                                        @else
-                                                            <td class="detail">{{ $work->detail }}</td>
-                                                            <td class="time">{{ $work->start_date }}</td>
-                                                            <td class="time">{{ $work->end_date }}</td>
+                                                            <td class="check-time">{{ $work->detail }}</td>
+                                                            <?php
+                                                            $start_date = strtotime($work->start_date);
+                                                            $end_date = strtotime($work->end_date);
+                                                            ?>
+                                                            <td class="check-time time">{{ date('d-m-Y', $start_date) }}
+                                                            </td>
+                                                            <td class="check-time time">{{ date('d-m-Y', $end_date) }}
+                                                            </td>
+                                                        @elseif ($date->diffInDays($work->end_date,false) < 0) <td
+                                                                class="check-timeOut">{{ $work->detail }}</td>
+                                                                <?php
+                                                                $start_date = strtotime($work->start_date);
+                                                                $end_date = strtotime($work->end_date);
+                                                                ?>
+                                                                <td class="check-timeOut time">
+                                                                    {{ date('d-m-Y', $start_date) }}</td>
+                                                                <td class="check-timeOut time">
+                                                                    {{ date('d-m-Y', $end_date) }}</td>
+                                                            @else
+                                                                <td class="">{{ $work->detail }}</td>
+                                                                <td class="time">{{ $work->start_date }}</td>
+                                                                <td class="time">{{ $work->end_date }}</td>
                                                         @endif
                                                         <td>Chưa xác nhận</td>
                                                         <td>
@@ -65,7 +77,7 @@
                                                                 Chỉnh sửa và xác nhận
                                                             </a>
                                                         </td>
-                                                        
+
                                                         <td>
                                                             <a href="{{ route('check-job.destroy', ['id' => $work->id]) }}"
                                                                 class="btn btn-danger" style="float: right;"

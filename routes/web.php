@@ -77,6 +77,10 @@ Route::middleware('auth')->prefix('/home')->group(function(){
 Route::get('/', [HomeController::class,'index'])->name('trangchu');
 Route::get('metting',[HomeController::class,'metting'])->name('metting');
 
+// notification
+Route::get('notification',[HomeController::class,'notification'])->name('notification');
+
+
 // Login 
 Route::prefix('/login')->group(function(){
     Route::get('/',[AuthController::class,'loginShow'])->name('loginShow');

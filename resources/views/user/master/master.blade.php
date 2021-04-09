@@ -62,7 +62,40 @@
 <script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 
 @stack('script')
-
+<script>
+    $(function(){
+            $.ajax({
+            type: "GET",
+            url: "{{route('notification')}}",
+            // data: { text : text1},
+            success: function(data) 
+            {
+              //  console.log('run')
+              let dem = 0;
+              let notification = '';
+              $.each(data.data , function (index, value){
+                dem ++;
+                  notification = notification + `<p class="dropdown-item">`+index+` {{__('Cần Xác Nhận Công Việc')}}</p>`
+              });
+              
+              $.each(data.data1 , function (index, value){
+                dem ++;
+                  notification = notification + `<p class="dropdown-item">`+index+` {{__('Cần Xác Nhận Đã Họp')}}</p>`
+              });
+              $('#notification-main').append(notification)
+              $('#navbarNotificationCounter').append(dem)
+            },
+            error: function() 
+            {
+                $('#unit').val('');
+                $('#unit1').val('');
+            }
+        });
+        $('#navbarNotification').on('click',function(){
+            $('#navbarNotificationCounter').attr('style','display:none')
+        })
+})
+</script>
 {{--@jquery--}}
 @toastr_js
 @toastr_render
