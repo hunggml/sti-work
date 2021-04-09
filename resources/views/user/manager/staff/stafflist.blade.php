@@ -17,6 +17,7 @@
                                     <th>Địa chỉ</th>
                                     <th>Email</th>
                                     <th>Level</th>
+                                    <th>Phòng ban</th>
                                     <th colspan="5">Hành động</th>
                                 </tr>
                             </thead>
@@ -34,6 +35,8 @@
                                                 @else
                                                     <td>Nhân viên</td>
                                                 @endif
+                                                <td>{{ $user->group->name }}</td>
+
                                                 <td><a class="btn btn-success edit"
                                                         href="{{ route('staff.editLevel', ['id' => $user->id]) }}">
                                                         <i class="far fa-edit"></i>

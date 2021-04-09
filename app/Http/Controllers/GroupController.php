@@ -111,6 +111,9 @@ class GroupController extends Controller
     {
         $group = Group::findOrFail($request->id);
         $group->delete();
+        $user = User::where('group_id',$request->id)->update([
+            'group_id' => 1,
+        ]);
         toastr()->success('Xoá công việc thành công');
         return redirect()->route('group.list');
     }

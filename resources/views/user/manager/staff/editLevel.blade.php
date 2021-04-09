@@ -18,9 +18,9 @@
                 </div>
                 <div class="form-group">
                     <label>Phòng ban</label>                    
-                    <select class="form-control" name="group_id">
+                    <select class="form-control" name="group_id"> 
                         @foreach($groups as $value)
-                            <option value="{{$value->id}}">{{$value->name}}</option>
+                            <option value="{{$value->id}}" {{$user->group_id == $value->id ? 'selected' : ''}}>{{$value->name}}</option>
                         @endforeach
                     </select>
                 </div>

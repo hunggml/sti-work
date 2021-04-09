@@ -9,7 +9,8 @@
                         <h3 class="card-title">Danh sách phòng ban</h3>
                     </div>
                     <div class="card-body" id="car-body">
-                        <a style="color: white" class="btn btn-primary mb-2" href={{ route('group.create') }}>Thêm phòng ban
+                        <a style="color: white" class="btn btn-primary mb-2" href={{ route('group.create') }}>Thêm phòng
+                            ban
                         </a>
                         <table id="example1" class="table table-bordered table-striped ">
                             <thead>
@@ -31,12 +32,15 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="{{ route('group.destroy', ['id' => $group->id]) }}"
-                                                class="btn btn-danger"
-                                                onclick="return confirm('Bạn có chắc là muốn xoá không?')">
-                                                <i class="far fa-trash-alt"></i>
-                                                Xoá phòng ban
-                                            </a>
+                                            @if ($group->id != 1)
+                                                <a href="{{ route('group.destroy', ['id' => $group->id]) }}"
+                                                    class="btn btn-danger"
+                                                    onclick="return confirm('Bạn có chắc là muốn xoá không?')">
+                                                    <i class="far fa-trash-alt"></i>
+                                                    Xoá phòng ban
+                                                </a>
+                                            @endif
+
                                         </td>
                                     </tr>
                                 @endforeach

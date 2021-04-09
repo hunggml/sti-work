@@ -55,7 +55,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Trạng thái</label>
-                                <select name="status" class="form-control">
+                                <select name="status" class="form-control" >
                                     <option value="Tạm dừng">Tạm dừng</option>
                                     <option value="Hoàn thành">Hoàn thành</option>
                                     <option value="Chưa hoàn thành">chưa hoàn thành</option>

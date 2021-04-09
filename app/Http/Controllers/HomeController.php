@@ -57,6 +57,7 @@ class HomeController extends Controller
         return view('user.Screen.home', compact('users', 'date', 'auth', 'works', 'metting', 'secorndMetting', 'array'));
     }
 
+    
     public function metting(Request $request)
     {
         $auth = Auth::user();
