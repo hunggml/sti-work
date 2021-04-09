@@ -1,5 +1,9 @@
 @extends('user.master.master')
-@section('titleCustomer', 'Danh sách công việc')
+@section('title', 'Danh sách công việc')
+@section('metting')
+    <p style="color: black">Người họp : {{ $metting->name }} </p>
+    <p style="color: black">Người tiếp theo : {{ $secorndMetting->name }} </p>
+@endsection
 @section('content')
     <div class="wrapper">
         <!-- Content Wrapper. Contains page content -->
@@ -22,7 +26,14 @@
                                 @foreach ($users as $key => $value0)
                                     @if ($value0->work_count == 0)
                                         <tr>
-                                            <td>{{ $value0->name }}</td>
+                                            <td>
+                                                <p>{{ $value0->name }}</p>
+                                                @foreach ($array as $key3 => $arr)
+                                                    @if ($value0->id == $key3)
+                                                        <p style="color: red">{{ $arr }}</p>
+                                                    @endif
+                                                @endforeach
+                                            </td>
                                             <td style="background-color: #f13149"></td>
                                             <td></td>
                                             <td></td>
@@ -34,7 +45,12 @@
                                         <tr>
                                             @if ($key2 == 0)
                                                 <td rowspan="{{ $work->count() }}">
-                                                    {{ $value->user_name }}
+                                                    <p>{{ $value->user_name }}</p>
+                                                    @foreach ($array as $key4 => $arr1)
+                                                        @if ($value->user_id == $key4)
+                                                            <p style="color: red"> {{ $arr1 }}</p>
+                                                        @endif
+                                                    @endforeach
                                                 </td>
                                             @endif
                                             @if ($date->diffInDays($value->end_date, false) == 0)

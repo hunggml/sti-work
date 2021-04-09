@@ -43,6 +43,9 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     Route::post('/update-group',[GroupController::class,'update'])->name('group.update');
     Route::get('/destroy-group',[GroupController::class,'destroy'])->name('group.destroy');
 
+    // List Work of staff
+    Route::get('list-work-staff',[ManagerController::class,'workStaff'])->name('list.workStaff');
+
     // Check Work
     Route::get('/check-job',[ManagerController::class,'listWorkCheck'])->name('check.list');
     Route::get('/check-job-edit',[ManagerController::class,'editWorkCheck'])->name('check-job.edit');
@@ -63,6 +66,7 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     Route::get('/work/hide/{id}',[WorkController::class,'storage'])->name('storage');
     Route::get('/work/un-hide/{id}',[WorkController::class,'restore'])->name('warehouse.restore');
     Route::get('/work-warehouse',[WorkController::class,'listWarehouse'])->name('warehouse.list');
+    Route::get('/work-history',[WorkController::class,'history'])->name('work.history');
 
     // Change password
     Route::get('/changePass',[UserController::class,'changePass'])->name('changePass');
@@ -71,7 +75,7 @@ Route::middleware('auth')->prefix('/home')->group(function(){
 });
 
 Route::get('/', [HomeController::class,'index'])->name('trangchu');
-
+Route::get('metting',[HomeController::class,'metting'])->name('metting');
 
 // Login 
 Route::prefix('/login')->group(function(){

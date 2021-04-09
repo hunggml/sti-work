@@ -64,6 +64,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->level = 2;
         $user->group_id = 1;
+        $user->metting = 0;
         $user->time_created = Carbon::now('Asia/Ho_Chi_Minh');
         $user->time_updated = Carbon::now('Asia/Ho_Chi_Minh');
         $user->save();
@@ -111,9 +112,15 @@ class UserController extends Controller
         ]);
 
         $user = User::findOrFail($request ->id);
-        $user->fill($request->all());
-        $user->save();
-
+        $user = User::where('id',$request->id)->update([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'email' => $request->email
+        ]);
+        $works = Work::where('user_id',$request->id)->update([
+            'user_name' => $request->name,
+        ]);
         toastr()->success('Cập nhật hồ sơ thành công');
         return redirect()->route('profile.index');
     }

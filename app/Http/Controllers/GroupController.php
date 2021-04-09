@@ -93,7 +93,6 @@ class GroupController extends Controller
         $validatedData = $request->validate([
             'name' => 'required'
         ]);
-        $group = User::findOrFail($request ->id);
         $group = DB::table('groups', $request ->id)->where('id', $request ->id)->update([
            'name' => $request->name,
         ]);

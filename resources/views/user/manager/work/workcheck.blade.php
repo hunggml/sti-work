@@ -34,7 +34,7 @@
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
-                                                    <td colspan="2"></td>
+                                                    <td colspan="3"></td>
                                                 </tr>
                                             @else
                                                 @foreach ($value->work as $key2 => $work)
@@ -65,6 +65,7 @@
                                                                 Chỉnh sửa và xác nhận
                                                             </a>
                                                         </td>
+                                                        
                                                         <td>
                                                             <a href="{{ route('check-job.destroy', ['id' => $work->id]) }}"
                                                                 class="btn btn-danger" style="float: right;"

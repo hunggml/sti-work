@@ -26,4 +26,8 @@ class Work extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
+
+    public function workHistoryEdit(){
+        return $this->hasMany('App\WorkHistoryEdit');
+    }
 }

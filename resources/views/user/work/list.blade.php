@@ -14,7 +14,7 @@
                         <a style="color: white" class="btn btn-primary mb-2" href={{ route('work.create') }}>Thêm việc
                         </a>
                         <a style="color: white;float:right" class="btn btn-secondary mb-2"
-                            href={{ route('warehouse.list') }}>
+                            href={{ route('warehouse.list')}}>
                             <i class="fas fa-warehouse"></i> Lưu trữ
                         </a>
                         <table id="worktable" class="table table-bordered table-striped ">
@@ -25,7 +25,7 @@
                                     <th>Ngày bắt đầu</th>
                                     <th>Ngày kết thúc</th>
                                     <th>Trạng thái</th>
-                                    <th colspan="2">Hành động</th>
+                                    <th colspan="3">Hành động</th>
                                 </tr>
                             </thead> 
                             <tbody>
@@ -67,11 +67,20 @@
                                                     href={{ route('work.edit', ['id' => $value->id]) }}>
                                                     <i class="far fa-edit"></i>
                                                 </a>
+                                                
                                             </td>
                                             <td>
                                                 <a class="btn btn-secondary "
                                                     href={{ route('storage', ['id' => $value->id]) }}>
                                                     <i class="fas fa-warehouse"></i>
+                                                   
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-secondary "
+                                                    href={{route('work.history', ['id' => $value->id])}}>
+                                                    <i class="fas fa-history"></i>
+                                                    Lịch sử
                                                 </a>
                                             </td>
                                         </tr>

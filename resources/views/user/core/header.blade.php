@@ -2,9 +2,18 @@
     <!-- Left navbar links -->
     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         <div class="row"> 
-            <div id="time" class="col-sm-4 my-text" disabled></div>
-            {{-- <input type="datetime" value="{{Carbon\Carbon::now()}}"> --}}
-            <div class="col-sm-8 my-sologan">Sáng tạo -Triệt để - Cam kết</div>
+            <div class="col-4">
+                <div id="time" class=" my-text" disabled></div>
+            </div>
+            <div class="col-5">
+                <div class="my-sologan">Sáng tạo -Triệt để - Cam kết</div>
+            </div>
+            <div class="col-3">
+                <div class="meeting">
+                    @yield('metting')
+                </div>
+            </div>
+            
         </div>
     <style>
         .my-text {
@@ -43,6 +52,11 @@
             </a>
             <div class="dropdown-menu" style="position: fixed" aria-labelledby="dropdownMenuLink">
                 <a class="dropdown-item" href="{{ route('profile.index') }}" style="color: black">Hồ sơ</a>
+                @if ($auth->metting == 0 || $auth->metting == 1 )
+                    <a class="dropdown-item" href='{{route('metting',['metting' => 1, 'id' => $auth->id ])}}' style="color: black">Xác nhận công tác</a>
+                    <a class="dropdown-item" href='{{route('metting',['metting' => 2, 'id' => $auth->id ])}}' style="color: black">Xác nhận  họp</a>
+                @endif
+               
                 <a class="dropdown-item" href="{{ route('logOut') }}" style="color: black">Đăng xuất</a>
             </div>
         </div>
@@ -79,31 +93,6 @@
                       </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        {{-- @if ($auth->group_id == 2)
-                            <li class="nav-item">
-                                <a href= {{route('staff.service')}}
-                                    class="nav-link {{ request()->routeIs('staff*') ? 'active font-weight-bolder' : '' }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Danh sách nhân viên</p>
-                                </a>
-                            </li>
-                        @elseif ($auth->group_id == 3)
-                            <li class="nav-item">
-                                <a href= {{route('staff.RandD')}}
-                                    class="nav-link {{ request()->routeIs('staff*') ? 'active font-weight-bolder' : '' }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Danh sách nhân viên</p>
-                                </a>
-                            </li>
-                        @elseif ($auth->group_id == 4)
-                            <li class="nav-item">
-                                <a href= {{route('staff.produce')}}
-                                    class="nav-link {{ request()->routeIs('staff*') ? 'active font-weight-bolder' : '' }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Danh sách nhân viên</p>
-                                </a>
-                            </li>
-                        @endif --}}
                         <li class="nav-item">
                             <a href= {{route('staff.stafflist')}}
                                 class="nav-link {{ request()->routeIs('staff*') ? 'active font-weight-bolder' : '' }}">

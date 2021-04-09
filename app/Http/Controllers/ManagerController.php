@@ -18,6 +18,7 @@ class ManagerController extends Controller
     public function stafflist(){
         $auth = Auth::user();
         $users = User::with('group')->get();
+        
         return view('user.manager.staff.stafflist',compact('users','auth'));
     }
 
@@ -61,6 +62,16 @@ class ManagerController extends Controller
         // dd($users);
         // return Response::json($users);
         return view('user.manager.chart.chart',compact('auth'));
+    }
+
+    // list work of staff
+    public function workStaff(Request $request){
+        $date = Carbon::now();
+        $date->startOfDay();
+        $auth = Auth::user();
+        $work = Work::Where('user_id', $request->id)->where('hidden', '0')->get();
+        
+        return view('user.manager.work.listworkofStaff', compact('work', 'auth', 'date'));
     }
 
  

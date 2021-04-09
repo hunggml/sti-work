@@ -1,5 +1,5 @@
 @extends('user.master.master')
-@section('title', 'Danh sách công việc đã ẩn')
+@section('title', 'Danh sách công việc nhân viên')
 @section('content')
     <div class="wrapper">
         <!-- Content Wrapper. Contains page content -->
@@ -8,13 +8,9 @@
             <section class="content">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Danh sách công việc đã ẩn</h3>
+                        <h3 class="card-title">Danh sách công việc nhân viên</h3>
                     </div>
                     <div class="card-body" id="car-body">
-                        
-                        <a style="color: white;float:right" class="btn btn-secondary mb-2" href={{ route('work.index')}}>
-                            <i class="fas fa-warehouse"></i> Danh sách
-                        </a>
                         <table id="worktable" class="table table-bordered table-striped ">
                             <thead>
                                 <tr>
@@ -25,26 +21,27 @@
                                     <th>Trạng thái</th>
                                     <th>Hành động</th>
                                 </tr>
-                            </thead>
+                            </thead> 
                             <tbody>
                                 @foreach ($work as $key => $value)
                                     @if ($value->detail == null)
                                         <tr hidden>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                         </tr>
-                                    @else 
+                                    @else
                                         <tr>
                                             <td>{{ ++$key }}</td>
-                                        @if($date->diffInDays($value->end_date, false) == 0 && $value->status == 'Chưa hoàn thành')
+                                        @if ($date->diffInDays($value->end_date, false) == 0 && $value->status == 'Chưa hoàn thành')
                                             <td class="check-time">{{ $value->detail }}</td>
                                             <td class="check-time time">{{ $value->start_date }}</td>
                                             <td class="check-time time">{{ $value->end_date }}</td>
-                                        @elseif ($date->diffInDays($value->end_date,false) < 0 && $value->status == 'Chưa hoàn thành')
+                                        @elseif ($date->diffInDays($value->end_date,false) < 0 && $value->status =='Chưa hoàn thành')
                                             <td class="check-timeOut">{{ $value->detail }}</td>
                                             <td class="check-timeOut time">{{ $value->start_date }}</td>
                                             <td class="check-timeOut time">{{ $value->end_date }}</td>
@@ -60,10 +57,12 @@
                                             <td style="background-color: #ff4a52;color: black">
                                                 {{ $value->status }}</td>
                                         @endif
+                                            
                                             <td>
                                                 <a class="btn btn-secondary "
-                                                    href={{route('warehouse.restore',['id'=>$value->id])}}>
-                                                    <i class="fas fa-undo-alt"></i> Khôi phục
+                                                    href={{route('work.history', ['id' => $value->id])}}>
+                                                    <i class="fas fa-history"></i>
+                                                    Lịch sử
                                                 </a>
                                             </td>
                                         </tr>

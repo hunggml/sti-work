@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Work;
 use App\Repositories\WorkInterface;
+use App\WorkHistoryEdit;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -23,6 +24,16 @@ class WorkRepositories implements WorkInterface
                 'check' => $check,
                 'progress' => $progress,
                 'hidden' => $hidden,
+        ]); 
+    }
+    public function StoreWorkHistory($work_id, $detail, $start, $end, $status)
+    {
+        return WorkHistoryEdit::create([
+                'work_id' =>$work_id,
+                'detail' => $detail,
+                'start_date' => $start, 
+                'end_date' => $end,
+                'status' => $status,
         ]); 
     }
     
