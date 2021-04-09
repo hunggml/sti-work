@@ -17,7 +17,7 @@
                         <div class="card-header">
                             <h3 class="card-title">Biểu đồ quá trình làm việc</h3>
                         </div>
-                        <canvas id="myChart"></canvas>
+                        <canvas style="width: 200px;height:200px" id="myChart"></canvas>
                     </div>
                 </div>
             </section>

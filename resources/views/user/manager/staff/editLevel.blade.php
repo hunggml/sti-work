@@ -12,8 +12,8 @@
                 <div class="form-group">
                     <label>Cấp độ</label>
                     <select class="form-control" name="level">
-                            <option value="1">Quản lý</option>
-                            <option value="2">Nhân viên</option>
+                            <option value="1" {{$user->level == 1 ? 'selected' : ''}}>Quản lý</option>
+                            <option value="2" {{$user->level == 2 ? 'selected' : ''}}>Nhân viên</option>
                     </select>
                 </div>
                 <div class="form-group">

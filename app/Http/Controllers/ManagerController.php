@@ -40,7 +40,7 @@ class ManagerController extends Controller
             'group_id' => $request->group_id,
         ]);
         // $user->save();
-        toastr()->success('Cập nhật level thành công');
+        toastr()->success('Cập nhật thành công');
         return redirect()->route('staff.stafflist');
         
     }

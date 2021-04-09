@@ -75,11 +75,15 @@
                 </a>
                 <div class="dropdown-menu" style="position: fixed" aria-labelledby="dropdownMenuLink">
                     <a class="dropdown-item" href="{{ route('profile.index') }}" style="color: black">Hồ sơ</a>
-                    @if ($auth->metting == 0 || $auth->metting == 1)
+                    @if ($auth->metting == 0)
                         <a class="dropdown-item" href='{{ route('metting', ['metting' => 1, 'id' => $auth->id]) }}'
-                            style="color: black">Xác nhận công tác</a>
+                            style="color: black">Đi công tác</a>
                         <a class="dropdown-item" href='{{ route('metting', ['metting' => 2, 'id' => $auth->id]) }}'
                             style="color: black">Xác nhận họp</a>
+                    @endif
+                    @if ($auth->metting == 1)
+                    <a class="dropdown-item" href='{{ route('metting', ['metting' => 0, 'id' => $auth->id]) }}'
+                        style="color: black">Xác nhận công tác về</a>
                     @endif
 
                     <a class="dropdown-item" href="{{ route('logOut') }}" style="color: black">Đăng xuất</a>

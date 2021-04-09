@@ -56,9 +56,9 @@
                             <div class="form-group">
                                 <label>Trạng thái</label>
                                 <select name="status" class="form-control" >
-                                    <option value="Tạm dừng">Tạm dừng</option>
-                                    <option value="Hoàn thành">Hoàn thành</option>
-                                    <option value="Chưa hoàn thành">chưa hoàn thành</option>
+                                    <option value="Tạm dừng" {{$work->status == "Tạm dừng" ? 'selected' : ''}}>Tạm dừng</option>
+                                    <option value="Hoàn thành" {{$work->status == "Hoàn thành" ? 'selected' : ''}}>Hoàn thành</option>
+                                    <option value="Chưa hoàn thành" {{$work->status == "Chưa hoàn thành" ? 'selected' : ''}}>chưa hoàn thành</option>
                                 </select>
                             </div>
                             <div class="form-group">

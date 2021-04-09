@@ -65,14 +65,19 @@ class HomeController extends Controller
         $user = User::where('id', $request->id)->update([
             'metting' => $request->metting,
         ]);
-        $users = User::all();
-        $soluong = count($users);
-        $users1 = User::where('metting', '3')->get();
+        
+        $users1 = User::where('metting','0')->orwhere('metting','2')->get();
+        
         $soluong1 = count($users1);
-        if ($soluong == $soluong1) {
+        if ($soluong1 == 0) {
             $user = User::where('id', '<>', '0')->update([
                 'metting' => 0,
             ]);
+            if($request->metting == 1){
+                $user = User::where('id', $request->id)->update([
+                    'metting' => $request->metting,
+                ]);
+            }
         }
         return redirect()->back();
     }

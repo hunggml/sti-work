@@ -61,7 +61,7 @@
                                                     @if ($user->metting == 0)
                                                     <a class="btn btn-success edit" 
                                                     href= '{{route('metting',['metting' => 1, 'id' => $user->id ])}}'>
-                                                        Bàn giao đi công tác
+                                                        Đi công tác
                                                     </a>
                                                     @endif
                                                     
