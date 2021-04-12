@@ -80,7 +80,7 @@
             function outTime(users) {
                 let outTime = [];
                 users.map((user, index) => {
-                    outTime[index] = (user.work.filter(work => work.progress == 2)).length;
+                    outTime[index] =  user.progress;
                 })
                 return outTime;
             }

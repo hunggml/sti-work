@@ -8,7 +8,10 @@
             <form method="post"
                   action="{{route('staff.updateLevel',['id' => $user->id])}}">
                 @csrf
-             
+                <div class="form-group">
+                    <label>Nhân viên: </label>
+                    <strong style="color: black;font-size:20px">{{$user->name}}</strong>
+                </div>
                 <div class="form-group">
                     <label>Cấp độ</label>
                     <select class="form-control" name="level">

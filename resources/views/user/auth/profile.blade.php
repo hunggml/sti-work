@@ -13,7 +13,7 @@
                                 <tbody>
                                     @foreach ($user as $key => $value)
                                         <tr class="profile">
-                                            <td class="profile">Tên</td>
+                                            <td class="profile">Họ và tên</td>
                                             <td class="profile">: {{ $value->name }}</td>
                                         </tr>
                                         <tr class="profile">

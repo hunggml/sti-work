@@ -46,10 +46,7 @@ class HomeController extends Controller
         $user = User::all();
         $array = [];
         foreach ($user as $key => $value) {
-            $a = 0;
-            if (count($value->work)) {
-                $a = count($value->work->where('progress', '2'));
-            }
+            $a = $value->progress;
             if ($a != 0) {
                 $array[$value->id] = $a;
             }

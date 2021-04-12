@@ -10,9 +10,9 @@
                 action="{{ route('profile.update')}}">
                 @csrf
                 <div class="form-group">
-                    <label>Tên</label>
+                    <label>Họ và tên</label>
                     <input type="text" class="form-control" name="name"
-                           value="{{ $user->name }}">
+                           value="{{ $user->name }}" >
                     @error('name')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror

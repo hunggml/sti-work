@@ -19,6 +19,7 @@
                                     <th>Công việc</th>
                                     <th>Ngày bắt đầu</th>
                                     <th>Ngày kết thúc</th>
+                                    <th>Thời gian cập nhật</th>
                                     <th>Trạng thái</th>
                                 </tr>
                             </thead>
@@ -28,32 +29,35 @@
                                         <td>{{ ++$key }}</td>
                                         @if ($date->diffInDays($value->end_date, false) == 0 && $value->status == 'Chưa hoàn thành')
                                             <td class="check-time">{{ $value->detail }}</td>
-                                            <?php
-                                            $start_date = strtotime($value->start_date);
-                                            $end_date = strtotime($value->end_date);
-                                            ?>
-                                            <td class="check-time time">{{ date('d-m-Y', $start_date) }}</td>
-                                            <td class="check-time time">{{ date('d-m-Y', $end_date) }}</td>
-                                            <td class="check-time time">{{ $value->status }}</td>
-                                        @elseif ($date->diffInDays($value->end_date,false) < 0 && $value->status ==
-                                                'Chưa hoàn thành')
-                                               <td class="check-timeOut">{{ $value->detail }}</td>
-                                               <?php
-                                               $start_date = strtotime($value->start_date);
-                                               $end_date = strtotime($value->end_date);
-                                               ?>
-                                               <td class="check-timeOut time">{{ date('d-m-Y', $start_date) }}</td>
-                                               <td class="check-timeOut time">{{ date('d-m-Y', $end_date) }}</td>
-                                                <td class="check-timeOut time">{{ $value->status }}</td>
-                                            @else
-                                                <td>{{ $value->detail }}</td>
                                                 <?php
                                                 $start_date = strtotime($value->start_date);
                                                 $end_date = strtotime($value->end_date);
                                                 ?>
-                                                <td class=" time">{{ date('d-m-Y', $start_date) }}</td>
-                                                <td class=" time">{{ date('d-m-Y', $end_date) }}</td>
-                                                <td class="time">{{ $value->status }}</td>
+                                            <td class="check-time time">{{ date('d-m-Y', $start_date) }}</td>
+                                            <td class="check-time time">{{ date('d-m-Y', $end_date) }}</td>
+                                            <td >{{ $value->time_updated }}</td>
+                                            <td class="check-time time">{{ $value->status }}</td>
+                                        @elseif ($date->diffInDays($value->end_date,false) < 0 && $value->status ==
+                                                'Chưa hoàn thành')
+                                            <td class="check-timeOut">{{ $value->detail }}</td>
+                                                <?php
+                                                $start_date = strtotime($value->start_date);
+                                                $end_date = strtotime($value->end_date);
+                                                ?>
+                                            <td class="check-timeOut time">{{ date('d-m-Y', $start_date) }}</td>
+                                            <td class="check-timeOut time">{{ date('d-m-Y', $end_date) }}</td>
+                                            <td >{{ $value->time_updated }}</td>
+                                            <td class="check-timeOut time">{{ $value->status }}</td>
+                                        @else
+                                            <td>{{ $value->detail }}</td>
+                                                <?php
+                                                $start_date = strtotime($value->start_date);
+                                                $end_date = strtotime($value->end_date);
+                                                ?>
+                                            <td class=" time">{{ date('d-m-Y', $start_date) }}</td>
+                                            <td class=" time">{{ date('d-m-Y', $end_date) }}</td>
+                                            <td >{{ $value->time_updated }}</td>
+                                            <td class="time">{{ $value->status }}</td>
                                         @endif
                                     </tr>
                                 @endforeach

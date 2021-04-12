@@ -51,26 +51,49 @@ class UserController extends Controller
     public function store(Request $request)
     {   
         $validatedData = $request->validate([
-            'name' => 'required|unique:users,name',
+            // 'name' => 'required|unique:users,name',
             'username' => 'required|unique:users,username',
             'password' => 'required|min:3',
             're-password' => 'required|same:password',
         ]);
 
+        $name = explode(' ',$request->name);
+        $name1 = array_diff($name,[""]);
+       
+        if(count($name1) <= 2)
+        {
+            toastr()->error('Họ Và Tên Không Thỏa Mãn ( Họ_Tên Đệm_Tên');
+            return redirect()->back();
+        }
+        else
+        {  
+            $ten = '' ;
+            foreach($name1 as $key => $val)
+            {
+                if($key < count($name1)-1)
+                {
+                    $ten = $ten.''.$val[0];
+                }
+                else 
+                {
+                    $ten = $ten.''.$val; 
+                }
+            }
 
-        $user = new User();
-        $user->name = $request->name;
-        $user->username = $request->username;
-        $user->password = Hash::make($request->password);
-        $user->level = 2;
-        $user->group_id = 1;
-        $user->metting = 0;
-        $user->time_created = Carbon::now('Asia/Ho_Chi_Minh');
-        $user->time_updated = Carbon::now('Asia/Ho_Chi_Minh');
-        $user->save();
-      
-        toastr()->success('Đăng ký thành công');
-        return redirect()->route('loginShow');
+            $user = new User();
+            $user->name = $ten;
+            $user->username = $request->username;
+            $user->password = Hash::make($request->password);
+            $user->level = 2;
+            $user->group_id = 1;
+            $user->metting = 0;
+            $user->progress = 0;
+            $user->time_created = Carbon::now('Asia/Ho_Chi_Minh');
+            $user->time_updated = Carbon::now('Asia/Ho_Chi_Minh');
+            $user->save();
+            toastr()->success('Tạo tài Khoản thành công');
+            return redirect()->route('loginShow');
+        }
     }
 
     /**
@@ -110,10 +133,32 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
         ]);
-
+        $name = explode(' ',$request->name);
+        $name1 = array_diff($name,[""]);
+       
+        if(count($name1) <= 2)
+        {
+            toastr()->error('Họ Và Tên Không Thỏa Mãn ( Họ_Tên Đệm_Tên');
+            return redirect()->back();
+        }
+        else
+        {  
+            $ten = '' ;
+            foreach($name1 as $key => $val)
+            {
+                if($key < count($name1)-1)
+                {
+                    $ten = $ten.''.$val[0];
+                }
+                else 
+                {
+                    $ten = $ten.''.$val; 
+                }
+            }
+        }
         $user = User::findOrFail($request ->id);
         $user = User::where('id',$request->id)->update([
-            'name' => $request->name,
+            'name' => $ten,
             'phone' => $request->phone,
             'address' => $request->address,
             'email' => $request->email

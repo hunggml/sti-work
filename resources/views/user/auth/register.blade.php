@@ -27,7 +27,7 @@
                 @csrf
                     <div class="sign-in-htm">
                         <div class="group">
-                            <label for="name" class="label">Tên</label>
+                            <label for="name" class="label">Họ và tên</label>
                             <input id="name" value="{{old('name')}}" name="name" type="text"
                                    class="input">
                             @error('name')
@@ -88,6 +88,10 @@
              <!-- toastr -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
+
+@jquery
+@toastr_js
+@toastr_render
 
 </body>
 </html>
