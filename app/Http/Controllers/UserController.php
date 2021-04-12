@@ -72,11 +72,16 @@ class UserController extends Controller
             {
                 if($key < count($name1)-1)
                 {
-                    $ten = $ten.''.$val[0];
+                    if($key == 0 ){
+                        $ten = $ten.''.$val[0];
+                    }
+                    else{
+                        $ten = $ten.'.'.$val[0];
+                    }
                 }
                 else 
                 {
-                    $ten = $ten.''.$val; 
+                    $ten = $ten.'.'.$val; 
                 }
             }
 
@@ -148,11 +153,17 @@ class UserController extends Controller
             {
                 if($key < count($name1)-1)
                 {
-                    $ten = $ten.''.$val[0];
+                    if($key == 0 ){
+                        $ten = $ten.''.$val[0];
+                    }
+                    else{
+                        $ten = $ten.'.'.$val[0];
+                    }
+                    
                 }
                 else 
                 {
-                    $ten = $ten.''.$val; 
+                    $ten = $ten.'.'.$val; 
                 }
             }
         }

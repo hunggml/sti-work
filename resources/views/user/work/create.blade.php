@@ -25,7 +25,7 @@
                             @csrf
                             <div class="form-group">
                                 <label>Công Việc</label>
-                                <textarea type="text" class="form-control @error('detail') border-danger @enderror"
+                                <textarea type="text" class="form-control "
                                     name="detail" placeholder="Nhập công việc cụ thể">{{ old('detail') }}</textarea>
                                 @error('detail')
                                     <div class="text-danger">{{ $message }}</div>
@@ -34,7 +34,7 @@
                             <div class="form-group">
                                 <label>Ngày bắt đầu</label>
                                 <input type="date" value="{{ old('start_date') }}"
-                                    class="form-control @error('start_date') border-danger @enderror" name="start_date"
+                                    class="form-control " name="start_date"
                                     placeholder="Enter start date">
                                 @error('start_date')
                                     <div class="text-danger">{{ $message }}</div>
@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 <label>Ngày kết thúc</label>
                                 <input type="date" value="{{ old('end_date') }}"
-                                    class="form-control @error('end_date') border-danger @enderror" name="end_date"
+                                    class="form-control" min ="{{ Carbon\Carbon::now()->format('Y-m-d') }}" name="end_date" 
                                     placeholder="Enter end date">
                                 @error('end_date')
                                     <div class="text-danger">{{ $message }}</div>
