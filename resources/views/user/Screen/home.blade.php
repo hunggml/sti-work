@@ -50,7 +50,7 @@
                                                         @if ($value->user_id == $key4)
                                                             <p style="color: red"> {{ $arr1 }}</p>
                                                         @endif
-                                                    @endforeach
+                                                    @endforeach 
                                                 </td>
                                             @endif
                                             @if ($date->diffInDays($value->end_date, false) == 0)

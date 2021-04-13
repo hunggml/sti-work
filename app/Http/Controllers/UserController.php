@@ -175,7 +175,7 @@ class UserController extends Controller
             'email' => $request->email
         ]);
         $works = Work::where('user_id',$request->id)->update([
-            'user_name' => $request->name,
+            'user_name' => $ten,
         ]);
         toastr()->success('Cập nhật hồ sơ thành công');
         return redirect()->route('profile.index');
