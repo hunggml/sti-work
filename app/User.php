@@ -24,7 +24,7 @@ class User extends Authenticatable
     // protected $dates = 'deleted_at';
 
     protected $fillable = [
-        'id','name','username','phone','address', 'email', 'password','level'
+        'id','name','username','phone','address', 'email', 'password','level','group_id','metting','progress'
     ];
     
     public function work(){
