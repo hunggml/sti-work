@@ -59,6 +59,9 @@
                             <tfoot>
                             </tfoot>
                         </table>
+                        <br>
+                        <span style="float: right">{{ $users->links() }}</span>
+
                     </div>
                 </div>
             </section>

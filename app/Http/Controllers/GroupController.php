@@ -114,7 +114,7 @@ class GroupController extends Controller
         $user = User::where('group_id',$request->id)->update([
             'group_id' => 1,
         ]);
-        toastr()->success('Xoá công việc thành công');
+        toastr()->success('Xoá phòng ban thành công');
         return redirect()->route('group.list');
     }
 }

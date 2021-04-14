@@ -48,7 +48,7 @@ class ManagerController extends Controller
 
     // list statistical
     public function statistical(){
-        $users = User::with('work')->get();
+        $users = User::with('work')->paginate(5);
         $auth = Auth::user();
         $date = Carbon::now();
         $date->startOfDay();
