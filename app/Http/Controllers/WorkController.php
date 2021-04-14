@@ -142,12 +142,10 @@ class WorkController extends Controller
         if ($check < 0) {
             toastr()->error('Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
             return back();
-        } else {
-            $this->validation($request);
-            if (
-                $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Chưa hoàn thành' ||
-                $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Hoàn thành'
-            ) {
+        } 
+        else {
+            if($user->level == 1 ) {
+                $this->validation($request);
                 $this->workInterface->StoreWorkHistory(
                     $works->id,
                     $works->detail,
@@ -161,51 +159,78 @@ class WorkController extends Controller
                     $request->start_date,
                     $request->end_date,
                     $request->status,
-                    $request->check,
-                    2,
-                    $request->hidden
-                );
-                User::where('id', $user->id)->update([
-                    'progress' => $user->progress + 1
-                ]);
-            } elseif ($date->diffInDays(Carbon::create($request->end_date), false) >= 0 && $request->status == 'Hoàn thành') {
-                $this->workInterface->StoreWorkHistory(
-                    $works->id,
-                    $works->detail,
-                    $works->start_date,
-                    $works->end_date,
-                    $works->status,
-                );
-                $work = $this->workInterface->UpdateWork(
-                    $request->id,
-                    $request->detail,
-                    $request->start_date,
-                    $request->end_date,
-                    $request->status,
-                    $request->check,
                     1,
-                    $request->hidden,
-                );
-            } else {
-                $this->workInterface->StoreWorkHistory(
-                    $works->id,
-                    $works->detail,
-                    $works->start_date,
-                    $works->end_date,
-                    $works->status,
-                );
-                $work = $this->workInterface->UpdateWork(
-                    $request->id,
-                    $request->detail,
-                    $request->start_date,
-                    $request->end_date,
-                    $request->status,
-                    $request->check,
                     $request->progress,
                     $request->hidden,
                 );
+                toastr()->success('Cập nhật công việc thành công');
+                return redirect()->route('work.index');
             }
-
+            else{
+                $this->validation($request);
+                if (
+                    $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Chưa hoàn thành' ||
+                    $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Hoàn thành'
+                ) {
+                    $this->workInterface->StoreWorkHistory(
+                        $works->id,
+                        $works->detail,
+                        $works->start_date,
+                        $works->end_date,
+                        $works->status,
+                    );
+                    $work = $this->workInterface->UpdateWork(
+                        $request->id,
+                        $request->detail,
+                        $request->start_date,
+                        $request->end_date,
+                        $request->status,
+                        $request->check,
+                        2,
+                        $request->hidden
+                    );
+                    User::where('id', $user->id)->update([
+                        'progress' => $user->progress + 1
+                    ]);
+                } elseif ($date->diffInDays(Carbon::create($request->end_date), false) >= 0 && $request->status == 'Hoàn thành') {
+                    $this->workInterface->StoreWorkHistory(
+                        $works->id,
+                        $works->detail,
+                        $works->start_date,
+                        $works->end_date,
+                        $works->status,
+                    );
+                    $work = $this->workInterface->UpdateWork(
+                        $request->id,
+                        $request->detail,
+                        $request->start_date,
+                        $request->end_date,
+                        $request->status,
+                        $request->check,
+                        1,
+                        $request->hidden,
+                    );
+                } 
+                else {
+                    $this->workInterface->StoreWorkHistory(
+                        $works->id,
+                        $works->detail,
+                        $works->start_date,
+                        $works->end_date,
+                        $works->status,
+                    );
+                    $work = $this->workInterface->UpdateWork(
+                        $request->id,
+                        $request->detail,
+                        $request->start_date,
+                        $request->end_date,
+                        $request->status,
+                        $request->check,
+                        $request->progress,
+                        $request->hidden,
+                    );
+                }
+            }
             toastr()->success('Cập nhật công việc thành công');
             return redirect()->route('work.index');
         }
