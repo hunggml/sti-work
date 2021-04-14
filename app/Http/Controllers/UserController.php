@@ -82,29 +82,17 @@ class UserController extends Controller
                 }
                
             }
-            // $user = new User();
-            // $user->name = $ten; 
-            // $user->username = $request->username;
-            // $user->password = Hash::make($request->password);
-            // $user->level = 2;
-            // $user->group_id = 1;
-            // $user->metting = 0;
-            // $user->progress = 0;
-            // $user->time_created = Carbon::now('Asia/Ho_Chi_Minh');
-            // $user->time_updated = Carbon::now('Asia/Ho_Chi_Minh');
-            // $user->save();
-            $this->userInterface->StoreUser(
-                $ten,
-                $request->username,
-                Hash::make($request->password),
-                2,
-                1,
-                0,
-                0,
-                Carbon::now('Asia/Ho_Chi_Minh'),
-                Carbon::now('Asia/Ho_Chi_Minh')
-            );
-
+            $user = new User();
+            $user->name = $ten; 
+            $user->username = $request->username;
+            $user->password = Hash::make($request->password);
+            $user->level = 2;
+            $user->group_id = 1;
+            $user->metting = 0;
+            $user->progress = 0;
+            $user->time_created = Carbon::now('Asia/Ho_Chi_Minh');
+            $user->time_updated = Carbon::now('Asia/Ho_Chi_Minh');
+            $user->save();
             toastr()->success('Tạo tài Khoản thành công');
             return redirect()->route('loginShow');
         }
@@ -185,7 +173,7 @@ class UserController extends Controller
         ]);
         toastr()->success('Cập nhật hồ sơ thành công');
         // return redirect()->route('profile.index');
-        return back();
+        return redirect()->route('profile.index');
     }
 
     /**
