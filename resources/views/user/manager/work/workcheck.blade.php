@@ -21,7 +21,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                                 @foreach ($users->groupBy('group_id') as $key => $value0)
                                     @if ($value0->first()->group_id == Auth::user()->group_id)
                                         @foreach ($value0 as $key1 => $value)
@@ -52,7 +51,7 @@
                                                                 {{ date('d-m-Y', $start_date) }}</td>
                                                             <td class="check-timeOut time">
                                                                 {{ date('d-m-Y', $end_date) }}</td>
-                                                        @else
+                                                    @else
                                                             <td class="">{{ $work->detail }}</td>
                                                             <td class="time">{{ $work->start_date }}</td>
                                                             <td class="time">{{ $work->end_date }}</td>
@@ -78,7 +77,7 @@
                                             @endforeach
                                         @endforeach
                                         @foreach ($value0 as $key1 => $value)
-                                        @if ($value->work->count() == 0)
+                                            @if ($value->work->count() == 0)
                                                 <tr>
                                                     <td>{{ $value->name }}</td>
                                                     <td style="background-color: #f13149"></td>
@@ -87,10 +86,9 @@
                                                     <td></td>
                                                     <td colspan="3"></td>
                                                 </tr>
-                                        @endif
+                                            @endif
                                         @endforeach
                                     @endif
-
                                 @endforeach
 
                             </tbody>

@@ -43,31 +43,32 @@
                                     @else
                                         <tr>
                                             <td>{{ ++$key }}</td>
-                                                @if ($date->diffInDays($value->end_date, false) == 0 && $value->status == 'Chưa hoàn thành')
-                                                    <td class="check-time">{{ $value->detail }}</td>
-                                                        <?php
-                                                        $start_date = strtotime($value->start_date);
-                                                        $end_date = strtotime($value->end_date);
-                                                        ?>
-                                                    <td class="check-time time">{{ date('d-m-Y', $start_date) }}</td>
-                                                    <td class="check-time time">{{ date('d-m-Y', $end_date) }}</td>
-                                                @elseif ($date->diffInDays($value->end_date,false) < 0 && $value->status =='Chưa hoàn thành')
+                                            @if ($date->diffInDays($value->end_date, false) == 0 && $value->status == 'Chưa hoàn thành')
+                                                <td class="check-time">{{ $value->detail }}</td>
+                                                <?php
+                                                $start_date = strtotime($value->start_date);
+                                                $end_date = strtotime($value->end_date);
+                                                ?>
+                                                <td class="check-time time">{{ date('d-m-Y', $start_date) }}</td>
+                                                <td class="check-time time">{{ date('d-m-Y', $end_date) }}</td>
+                                            @elseif ($date->diffInDays($value->end_date,false) < 0 && $value->status
+                                                    =='Chưa hoàn thành')
                                                     <td class="check-timeOut">{{ $value->detail }}</td>
-                                                        <?php
-                                                        $start_date = strtotime($value->start_date);
-                                                        $end_date = strtotime($value->end_date);
-                                                        ?>
+                                                    <?php
+                                                    $start_date = strtotime($value->start_date);
+                                                    $end_date = strtotime($value->end_date);
+                                                    ?>
                                                     <td class="check-timeOut time">{{ date('d-m-Y', $start_date) }}</td>
                                                     <td class="check-timeOut time">{{ date('d-m-Y', $end_date) }}</td>
-                                                @else
+                                            @else
                                                     <td>{{ $value->detail }}</td>
-                                                        <?php
-                                                        $start_date = strtotime($value->start_date);
-                                                        $end_date = strtotime($value->end_date);
-                                                        ?>
+                                                    <?php
+                                                    $start_date = strtotime($value->start_date);
+                                                    $end_date = strtotime($value->end_date);
+                                                    ?>
                                                     <td class="time">{{ date('d-m-Y', $start_date) }}</td>
                                                     <td class="time">{{ date('d-m-Y', $end_date) }}</td>
-                                                @endif
+                                            @endif
                                             @if ($value->status == 'Hoàn thành')
                                                 <td style="background-color: greenyellow;color:black">
                                                     {{ $value->status }}</td>
