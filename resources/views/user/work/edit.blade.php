@@ -48,7 +48,7 @@
                                 <label>Ngày kết thúc</label>
                                 <input type="date" class="form-control dateform"
                                     value="{{ old('time') ?? date('Y-m-d', strtotime($work->end_date)) }}"
-                                    
+                                    {{-- min ="{{ Carbon\Carbon::now()->format('Y-m-d') }}" --}}
                                     name="end_date">
                                 @error('end_date')
                                     <div class="text-danger">{{ $message }}</div>
@@ -87,4 +87,7 @@
         </div>
         <!-- /.content-wrapper -->
     </div>
+    <script>
+
+    </script>
 @endsection

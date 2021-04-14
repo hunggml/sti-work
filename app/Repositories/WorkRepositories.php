@@ -44,7 +44,7 @@ class WorkRepositories implements WorkInterface
                 'end_date' => $end_date,
                 'status' => $status,
                 'check' => $check,
-                'progress' => $progress,
+                // 'progress' => $progress,
                 'hidden' => $hidden,
             ]);
     }
