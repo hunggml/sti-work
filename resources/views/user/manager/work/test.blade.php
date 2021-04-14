@@ -1,6 +1,6 @@
 @extends('user.master.master')
-@section('title', 'Danh sách công việc')
 
+@section('title', 'Danh sách công việc')
 @section('content')
     <div class="wrapper">
         <!-- Content Wrapper. Contains page content -->
@@ -8,6 +8,9 @@
             <!-- Main content -->
             <section class="content">
                 <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Danh sách công việc cần xác nhận</h3>
+                    </div>
                     <div class="card-body" id="car-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -20,12 +23,21 @@
                                     <th colspan="2">Hành động</th>
                                 </tr>
                             </thead>
-                            <tbody>
-
-                                @foreach ($users->groupBy('group_id') as $key => $value0)
+                            <tbody> 
+                                @foreach ($user->groupBy('group_id') as $key => $value0)
                                     @if ($value0->first()->group_id == Auth::user()->group_id)
                                         @foreach ($value0 as $key1 => $value)
-                                            @foreach ($value->work as $key2 => $work)
+                                            @if ($value->work->count() == 0)
+                                                <tr>
+                                                    <td>{{ $value->name }}</td>
+                                                    <td style="background-color: #f13149"></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td colspan="3"></td>
+                                                </tr>
+                                            @else
+                                        @foreach ($value->work as $key2 => $work)
                                                 <tr>
                                                     @if ($key2 == 0)
                                                         <td rowspan="{{ $value->work->count() }}">
@@ -52,7 +64,7 @@
                                                                 {{ date('d-m-Y', $start_date) }}</td>
                                                             <td class="check-timeOut time">
                                                                 {{ date('d-m-Y', $end_date) }}</td>
-                                                        @else
+                                                    @else
                                                             <td class="">{{ $work->detail }}</td>
                                                             <td class="time">{{ $work->start_date }}</td>
                                                             <td class="time">{{ $work->end_date }}</td>
@@ -75,24 +87,11 @@
                                                         </a>
                                                     </td>
                                                 </tr>
-                                            @endforeach
-                                        @endforeach
-                                        @foreach ($value0 as $key1 => $value)
-                                        @if ($value->work->count() == 0)
-                                                <tr>
-                                                    <td>{{ $value->name }}</td>
-                                                    <td style="background-color: #f13149"></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td colspan="3"></td>
-                                                </tr>
-                                        @endif
                                         @endforeach
                                     @endif
-
+                                        @endforeach
+                                    @endif
                                 @endforeach
-
                             </tbody>
                             <tfoot>
 
@@ -108,6 +107,5 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-
     </div>
 @endsection

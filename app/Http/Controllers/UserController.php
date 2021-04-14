@@ -10,6 +10,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\UserInterface;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -70,20 +71,16 @@ class UserController extends Controller
             $ten = '' ;
             foreach($name1 as $key => $val)
             {
-                if($key < count($name1)-1)
-                {
-                    if($key == 0 ){
-                        $ten = $ten.''.$val[0];
-                    }
-                    else{
-                        $ten = $ten.'.'.$val[0];
-                    }
-                    
+                if($key === 0) {
+                    $ten = Str::substr($val, 0, 1);
                 }
-                else 
-                {
-                    $ten = $ten.'.'.$val; 
+                elseif($key < count($name1)-1) {
+                    $ten = $ten . "." . Str::substr($val, 0, 1);
                 }
+                else {
+                    $ten = $ten . "." . $val;
+                }
+               
             }
             // $user = new User();
             // $user->name = $ten; 
@@ -160,26 +157,23 @@ class UserController extends Controller
         }
         else
         {  
+            // dd($name1, substr($request->name, 1));
             $ten = '' ;
+
             foreach($name1 as $key => $val)
             {
-                if($key < count($name1)-1)
-                {
-                    if($key == 0 ){
-                        $ten = $ten.''.$val[0];
-                    }
-                    else{
-                        $ten = $ten.'.'.$val[0];
-                    }
-                    
+                if($key === 0) {
+                    $ten = Str::substr($val, 0, 1);
                 }
-                else 
-                {
-                    $ten = $ten.'.'.$val; 
+                elseif($key < count($name1)-1) {
+                    $ten = $ten . "." . Str::substr($val, 0, 1);
                 }
+                else {
+                    $ten = $ten . "." . $val;
+                }
+               
             }
         }
-        $user = User::findOrFail($request ->id);
         $user = User::where('id',$request->id)->update([
             'name' => $ten,
             'phone' => $request->phone,
@@ -190,7 +184,8 @@ class UserController extends Controller
             'user_name' => $ten,
         ]);
         toastr()->success('Cập nhật hồ sơ thành công');
-        return redirect()->route('profile.index');
+        // return redirect()->route('profile.index');
+        return back();
     }
 
     /**

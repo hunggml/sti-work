@@ -58,7 +58,7 @@ class ManagerController extends Controller
     // bar chart
     public function chart(){
         $auth = Auth::user();
-        $users = User::with('work')->get();
+        $users = User::with('work')->get(); 
         // dd($users);
         // return Response::json($users);
         return view('user.manager.chart.chart',compact('auth'));
@@ -79,12 +79,15 @@ class ManagerController extends Controller
     public function listWorkCheck(){
         $date = Carbon::now();
         $date->startOfDay();
-        $user = User::with(['work' => function($q){
-            return $q->where('check', '0')->where('status','Chưa hoàn thành');
-        }])->get();
+        $users = User::with(['work' => function ($q) {
+            return $q->where('check', '0')->where('status', 'Chưa hoàn thành');
+        }])->withCount(['work' => function ($a) {
+            return $a->where('check', '0')->where('status', 'Chưa hoàn thành');
+        }])->orderBy('work_count','DESC')->get();
+        $works = Work::where('check', '0')->where('status', 'Chưa hoàn thành')->orderBy('end_date', 'DESC')->get();
         // dd($user);
         $auth = Auth::user();
-        return view('user.manager.work.workcheck', compact('user', 'auth', 'date'));
+        return view('user.manager.work.workcheck', compact('users', 'auth', 'date','works'));
     }
 
     
