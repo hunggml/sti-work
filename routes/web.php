@@ -45,6 +45,7 @@ Route::middleware('auth')->prefix('/home')->group(function(){
 
     // List Work of staff
     Route::get('staff-list-work',[ManagerController::class,'workStaff'])->name('staff.listwork');
+    Route::get('/staff-history-work',[ManagerController::class,'history'])->name('staff.history-work');
 
     // Check Work
     Route::get('/check-job',[ManagerController::class,'listWorkCheck'])->name('check.list');

@@ -10,6 +10,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
+use App\WorkHistoryEdit;
 
 class ManagerController extends Controller
 {
@@ -54,6 +55,17 @@ class ManagerController extends Controller
         $works = Work::all();
         return view('user.manager.statistical.statistical',compact('auth','date','works','users'));
     }
+
+    // history work
+    public function history(Request $request)
+    {
+        $auth = Auth::user();
+        $date = Carbon::now();
+        $date->startOfDay();
+        $history = WorkHistoryEdit::where('work_id', $request->id)->get();
+        return view('user.manager.work.historyWorkofStaff', compact('history', 'auth', 'date'));
+    }
+
 
     // bar chart
     public function chart(){

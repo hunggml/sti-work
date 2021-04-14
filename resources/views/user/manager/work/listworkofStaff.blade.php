@@ -10,7 +10,12 @@
                     <div class="card-header">
                         <h3 class="card-title">Danh sách công việc nhân viên</h3>
                     </div>
+                    
                     <div class="card-body" id="car-body">
+                        <a style="color: white;float:right" class="btn btn-secondary mb-2"
+                            href={{ route('staff.stafflist') }}>
+                            <i class="fas fa-arrow-circle-left"></i> Quay lại
+                        </a>
                         <table id="worktable" class="table table-bordered table-striped ">
                             <thead>
                                 <tr>
@@ -60,7 +65,7 @@
                                             
                                             <td>
                                                 <a class="btn btn-secondary "
-                                                    href={{route('work.history', ['id' => $value->id])}}>
+                                                    href={{route('staff.history-work', ['id' => $value->id])}}>
                                                     <i class="fas fa-history"></i>
                                                     Lịch sử
                                                 </a>
