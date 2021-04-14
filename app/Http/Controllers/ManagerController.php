@@ -15,7 +15,7 @@ use App\WorkHistoryEdit;
 class ManagerController extends Controller
 {
     
-
+    // danh sách nhân viên trong phòng ban
     public function stafflist(){
         $auth = Auth::user();
         $users = User::with('group')->get();
@@ -25,7 +25,7 @@ class ManagerController extends Controller
 
 
 
-    // form edit level staff
+    // view edit level + phòng ban của nhân viên
     public function editLevel(Request $request){
         $auth = Auth::user();
         $groups = Group::all();
@@ -33,7 +33,7 @@ class ManagerController extends Controller
         return view('user.manager.staff.editLevel', compact('user','auth','groups'));
     }
 
-    // update level staff
+    // cập nhật phòng bàn + level của nhân viên
     public function updateLevel(Request $request){
         $user = User::findOrFail($request->id);
         $user = DB::table('users', $request->id)->where('id', $request->id)->update([
@@ -46,7 +46,7 @@ class ManagerController extends Controller
         
     }
 
-    // list statistical
+    // list thống kê của nhân viên
     public function statistical(){
         $users = User::with('work')->paginate(5);
         $auth = Auth::user();
@@ -56,7 +56,7 @@ class ManagerController extends Controller
         return view('user.manager.statistical.statistical',compact('auth','date','works','users'));
     }
 
-    // history work
+    //lịch sử update work của nhân viên
     public function history(Request $request)
     {
         $auth = Auth::user();
@@ -76,7 +76,7 @@ class ManagerController extends Controller
         return view('user.manager.chart.chart',compact('auth'));
     }
 
-    // list work of staff
+    // list công việc của nhân viên trong phòng ban
     public function workStaff(Request $request)
     {
         $date = Carbon::now();
@@ -87,7 +87,7 @@ class ManagerController extends Controller
     }
 
  
-    // list check work
+    // view list công việc cần phải xác nhận
     public function listWorkCheck(){
         $date = Carbon::now();
         $date->startOfDay();
@@ -103,7 +103,7 @@ class ManagerController extends Controller
     }
 
     
-    // form check + edit work
+    // view check công việc + xác nhận công việc của nhân viên
     public function editWorkCheck(Request $request){
         $auth = Auth::user();
         $work = Work::findOrFail($request->id);
@@ -111,7 +111,7 @@ class ManagerController extends Controller
     }
 
     
-    // update work
+    // cập nhật trạng thái(xác nhận) + công việc của nhân viên
     public function updateWorkCheck(Request $request){
         $this->validation($request);
         $work = Work::findOrFail($request->id);
@@ -122,7 +122,7 @@ class ManagerController extends Controller
     }
 
 
-    // delete work
+    // xoá công việc của nhân viên
     public function deleteWorkCheck(Request $request){
         $work = Work::findOrFail($request->id);
         $work->delete();
@@ -131,7 +131,7 @@ class ManagerController extends Controller
     }
 
 
-    // delete staff
+    // xoá nhân viên 
     public function destroyStaff(Request $request)
     {
         $user = User::findOrFail($request->id);

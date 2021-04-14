@@ -16,11 +16,6 @@ use Illuminate\Support\Facades\Auth;
 
 class WorkController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function __construct(WorkInterface $workInterface)
     {
@@ -28,6 +23,7 @@ class WorkController extends Controller
     }
 
 
+    // list công việc cá nhân
     public function index()
     {
         $date = Carbon::now();
@@ -37,11 +33,8 @@ class WorkController extends Controller
         return view('user.work.list', compact('work', 'auth', 'date'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    // view thêm công việc
     public function create(Request $request)
     {
         $auth = Auth::user();
@@ -49,12 +42,8 @@ class WorkController extends Controller
         return view('user.work.create', compact('auth'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+    // thêm công việc
     public function store(Request $request)
     {
 
@@ -100,23 +89,8 @@ class WorkController extends Controller
         return redirect()->route('work.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // chỉnh sửa công việc 
     public function edit(Request $request)
     {
         $auth = Auth::user();
@@ -124,14 +98,8 @@ class WorkController extends Controller
         return view('user.work.edit', compact('work', 'auth'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
 
+    // cập nhật công việc 
     public function update(Request $request)
     {
         $date = Carbon::now();
@@ -143,12 +111,12 @@ class WorkController extends Controller
         if ($check < 0) {
             toastr()->error('Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
             return back();
-        } 
-        else {
-            if($user->level == 1 ) {
-                if ($date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Chưa hoàn thành' ||
-                    $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Hoàn thành' ) 
-                {
+        } else {
+            if ($user->level == 1) {
+                if (
+                    $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Chưa hoàn thành' ||
+                    $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Hoàn thành'
+                ) {
                     $this->validation($request);
                     $this->workInterface->StoreWorkHistory(
                         $works->id,
@@ -170,8 +138,7 @@ class WorkController extends Controller
                     User::where('id', $user->id)->update([
                         'progress' => $user->progress + 1
                     ]);
-                }
-                else {
+                } else {
                     $this->validation($request);
                     $this->workInterface->StoreWorkHistory(
                         $works->id,
@@ -191,11 +158,10 @@ class WorkController extends Controller
                         $request->hidden,
                     );
                 }
-                
+
                 toastr()->success('Cập nhật công việc thành công');
                 return redirect()->route('work.index');
-            }
-            else{
+            } else {
                 $this->validation($request);
                 if (
                     $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Chưa hoàn thành' ||
@@ -239,8 +205,7 @@ class WorkController extends Controller
                         1,
                         $request->hidden,
                     );
-                } 
-                else {
+                } else {
                     $this->workInterface->StoreWorkHistory(
                         $works->id,
                         $works->detail,
@@ -265,12 +230,8 @@ class WorkController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+    // xoá công việc
     public function destroy(Request $request)
     {
         $work = Work::findOrFail($request->id);
@@ -315,7 +276,7 @@ class WorkController extends Controller
         return redirect()->route('warehouse.list');
     }
 
-    // history work
+    // lịch sử update work
     public function history(Request $request)
     {
         $auth = Auth::user();
