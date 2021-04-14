@@ -44,7 +44,7 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     Route::get('/destroy-group',[GroupController::class,'destroy'])->name('group.destroy');
 
     // List Work of staff
-    Route::get('list-work-staff',[ManagerController::class,'workStaff'])->name('list.workStaff');
+    Route::get('staff-list-work',[ManagerController::class,'workStaff'])->name('staff.listwork');
 
     // Check Work
     Route::get('/check-job',[ManagerController::class,'listWorkCheck'])->name('check.list');

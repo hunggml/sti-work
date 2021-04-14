@@ -113,8 +113,8 @@
                         </a>
                     </li>
                     @if ($auth->level == 1)
-                        <li class="nav-item menu-open">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item has-treeview ">
+                            <a href="#" class="nav-link {{ request()->routeIs('staff*','check*','group*','statistical*','chart*') ? 'active font-weight-bolder' : '' }}">
                                 <i class="fas fa-tasks"></i>
                                 <p>
                                     Quản lý

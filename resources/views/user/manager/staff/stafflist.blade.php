@@ -44,7 +44,7 @@
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href={{route('list.workStaff',['id'=>$user->id])}} class="btn btn-success ">
+                                                    <a href={{route('staff.listwork',['id'=>$user->id])}} class="btn btn-success ">
                                                         Công việc
                                                     </a>
                                                 </td>
