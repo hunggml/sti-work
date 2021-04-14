@@ -36,6 +36,9 @@ function time() {
     setTimeout("time()", 1000);
 }
 time();
+
+
+
 // $(function () {
 //     $("#worktable").DataTable({
 //         "paging": false,

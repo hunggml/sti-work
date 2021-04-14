@@ -45,6 +45,7 @@ class WorkController extends Controller
     public function create(Request $request)
     {
         $auth = Auth::user();
+
         return view('user.work.create', compact('auth'));
     }
 
@@ -145,24 +146,52 @@ class WorkController extends Controller
         } 
         else {
             if($user->level == 1 ) {
-                $this->validation($request);
-                $this->workInterface->StoreWorkHistory(
-                    $works->id,
-                    $works->detail,
-                    $works->start_date,
-                    $works->end_date,
-                    $works->status,
-                );
-                $work = $this->workInterface->UpdateWork(
-                    $request->id,
-                    $request->detail,
-                    $request->start_date,
-                    $request->end_date,
-                    $request->status,
-                    1,
-                    $request->progress,
-                    $request->hidden,
-                );
+                if ($date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Chưa hoàn thành' ||
+                    $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Hoàn thành' ) 
+                {
+                    $this->validation($request);
+                    $this->workInterface->StoreWorkHistory(
+                        $works->id,
+                        $works->detail,
+                        $works->start_date,
+                        $works->end_date,
+                        $works->status,
+                    );
+                    $work = $this->workInterface->UpdateWork(
+                        $request->id,
+                        $request->detail,
+                        $request->start_date,
+                        $request->end_date,
+                        $request->status,
+                        1,
+                        $request->progress,
+                        $request->hidden,
+                    );
+                    User::where('id', $user->id)->update([
+                        'progress' => $user->progress + 1
+                    ]);
+                }
+                else {
+                    $this->validation($request);
+                    $this->workInterface->StoreWorkHistory(
+                        $works->id,
+                        $works->detail,
+                        $works->start_date,
+                        $works->end_date,
+                        $works->status,
+                    );
+                    $work = $this->workInterface->UpdateWork(
+                        $request->id,
+                        $request->detail,
+                        $request->start_date,
+                        $request->end_date,
+                        $request->status,
+                        1,
+                        $request->progress,
+                        $request->hidden,
+                    );
+                }
+                
                 toastr()->success('Cập nhật công việc thành công');
                 return redirect()->route('work.index');
             }
