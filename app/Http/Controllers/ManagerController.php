@@ -77,12 +77,12 @@ class ManagerController extends Controller
     }
 
     // list work of staff
-    public function workStaff(Request $request){
+    public function workStaff(Request $request)
+    {
         $date = Carbon::now();
         $date->startOfDay();
         $auth = Auth::user();
         $work = Work::Where('user_id', $request->id)->where('hidden', '0')->get();
-        
         return view('user.manager.work.listworkofStaff', compact('work', 'auth', 'date'));
     }
 
