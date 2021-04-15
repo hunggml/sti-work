@@ -38,7 +38,6 @@ class WorkController extends Controller
     public function create(Request $request)
     {
         $auth = Auth::user();
-
         return view('user.work.create', compact('auth'));
     }
 
@@ -46,47 +45,52 @@ class WorkController extends Controller
     // thêm công việc
     public function store(Request $request)
     {
-
-        $check =  Carbon::create($request->start_date)->diffInMinutes(Carbon::create($request->end_date), false);
-        if ($check < 0) {
-            toastr()->error('Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
-            return redirect()->route('work.create');
-        } else {
-            $date = Carbon::now();
-            $date->startOfDay();
-            $this->validation($request);
-            $user = User::Where('id', Auth::user()->id)->first();
-
-            if ($user->level == 1) {
-                $this->workInterface->StoreWork(
-                    $user->id,
-                    $user->name,
-                    $request->detail,
-                    $request->start_date,
-                    $request->end_date,
-                    $request->status,
-                    1,
-                    $request->progress,
-                    $request->hidden,
-                );
+        $details = explode("\r\n",$request->detail);
+        foreach($details as $detail){
+            $check =  Carbon::create($request->start_date)->diffInMinutes(Carbon::create($request->end_date), false);
+            if ($check < 0) {
+                toastr()->error('Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
+                return redirect()->route('work.create');
             } else {
-                $this->workInterface->StoreWork(
-                    $user->id,
-                    $user->name,
-                    $request->detail,
-                    $request->start_date,
-                    $request->end_date,
-                    $request->status,
-                    $request->check,
-                    $request->progress,
-                    $request->hidden,
-                );
+                $date = Carbon::now();
+                $date->startOfDay();
+                $this->validation($request);
+                $user = User::Where('id', Auth::user()->id)->first();
+
+                if ($user->level == 1) {
+                    $this->workInterface->StoreWork(
+                        $user->id,
+                        $user->name,
+                        $detail,
+                        $request->start_date,
+                        $request->end_date,
+                        $request->status,
+                        1,
+                        $request->progress,
+                        $request->hidden,
+                    );
+                } 
+                else {
+                    $this->workInterface->StoreWork(
+                        $user->id,
+                        $user->name,
+                        $detail,
+                        $request->start_date,
+                        $request->end_date,
+                        $request->status,
+                        $request->check,
+                        $request->progress,
+                        $request->hidden,
+                    );
+                }
+                
             }
-
-
-            toastr()->success('Thêm công việc thành công');
         }
+        toastr()->success('Thêm công việc thành công');
         return redirect()->route('work.index');
+            // return redirect()->back();
+        
+        
     }
 
 
@@ -138,7 +142,8 @@ class WorkController extends Controller
                     User::where('id', $user->id)->update([
                         'progress' => $user->progress + 1
                     ]);
-                } else {
+                } 
+                else {
                     $this->validation($request);
                     $this->workInterface->StoreWorkHistory(
                         $works->id,
@@ -187,7 +192,8 @@ class WorkController extends Controller
                     User::where('id', $user->id)->update([
                         'progress' => $user->progress + 1
                     ]);
-                } elseif ($date->diffInDays(Carbon::create($request->end_date), false) >= 0 && $request->status == 'Hoàn thành') {
+                } 
+                elseif ($date->diffInDays(Carbon::create($request->end_date), false) >= 0 && $request->status == 'Hoàn thành') {
                     $this->workInterface->StoreWorkHistory(
                         $works->id,
                         $works->detail,
@@ -205,7 +211,8 @@ class WorkController extends Controller
                         1,
                         $request->hidden,
                     );
-                } else {
+                } 
+                else {
                     $this->workInterface->StoreWorkHistory(
                         $works->id,
                         $works->detail,
@@ -238,7 +245,8 @@ class WorkController extends Controller
         if ($work->status === "Chưa hoàn thành") {
             toastr()->error('Công việc cần phải hoàn thành');
             return back();
-        } else {
+        } 
+        else {
             $work->delete();
             toastr()->success('Xoá công việc thành công');
             return redirect()->route('work.index');

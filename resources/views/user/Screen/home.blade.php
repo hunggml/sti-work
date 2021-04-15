@@ -7,7 +7,7 @@
 @section('content')
     <div class="wrapper">
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper"> 
             <!-- Main content -->
             <section class="content">
                 <div class="card">
@@ -54,7 +54,7 @@
                                                 </td>
                                             @endif
                                             @if ($date->diffInDays($value->end_date, false) == 0)
-                                                <td class="check-time">{!! nl2br(e($value->detail)) !!}</td>
+                                                <td class="check-time">{{$value->detail}}</td>
                                                     <?php
                                                     $start_date = strtotime($value->start_date);
                                                     $end_date = strtotime($value->end_date);
@@ -62,7 +62,7 @@
                                                 <td class="check-time time">{{ date('d-m-Y', $start_date) }}</td>
                                                 <td class="check-time time">{{ date('d-m-Y', $end_date) }}</td>
                                             @elseif ($date->diffInDays($value->end_date,false) < 0) 
-                                                <td class="check-timeOut">{!! nl2br(e($value->detail)) !!}</td>
+                                                <td class="check-timeOut">{{$value->detail}}</td>
                                                     <?php
                                                     $start_date = strtotime($value->start_date);
                                                     $end_date = strtotime($value->end_date);
@@ -70,7 +70,7 @@
                                                 <td class="check-timeOut time">{{ date('d-m-Y', $start_date) }}</td>
                                                 <td class="check-timeOut time">{{ date('d-m-Y', $end_date) }}</td>
                                             @else
-                                                <td>{!! nl2br(e($value->detail)) !!}</td>
+                                                <td>{{$value->detail}}</td>
                                                     <?php
                                                     $start_date = strtotime($value->start_date);
                                                     $end_date = strtotime($value->end_date);

@@ -75,6 +75,7 @@ Route::middleware('auth')->prefix('/home')->group(function(){
 
 });
 
+// home
 Route::get('/', [HomeController::class,'index'])->name('trangchu');
 Route::get('metting',[HomeController::class,'metting'])->name('metting');
 

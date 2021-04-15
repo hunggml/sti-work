@@ -18,7 +18,7 @@
                                     <th>Email</th>
                                     <th>Level</th>
                                     <th>Phòng ban</th>
-                                    <th colspan="5">Hành động</th>
+                                    <th colspan="4">Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,10 +45,10 @@
                                                 </td>
                                                 <td>
                                                     <a href={{route('staff.listwork',['id'=>$user->id])}} class="btn btn-success ">
-                                                        Công việc
+                                                        <i class="fas fa-briefcase"></i> Công việc
                                                     </a>
-                                                </td>
-                                                <td>
+                                                </td> 
+                                                {{-- <td>
                                                     @if ($user->metting == 2)
                                                         <a class="btn btn-success edit" 
                                                         href= '{{route('metting',['metting' => 3, 'id' => $user->id ])}}'
@@ -56,12 +56,11 @@
                                                             Xác nhận họp
                                                         </a>
                                                     @endif
-                                                </td>
+                                                </td> --}}
                                                 <td>
                                                     @if ($user->metting == 0)
-                                                    <a class="btn btn-success edit" 
-                                                    href= '{{route('metting',['metting' => 1, 'id' => $user->id ])}}'>
-                                                        Đi công tác
+                                                    <a class="btn btn-success edit" href= '{{route('metting',['metting' => 1, 'id' => $user->id ])}}'>
+                                                        <i class="fas fa-walking"></i> Điều công tác
                                                     </a>
                                                     @endif
                                                     

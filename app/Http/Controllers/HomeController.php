@@ -45,7 +45,7 @@ class HomeController extends Controller
         }
         $user = User::all();
         $array = [];
-        foreach ($user as $key => $value) {
+        foreach ($user as $key => $value) { 
             $a = $value->progress;
             if ($a != 0) {
                 $array[$value->id] = $a;
@@ -63,7 +63,7 @@ class HomeController extends Controller
             'metting' => $request->metting,
         ]);
         
-        $users1 = User::where('metting','0')->orwhere('metting','2')->get();
+        $users1 = User::where('metting','0')->get();
         
         $soluong1 = count($users1);
         if ($soluong1 == 0) {

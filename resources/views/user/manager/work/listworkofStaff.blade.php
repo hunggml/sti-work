@@ -43,15 +43,15 @@
                                         <tr>
                                             <td>{{ ++$key }}</td>
                                         @if ($date->diffInDays($value->end_date, false) == 0 && $value->status == 'Chưa hoàn thành')
-                                            <td class="check-time">{!! nl2br(e($value->detail)) !!}</td>
+                                            <td class="check-time">{{$value->detail}}</td>
                                             <td class="check-time time">{{ $value->start_date }}</td>
                                             <td class="check-time time">{{ $value->end_date }}</td>
                                         @elseif ($date->diffInDays($value->end_date,false) < 0 && $value->status =='Chưa hoàn thành')
-                                            <td class="check-timeOut">{!! nl2br(e($value->detail)) !!}</td>
+                                            <td class="check-timeOut">{{$value->detail}}</td>
                                             <td class="check-timeOut time">{{ $value->start_date }}</td>
                                             <td class="check-timeOut time">{{ $value->end_date }}</td>
                                         @else
-                                            <td>{!! nl2br(e($value->detail)) !!}</td>
+                                            <td>{{$value->detail}}</td>
                                             <td class="time">{{ $value->start_date }}</td>
                                             <td class="time">{{ $value->end_date }}</td>
                                         @endif

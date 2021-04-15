@@ -78,7 +78,7 @@
                     @if ($auth->metting == 0)
                         <a class="dropdown-item" href='{{ route('metting', ['metting' => 1, 'id' => $auth->id]) }}'
                             style="color: black">Đi công tác</a>
-                        <a class="dropdown-item" href='{{ route('metting', ['metting' => 2, 'id' => $auth->id]) }}'
+                        <a class="dropdown-item" href='{{ route('metting', ['metting' => 3, 'id' => $auth->id]) }}'
                             style="color: black">Xác nhận họp</a>
                     @endif
                     @if ($auth->metting == 1)

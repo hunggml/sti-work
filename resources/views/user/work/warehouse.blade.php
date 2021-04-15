@@ -13,7 +13,7 @@
                     <div class="card-body" id="car-body">
                         
                         <a style="color: white;float:right" class="btn btn-secondary mb-2" href={{ route('work.index')}}>
-                            <i class="fas fa-warehouse"></i> Danh sách
+                            <i class="fas fa-arrow-circle-left"></i> Quay lại
                         </a>
                         <table id="worktable" class="table table-bordered table-striped ">
                             <thead>
