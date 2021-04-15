@@ -38,7 +38,7 @@
     </div>
     <style>
         .sidebar{
-            overflow: scroll;
+            overflow: auto;
         }
         .my-text {
             font-size: 20px;
