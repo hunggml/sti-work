@@ -45,7 +45,7 @@
                                         <tr>
                                             @if ($key2 == 0)
                                                 <td rowspan="{{ $work->count() }}">
-                                                    <p>{{ $value->user_name }}</p>
+                                                    <p>{{ $value->user->name }}</p>
                                                     @foreach ($array as $key4 => $arr1)
                                                         @if ($value->user_id == $key4)
                                                             <p style="color: red"> {{ $arr1 }}</p>

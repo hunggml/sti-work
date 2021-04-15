@@ -27,8 +27,7 @@ class HomeController extends Controller
         }])->orderBy('work_count')->get();
         $date = Carbon::now();
         $date->startOfDay();
-        $works = Work::where('check', '1')->where('status', 'Chưa hoàn thành')->orderBy('end_date', 'ASC')->get();
-
+        $works = Work::with('user')->where('check', '1')->where('status', 'Chưa hoàn thành')->orderBy('end_date', 'ASC')->get();
         $metting = User::where('deleted_at', null)->where('metting', '<>', '1')->where('metting', '<>', '3')->first();
 
         if ($metting == null) {
