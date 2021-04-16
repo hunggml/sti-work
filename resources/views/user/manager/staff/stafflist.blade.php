@@ -28,9 +28,13 @@
                                         @foreach ($value as $user)
                                             <tr>
                                                 @if ($user->image == null)
-                                                    <td></td>
+                                                    <td>
+                                                        <img src="{{ asset('dist/img/user2-160x160.jpg') }}" style="width: 100px;height:100px;border-radius: 50%;" class="elevation-2" alt="User Image">
+                                                    </td>
                                                 @else
-                                                    <td><img style="width: 100px;height:100px" class="img-user" src={{asset('/')}}{{$user->image}} alt="user image"></td>
+                                                    <td>
+                                                        <img style="width: 100px;height:100px;border-radius: 50%;" class="img-user" src={{asset('/')}}{{$user->image}} alt="user image">
+                                                    </td>
                                                 @endif
                                                     <td>{{ $user->name }}</td>
                                                     <td>{{ $user->phone }}</td>

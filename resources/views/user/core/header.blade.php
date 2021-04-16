@@ -29,7 +29,6 @@
                             aria-labelledby="navbarDropdownMenuLink">
                             <div id="notification-main"></div>
                         </div>
-
                     </div>
                 {{-- <ul>
                     <!-- Language Dropdown Menu -->
