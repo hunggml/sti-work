@@ -32,7 +32,7 @@
                                                         </td>
                                                     @endif
                                                     @if ($date->diffInDays($work->end_date, false) == 0)
-                                                            <td class="check-time">{{$value->detail}}</td>
+                                                            <td class="check-time">{{$work->detail}}</td>
                                                                 <?php
                                                                 $start_date = strtotime($work->start_date);
                                                                 $end_date = strtotime($work->end_date);
@@ -42,7 +42,7 @@
                                                             <td class="check-time time">{{ date('d-m-Y', $end_date) }}
                                                             </td>
                                                     @elseif ($date->diffInDays($work->end_date,false) < 0) 
-                                                            <td class="check-timeOut">{{$value->detail}}</td>
+                                                            <td class="check-timeOut">{{$work->detail}}</td>
                                                                 <?php
                                                                 $start_date = strtotime($work->start_date);
                                                                 $end_date = strtotime($work->end_date);
@@ -52,7 +52,7 @@
                                                             <td class="check-timeOut time">
                                                                 {{ date('d-m-Y', $end_date) }}</td>
                                                     @else
-                                                            <td class="">{{$value->detail}}</td>
+                                                            <td class="">{{$work->detail}}</td>
                                                             <td class="time">{{ $work->start_date }}</td>
                                                             <td class="time">{{ $work->end_date }}</td>
                                                     @endif
