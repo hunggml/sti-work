@@ -26,6 +26,8 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     Route::get('/edit-profile',[UserController::class,'edit'])->name('profile.edit');
     Route::post('/update-profile',[UserController::class,'update'])->name('profile.update');
     Route::get('/destroy-profile',[UserController::class,'destroy'])->name('profile.destroy');
+    // update avatar
+    Route::post('/update-avatar',[UserController::class,'updateAvatar'])->name('profile.update-avatar');
 
     // Staff
     Route::get('/staff-list',[ManagerController::class,'stafflist'])->name('staff.stafflist');

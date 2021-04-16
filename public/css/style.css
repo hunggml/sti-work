@@ -189,6 +189,8 @@ th {
     text-align: center !important;
     background-color: antiquewhite;
     border: solid black !important;
+    vertical-align: middle !important;
+    
 }
 
 tr {

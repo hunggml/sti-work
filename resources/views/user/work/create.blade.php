@@ -18,7 +18,7 @@
             <section class="content">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Thêm việc</h3>
+                        <h3 class="card-title">Thêm công việc</h3>
                     </div>
                     <div class="card-body" id="car-body">
                         <form action={{ route('work.store') }} method="post">

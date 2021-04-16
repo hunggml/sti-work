@@ -176,6 +176,25 @@ class UserController extends Controller
         return redirect()->route('profile.index');
     }
 
+    // update avatar
+    public function updateAvatar(Request $request){
+        $validatedData = $request->validate([
+            'image' => 'required',
+        ]);
+        $auth = Auth::user();
+        $avatar = User::Where('id',Auth::user()->id)->get();
+        // dd($avatar);
+        
+        $imageName = 'upload/' . time() . '.' . $request->image->extension();
+        $request->image->move(public_path('upload'), $imageName);
+        $avatar->image = $imageName;
+        $avatar = User::where('id',Auth::user()->id)->update([
+            'image' => $imageName,
+        ]);
+        toastr()->success('Cập nhật thành công');
+        return redirect()->back();
+    }
+
     /**
      * Remove the specified resource from storage.
      *

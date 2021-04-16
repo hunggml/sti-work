@@ -31,6 +31,20 @@
                         </div>
 
                     </div>
+                {{-- <ul>
+                    <!-- Language Dropdown Menu -->
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="flag-icon flag-icon-us"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right p-0">
+                        <a href="#" class="dropdown-item active">
+                            <i class="flag-icon flag-icon-us mr-2"></i> English
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="flag-icon flag-icon-vn mr-2"></i> Vietnamese
+                        </a>
+                    </div>
+                </ul> --}}
                 </div>
             </div>
         </div>
@@ -73,8 +87,12 @@
             <div class="image">
                 <a href=# class="btn btn-secondary dropdown-toggle " role="button" id="dropdownMenuLink"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-                    <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                    @if ($auth->image !=null)
+                        <img class="elevation-2" style=" height: 50px;width: 50px;border-radius: 50%;" alt="User Image" src='{{asset("$auth->image")}}'>
+                    @else
+                        <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                    @endif
+                    
                 </a>
                 <div class="dropdown-menu" style="position: fixed" aria-labelledby="dropdownMenuLink">
                     <a class="dropdown-item" href="{{ route('profile.index') }}" style="color: black">Hồ sơ</a>

@@ -5,6 +5,12 @@
     <p style="color: black">Người tiếp theo : {{ $secorndMetting->name }} </p>
 @endsection
 @section('content')
+<style>
+    /* img-user {
+        width: 100px !important;
+        height: 100px !important;
+    } */
+</style>
     <div class="wrapper">
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper"> 
@@ -15,6 +21,7 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
+                                    <th>Ảnh</th>
                                     <th>Tên nhân viên</th>
                                     <th>Công việc</th>
                                     <th>Ngày bắt đầu</th>
@@ -26,6 +33,13 @@
                                 @foreach ($users as $key => $value0)
                                     @if ($value0->work_count == 0)
                                         <tr>
+                                            @if ($value0->image == null)
+                                                    <td ></td>
+                                                @else
+                                                    <td>
+                                                        <img style="width: 100px;height:100px" class="img-user" src={{asset('/')}}{{$value0->image}} alt="user image">
+                                                    </td>    
+                                                @endif
                                             <td>
                                                 <p>{{ $value0->name }}</p>
                                                 @foreach ($array as $key3 => $arr)
@@ -43,15 +57,23 @@
                                 @foreach ($works->groupBy('user_id') as $key1 => $work)
                                     @foreach ($work as $key2 => $value)
                                         <tr>
+                                            
                                             @if ($key2 == 0)
-                                                <td rowspan="{{ $work->count() }}">
-                                                    <p>{{ $value->user->name }}</p>
-                                                    @foreach ($array as $key4 => $arr1)
-                                                        @if ($value->user_id == $key4)
-                                                            <p style="color: red"> {{ $arr1 }}</p>
-                                                        @endif
-                                                    @endforeach 
-                                                </td>
+                                                @if ($value->user->image == null)
+                                                    <td rowspan="{{ $work->count() }}"></td>
+                                                @else
+                                                    <td rowspan="{{ $work->count() }}">
+                                                        <img style="width: 100px;height:100px" src={{asset('/')}}{{$value->user->image}} alt="user image">
+                                                    </td>
+                                                @endif
+                                                    <td rowspan="{{ $work->count() }}">
+                                                        <p>{{ $value->user->name }}</p>
+                                                        @foreach ($array as $key4 => $arr1)
+                                                            @if ($value->user_id == $key4)
+                                                                <p style="color: red"> {{ $arr1 }}</p>
+                                                            @endif
+                                                        @endforeach 
+                                                    </td>
                                             @endif
                                             @if ($date->diffInDays($value->end_date, false) == 0)
                                                 <td class="check-time">{{$value->detail}}</td>

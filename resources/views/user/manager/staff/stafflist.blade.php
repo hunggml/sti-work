@@ -12,6 +12,7 @@
                         <table id="example1" class="table table-bordered table-striped ">
                             <thead>
                                 <tr>
+                                    <th>Ảnh</th>
                                     <th>Tên</th>
                                     <th>Số điện thoại</th>
                                     <th>Địa chỉ</th>
@@ -26,10 +27,15 @@
                                     @if ($value->first()->group_id == Auth::user()->group_id)
                                         @foreach ($value as $user)
                                             <tr>
-                                                <td>{{ $user->name }}</td>
-                                                <td>{{ $user->phone }}</td>
-                                                <td>{{ $user->address }}</td>
-                                                <td>{{ $user->email }}</td>
+                                                @if ($user->image == null)
+                                                    <td></td>
+                                                @else
+                                                    <td><img style="width: 100px;height:100px" class="img-user" src={{asset('/')}}{{$user->image}} alt="user image"></td>
+                                                @endif
+                                                    <td>{{ $user->name }}</td>
+                                                    <td>{{ $user->phone }}</td>
+                                                    <td>{{ $user->address }}</td>
+                                                    <td>{{ $user->email }}</td>
                                                 @if ($user->level == '1')
                                                     <td>Quản lý</td>
                                                 @else
