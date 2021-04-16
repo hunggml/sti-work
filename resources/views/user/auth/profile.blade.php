@@ -64,7 +64,7 @@
                                     @endif
                                 </a>
                                 <div class="dropdown-menu" style="position: fixed" data-toggle="modal" data-target="#exampleModal" aria-labelledby="dropdownMenuLink">
-                                    <a class="btn">Cập nhật ảnh đại diện</a>
+                                    <a class="btn"><i class="fas fa-images"></i> Cập nhật ảnh đại diện</a>
                                 </div>
                             </div>
                         </div>
