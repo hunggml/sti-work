@@ -89,7 +89,7 @@
                     @if ($auth->image !=null)
                         <img class="elevation-2" style=" height: 50px;width: 50px;border-radius: 50%;" alt="User Image" src='{{asset("$auth->image")}}'>
                     @else
-                        <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                        <img src="{{ asset('img/user.png') }}" class="img-circle elevation-2" alt="User Image">
                     @endif
                     
                 </a>

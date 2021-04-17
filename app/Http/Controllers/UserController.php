@@ -10,7 +10,9 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\UserInterface;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -176,21 +178,27 @@ class UserController extends Controller
         return redirect()->route('profile.index');
     }
 
+
     // update avatar
-    public function updateAvatar(Request $request){
+    public function uploadAvatar(Request $request){
         $validatedData = $request->validate([
             'image' => 'required',
         ]);
         $auth = Auth::user();
         $avatar = User::Where('id',Auth::user()->id)->get();
-        // dd($avatar);
+        $upload =  $request->file("image")->store("","google");
         
-        $imageName = 'upload/' . time() . '.' . $request->image->extension();
-        $request->image->move(public_path('upload'), $imageName);
-        $avatar->image = $imageName;
+        
+        $file = Storage::disk("google")->allFiles();
+        // dd($file);
+        $path = $file[0];
+        // dd($path);
+        $url = Storage::disk("google")->url($upload);
+        // dd($url);
         $avatar = User::where('id',Auth::user()->id)->update([
-            'image' => $imageName,
+            'image' => $url,
         ]);
+
         toastr()->success('Cập nhật thành công');
         return redirect()->back();
     }
@@ -249,4 +257,20 @@ class UserController extends Controller
             'rePassword' => 'required|same:newPassword',
         ]);
     }
+
+    // public function listImage(){
+    //     $dir = '/';
+    //     $recursive = true;
+    //     $contents = collect(Storage::cloud()->listContents($dir,$recursive));
+    //     return $contents; 
+    // }
+
+    // public function redData(){
+    //     $dir = '/';
+    //     $recursive = false;
+    //     $contents = collect(Storage::cloud()->listContents($dir));
+    //     dd($contents);
+    //     return view('user.auth.profile',compact('$contents')); 
+    // }
+   
 }

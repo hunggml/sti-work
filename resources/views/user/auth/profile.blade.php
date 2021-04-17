@@ -58,9 +58,9 @@
                                 <a href=# class="btn btn-secondary dropdown-toggle "  role="button" id="dropdownMenuLink"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @if ($auth->image != null)
-                                        <img class="img-circle elevation-2" style="width: 300px;height:300px" alt="User Image" src='{{asset("$auth->image")}}'>
+                                        <img class="img-circle elevation-2" style="width: 300px;height:300px" alt="User Image" src='{{$auth->image}}'>
                                     @else
-                                        <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" style="width: 300px;height:300px" alt="User Image">
+                                        <img src="{{ asset('img/user.png') }}" class="img-circle elevation-2" style="width: 300px;height:300px" alt="User Image">
                                     @endif
                                 </a>
                                 <div class="dropdown-menu" style="position: fixed" data-toggle="modal" data-target="#exampleModal" aria-labelledby="dropdownMenuLink">
@@ -91,7 +91,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <form action="{{route('profile.update-avatar')}}" method="post" enctype="multipart/form-data">
+              <form action="{{route('profile.upload-avatar')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <input  onchange="readURL(this);" type="file" name="image">
@@ -101,10 +101,10 @@
                     @enderror
                 </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-              <button type="submit" class="btn btn-primary">Lưu</button>
-            </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                    </div>
             </form>
           </div>
         </div>

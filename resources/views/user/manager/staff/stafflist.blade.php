@@ -29,11 +29,11 @@
                                             <tr>
                                                 @if ($user->image == null)
                                                     <td style="text-align: center">
-                                                        <img src="{{ asset('dist/img/user2-160x160.jpg') }}" style="width: 100px;height:100px;border-radius: 50%;" class="elevation-2" alt="User Image">
+                                                        <img src="{{ asset('img/user.png') }}" style="width: 50px;height:50px;border-radius: 50%;" class="elevation-2" alt="User Image">
                                                     </td>
                                                 @else
                                                     <td style="text-align: center">
-                                                        <img style="width: 100px;height:100px;border-radius: 50%;" class="img-user" src={{asset('/')}}{{$user->image}} alt="user image">
+                                                        <img style="width: 50px;height:50px;border-radius: 50%;" class="img-user" src={{$user->image}} alt="user image">
                                                     </td>
                                                 @endif
                                                     <td>{{ $user->name }}</td>

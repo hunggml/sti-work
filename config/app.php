@@ -162,6 +162,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         
+        // google drive
+        App\Providers\GoogleDriveServiceProvider::class,
 
         /*
          * Package Service Providers...

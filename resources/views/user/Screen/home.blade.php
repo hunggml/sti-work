@@ -35,11 +35,11 @@
                                         <tr>
                                             @if ($value0->image == null)
                                                     <td style="text-align: center">
-                                                        <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="elevation-2" style="width: 100px;height:100px;border-radius: 50%;" alt="User Image">
+                                                        <img src="{{ asset('img/user.png') }}" class="elevation-2" style="width: 50px;height:50px;border-radius: 50%;" alt="User Image">
                                                     </td>
                                                 @else
                                                     <td style="text-align: center">
-                                                        <img style="width: 100px;height:100px;border-radius: 50%;"  class="img-user" src={{asset('/')}}{{$value0->image}} alt="user image">
+                                                        <img style="width: 50px;height:50px;border-radius: 50%;"  class="img-user" src={{$value0->image}} alt="user image">
                                                     </td>    
                                                 @endif
                                             <td>
@@ -63,11 +63,11 @@
                                             @if ($key2 == 0)
                                                 @if ($value->user->image == null)
                                                     <td rowspan="{{ $work->count() }}" style="text-align: center">
-                                                        <img src="{{ asset('dist/img/user2-160x160.jpg') }}" style="width: 100px;height:100px;border-radius: 50%; text-align:center" class="elevation-2" alt="User Image">
+                                                        <img src="{{ asset('img/user.png') }}" style="width: 50px;height:50px;border-radius: 50%; text-align:center" class="elevation-2" alt="User Image">
                                                     </td>
                                                 @else
                                                     <td rowspan="{{ $work->count() }}" style="text-align: center">
-                                                        <img style="width: 100px;height:100px;border-radius: 50%;text-align:center" src={{asset('/')}}{{$value->user->image}} alt="user image">
+                                                        <img style="width: 50px;height:50px;border-radius: 50%;text-align:center" src={{$value->user->image}} alt="user image">
                                                     </td>
                                                 @endif
                                                     <td rowspan="{{ $work->count() }}">

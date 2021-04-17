@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,7 +30,7 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     Route::post('/update-profile',[UserController::class,'update'])->name('profile.update');
     Route::get('/destroy-profile',[UserController::class,'destroy'])->name('profile.destroy');
     // update avatar
-    Route::post('/update-avatar',[UserController::class,'updateAvatar'])->name('profile.update-avatar');
+    Route::post('/upload-avatar',[UserController::class,'uploadAvatar'])->name('profile.upload-avatar');
 
     // Staff
     Route::get('/staff-list',[ManagerController::class,'stafflist'])->name('staff.stafflist');
@@ -76,6 +79,10 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     Route::post('/changePass',[UserController::class,'updatePass'])->name('updatePass');
 
 });
+
+// Route::get('list-image',[UserController::class,'listImage']);
+// Route::get('read-image',[UserController::class,'redData']);
+
 
 // home
 Route::get('/', [HomeController::class,'index'])->name('trangchu');
