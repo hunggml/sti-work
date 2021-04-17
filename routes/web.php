@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ExportWorkController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ManagerController;
@@ -73,6 +74,11 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     Route::get('/work/un-hide/{id}',[WorkController::class,'restore'])->name('warehouse.restore');
     Route::get('/work-warehouse',[WorkController::class,'listWarehouse'])->name('warehouse.list');
     Route::get('/work-history',[WorkController::class,'history'])->name('work.history');
+
+    // export-import excel
+    Route::get('/export/work/{type}', [ExportWorkController::class,'exportWork']);
+    Route::get('/export/staff/{type}', [ExportWorkController::class,'exportStaff']);
+
 
     // Change password
     Route::get('/changePass',[UserController::class,'changePass'])->name('changePass');

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Response;
 use App\WorkHistoryEdit;
 
 class ManagerController extends Controller
-{
+{ 
     
     // danh sách nhân viên trong phòng ban
     public function stafflist(){
