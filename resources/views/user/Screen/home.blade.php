@@ -59,7 +59,6 @@
                                 @foreach ($works->groupBy('user_id') as $key1 => $work)
                                     @foreach ($work as $key2 => $value)
                                         <tr>
-                                            
                                             @if ($key2 == 0)
                                                 @if ($value->user->image == null)
                                                     <td rowspan="{{ $work->count() }}" style="text-align: center">

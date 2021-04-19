@@ -186,12 +186,13 @@ class UserController extends Controller
         ]);
         $auth = Auth::user();
         $avatar = User::Where('id',Auth::user()->id)->get();
-        $upload =  $request->file("image")->store("","google");
+        $imageName =  time() . '.' . $request->image->extension();
+        // $upload =  $request->file("image")->store("","google");
+        $upload =  Storage::disk("google")->putFileAs("",$request->file("image"),$imageName);
         
-        
-        $file = Storage::disk("google")->allFiles();
+        // $file = Storage::disk("google")->allFiles();
         // dd($file);
-        $path = $file[0];
+        // $path = $file[0];
         // dd($path);
         $url = Storage::disk("google")->url($upload);
         // dd($url);
