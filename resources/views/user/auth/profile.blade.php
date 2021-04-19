@@ -58,7 +58,7 @@
                                 <a href=# class="btn btn-secondary dropdown-toggle "  role="button" id="dropdownMenuLink"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @if ($auth->image != null)
-                                        <img class="img-circle elevation-2" style="width: 300px;height:300px" alt="User Image" src='{{$auth->image}}'>
+                                        <img class="img-circle elevation-2" style="width: 300px;height:300px" alt="User Image" src='{{asset("$auth->image")}}'>
                                     @else
                                         <img src="{{ asset('img/user.png') }}" class="img-circle elevation-2" style="width: 300px;height:300px" alt="User Image">
                                     @endif

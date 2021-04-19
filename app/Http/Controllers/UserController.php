@@ -186,20 +186,25 @@ class UserController extends Controller
         ]);
         $auth = Auth::user();
         $avatar = User::Where('id',Auth::user()->id)->get();
-        $imageName =  time() . '.' . $request->image->extension();
-        // $upload =  $request->file("image")->store("","google");
-        $upload =  Storage::disk("google")->putFileAs("",$request->file("image"),$imageName);
+        // $imageName =  time() . '.' . $request->image->extension();
+        // // $upload =  $request->file("image")->store("","google");
+        // $upload =  Storage::disk("google")->putFileAs("",$request->file("image"),$imageName);
         
-        // $file = Storage::disk("google")->allFiles();
-        // dd($file);
-        // $path = $file[0];
-        // dd($path);
-        $url = Storage::disk("google")->url($upload);
-        // dd($url);
+        // // $file = Storage::disk("google")->allFiles();
+        // // dd($file);
+        // // $path = $file[0];
+        // // dd($path);
+        // $url = Storage::disk("google")->url($upload);
+        // // dd($url);
+        // $avatar = User::where('id',Auth::user()->id)->update([
+        //     'image' => $url,
+        // ]);
+        $imageName = 'upload/' . time() . '.' . $request->image->extension();
+        $request->image->move(public_path('upload'), $imageName);
+        $avatar->image = $imageName;
         $avatar = User::where('id',Auth::user()->id)->update([
-            'image' => $url,
+            'image' => $imageName,
         ]);
-
         toastr()->success('Cập nhật thành công');
         return redirect()->back();
     }

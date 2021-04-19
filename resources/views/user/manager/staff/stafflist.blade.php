@@ -36,7 +36,7 @@
                                                     </td>
                                                 @else
                                                     <td style="text-align: center">
-                                                        <img style="width: 50px;height:50px;border-radius: 50%;" class="img-user" src={{$user->image}} alt="user image">
+                                                        <img style="width: 50px;height:50px;border-radius: 50%;" class="img-user" src={{asset($user->image)}} alt="user image">
                                                     </td>
                                                 @endif
                                                     <td>{{ $user->name }}</td>
