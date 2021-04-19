@@ -45,19 +45,29 @@ class HomeController extends Controller
         $user = User::all();
         // $work = Work::with('user')->where('check', '1')->where('status', 'Chưa hoàn thành')->first();
         $work = Work::all();
-        // dd($work);
+        // dd($work);   
+        foreach ($user as $key => $value) 
+        {
+            
+            foreach($work as $value0 ) 
+            {
+                // dd($value0);
+                // $progress = $value->progress;
+                if( $date->diffInDays($value0->end_date, false) < 0 && $value0->status == 'Chưa hoàn thành' && $value0->check == 1 && $value0->progress != 2 && $value->id == $value0->user_id )  
+                {            
+                     
+                    $user_progress = User::where('id',$value->id)->first();
 
-        // foreach ($user as $key => $value) { 
-        //     foreach($work as $value0) {
-        //         dd($value0);
-        //         if( $date->diffInDays($value0->end_date, false) < 0 && $value0->status == 'Chưa hoàn thành' && $value0->check == 1) {
-        //             User::where('id', $value->id)->update([
-        //                 'progress' => $value->progress + 1
-        //             ]);
-        //         }
-        //     }
-        // }
-
+                    User::where('id', $value->id)->update([
+                        'progress' => $user_progress->progress + 1
+                    ]);
+                    Work::where('id',$value0->id)->update([
+                        'progress' => 2
+                    ]);
+                }
+            }
+        }
+        
         $array = [];
         foreach ($user as $key => $value) {  
             $a = $value->progress;
