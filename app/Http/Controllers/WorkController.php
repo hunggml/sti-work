@@ -29,7 +29,7 @@ class WorkController extends Controller
         $date = Carbon::now();
         $date->startOfDay();
         $auth = Auth::user();
-        $work = Work::Where('user_id', Auth::user()->id)->where('hidden', '0')->get();
+        $work = Work::Where('user_id', Auth::user()->id)->where('hidden', '0')->orderBy('time_created', 'DESC')->get();
         return view('user.work.list', compact('work', 'auth', 'date'));
     }
 
@@ -117,10 +117,7 @@ class WorkController extends Controller
             return back();
         } else {
             if ($user->level == 1) {
-                if (
-                    $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Chưa hoàn thành' ||
-                    $date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Hoàn thành'
-                ) {
+                if ($date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Chưa hoàn thành') {
                     $this->validation($request);
                     $this->workInterface->StoreWorkHistory(
                         $works->id,
@@ -136,12 +133,74 @@ class WorkController extends Controller
                         $request->end_date,
                         $request->status,
                         1,
-                        $request->progress,
+                        $request->progress = 2,
                         $request->hidden,
                     );
                     User::where('id', $user->id)->update([
                         'progress' => $user->progress + 1
                     ]);
+                }
+                elseif($date->diffInDays(Carbon::create($request->end_date), false) >= 0 && $request->status == 'Chưa hoàn thành') {
+                    $this->validation($request);
+                    $this->workInterface->StoreWorkHistory(
+                        $works->id,
+                        $works->detail,
+                        $works->start_date,
+                        $works->end_date,
+                        $works->status,
+                    );
+                    $work = $this->workInterface->UpdateWork(
+                        $request->id,
+                        $request->detail,
+                        $request->start_date,
+                        $request->end_date,
+                        $request->status,
+                        1,
+                        $request->progress = 0,
+                        $request->hidden,
+                    );
+                }
+                elseif($date->diffInDays(Carbon::create($request->end_date), false) < 0 && $request->status == 'Hoàn thành') {
+                    $this->validation($request);
+                    $this->workInterface->StoreWorkHistory(
+                        $works->id,
+                        $works->detail,
+                        $works->start_date,
+                        $works->end_date,
+                        $works->status,
+                    );
+                    $work = $this->workInterface->UpdateWork(
+                        $request->id,
+                        $request->detail,
+                        $request->start_date,
+                        $request->end_date,
+                        $request->status,
+                        $request->check,
+                        $request->progress = 2,
+                        $request->hidden,
+                    );
+                    User::where('id', $user->id)->update([
+                        'progress' => $user->progress + 1
+                    ]);
+                }
+                elseif ($date->diffInDays(Carbon::create($request->end_date), false) >= 0 && $request->status == 'Hoàn thành') {
+                    $this->workInterface->StoreWorkHistory(
+                        $works->id,
+                        $works->detail,
+                        $works->start_date,
+                        $works->end_date,
+                        $works->status,
+                    );
+                    $work = $this->workInterface->UpdateWork(
+                        $request->id,
+                        $request->detail,
+                        $request->start_date,
+                        $request->end_date,
+                        $request->status,
+                        $request->check,
+                        $request->progress = 1,
+                        $request->hidden,
+                    );
                 } 
                 else {
                     $this->validation($request);
@@ -158,7 +217,7 @@ class WorkController extends Controller
                         $request->start_date,
                         $request->end_date,
                         $request->status,
-                        1,
+                        $request->check,
                         $request->progress,
                         $request->hidden,
                     );

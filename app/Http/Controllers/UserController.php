@@ -182,7 +182,7 @@ class UserController extends Controller
     // update avatar
     public function uploadAvatar(Request $request){
         $validatedData = $request->validate([
-            'image' => 'required',
+            'image' => 'required|image',
         ]);
         $auth = Auth::user();
         $avatar = User::Where('id',Auth::user()->id)->get();

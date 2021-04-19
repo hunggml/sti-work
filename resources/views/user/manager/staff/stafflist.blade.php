@@ -9,9 +9,9 @@
                         <h3 class="card-title">Danh sách nhân viên</h3>
                     </div>
                     <div class="card-body" id="car-body">
-                        <a href="{{ url('/home') }}/export/staff/xlsx" style="color: white;" class="btn btn-success mb-2">
+                        {{-- <a href="{{ url('/home') }}/export/staff/xlsx" style="color: white;" class="btn btn-success mb-2">
                             <i class="fas fa-download"></i> Xuất excel
-                        </a>
+                        </a> --}}
                         <table id="example1" class="table table-bordered table-striped ">
                             <thead>
                                 <tr>

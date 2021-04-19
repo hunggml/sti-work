@@ -2,14 +2,14 @@
     <!-- Left navbar links -->
     
     <div class="row">
-        <div class="col-md-4 mb-2">
+        <div class="col-md-5 mb-2">
             <a class="nav-link" data-widget="pushmenu" href="#" style="display: inline-block;padding:0" role="button"><i class="fas fa-bars"></i></a>
             <span id="time" class=" my-text" disabled></span>
         </div>
         <div class="col-md-5 mb-2">
             <div class="my-sologan">Sáng tạo - Triệt để - Cam kết</div>
         </div>
-        <div class="col-md-3 mb-2">
+        <div class="col-md-2 mb-2">
             <div class="row">
                 <div class="meeting col-9">
                     @yield('metting')

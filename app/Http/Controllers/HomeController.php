@@ -43,13 +43,29 @@ class HomeController extends Controller
             }
         }
         $user = User::all();
+        // $work = Work::with('user')->where('check', '1')->where('status', 'Chưa hoàn thành')->first();
+        $work = Work::all();
+        // dd($work);
+
+        // foreach ($user as $key => $value) { 
+        //     foreach($work as $value0) {
+        //         dd($value0);
+        //         if( $date->diffInDays($value0->end_date, false) < 0 && $value0->status == 'Chưa hoàn thành' && $value0->check == 1) {
+        //             User::where('id', $value->id)->update([
+        //                 'progress' => $value->progress + 1
+        //             ]);
+        //         }
+        //     }
+        // }
+
         $array = [];
-        foreach ($user as $key => $value) { 
+        foreach ($user as $key => $value) {  
             $a = $value->progress;
             if ($a != 0) {
                 $array[$value->id] = $a;
             }
         }
+        
         return view('user.Screen.home', compact('users', 'date', 'auth', 'works', 'metting', 'secorndMetting', 'array'));
     }
 

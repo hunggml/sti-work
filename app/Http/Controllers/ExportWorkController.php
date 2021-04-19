@@ -96,6 +96,7 @@ class ExportWorkController extends Controller
         $sheet->setCellValue('D1', 'end_date');
         $sheet->setCellValue('E1', 'status');
         $count = 2;
+        
         foreach ($works as $row) {
             $sheet->setCellValue('A' . $count, $row['id']);
             $sheet->setCellValue('B' . $count, $row['detail']);
