@@ -185,11 +185,19 @@ class UserController extends Controller
             'image' => 'required|image',
         ]);
         $auth = Auth::user();
-        $avatar = User::Where('id',Auth::user()->id)->get();
+        $avatar = User::Where('id',Auth::user()->id)->first();
+        $image = $avatar->image;
+        // dd($image);
+
+        // $image->move(public_path('delete_Image'),$image);
+        // Storage::move($image,'delete_Image/');
+        // File::move(public_path($image), public_path('delete_Image/'.'user_id:'.$auth->id));
+        File::delete($image);
+
+        // upload image drive
         // $imageName =  time() . '.' . $request->image->extension();
         // // $upload =  $request->file("image")->store("","google");
         // $upload =  Storage::disk("google")->putFileAs("",$request->file("image"),$imageName);
-        
         // // $file = Storage::disk("google")->allFiles();
         // // dd($file);
         // // $path = $file[0];
@@ -199,6 +207,8 @@ class UserController extends Controller
         // $avatar = User::where('id',Auth::user()->id)->update([
         //     'image' => $url,
         // ]);
+
+        // upload image public
         $imageName = 'upload/' . time() . '.' . $request->image->extension();
         $request->image->move(public_path('upload'), $imageName);
         $avatar->image = $imageName;
