@@ -13,9 +13,9 @@
                     <div class="card-body" id="car-body">
                         <a style="color: white" class="btn btn-primary mb-2" href={{ route('work.create') }}>Thêm việc
                         </a>
-                        {{-- <a href="{{ url('/home') }}/export/work/xlsx" style="color: white;" class="btn btn-success mb-2">
+                        <a href="{{ url('/home') }}/export/work/xlsx" style="color: white;" class="btn btn-success mb-2">
                             <i class="fas fa-download"></i> Xuất excel
-                        </a> --}}
+                        </a>
                         <a style="color: white;float:right !important" class="btn btn-secondary mb-2"
                             href={{ route('warehouse.list') }}>
                             <i class="fas fa-warehouse"></i> Lưu trữ

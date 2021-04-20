@@ -136,9 +136,6 @@ class WorkController extends Controller
                         $request->progress = 2,
                         $request->hidden,
                     );
-                    User::where('id', $user->id)->update([
-                        'progress' => $user->progress + 1
-                    ]);
                 }
                 elseif($date->diffInDays(Carbon::create($request->end_date), false) >= 0 && $request->status == 'Chưa hoàn thành') {
                     $this->validation($request);
@@ -179,9 +176,6 @@ class WorkController extends Controller
                         $request->progress = 2,
                         $request->hidden,
                     );
-                    User::where('id', $user->id)->update([
-                        'progress' => $user->progress + 1
-                    ]);
                 }
                 elseif ($date->diffInDays(Carbon::create($request->end_date), false) >= 0 && $request->status == 'Hoàn thành') {
                     $this->workInterface->StoreWorkHistory(
@@ -248,9 +242,6 @@ class WorkController extends Controller
                         2,
                         $request->hidden
                     );
-                    User::where('id', $user->id)->update([
-                        'progress' => $user->progress + 1
-                    ]);
                 } 
                 elseif ($date->diffInDays(Carbon::create($request->end_date), false) >= 0 && $request->status == 'Hoàn thành') {
                     $this->workInterface->StoreWorkHistory(
