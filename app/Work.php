@@ -19,7 +19,7 @@ class Work extends Model
     protected $table = 'works';
     // protected $dates = 'deleted_at';
     protected $fillable = [
-        'id','user_id','user_name','detail', 'start_date', 'end_date', 'status','check','progress','hidden'
+        'id','user_id','user_name','detail', 'start_date', 'end_date', 'status','check','progress','hidden',
     ];
 
 

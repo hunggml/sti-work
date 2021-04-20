@@ -14,19 +14,20 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
-class ExportWorkController extends Controller
+
+class ExportController extends Controller
 {
     // public function export($data,$name)
-	// {
-	// 	$fileType = IOFactory::identify(public_path('template\excels\unit_template.xlsx'));
+    // {
+    // 	$fileType = IOFactory::identify(public_path('excels\unit_template.xlsx'));
     //     //Load data
     //     $loadFile = IOFactory::createReader($fileType);
-    //     $file = $loadFile->load(public_path('template\excels\unit_template.xlsx'));
-	// 	$active_sheet = $file->getActiveSheet();
-	// 	$count = 6;
-		
-	// 		foreach($data as $row)
-	// 		{	 
+    //     $file = $loadFile->load(public_path('excels\unit_template.xlsx'));
+    // 	$active_sheet = $file->getActiveSheet();
+    // 	$count = 6;
+
+    // 		foreach($data as $row)
+    // 		{	 
     //             if($row->user_created == null){
     //                 $user_created = '';  
     //             }else{
@@ -37,15 +38,15 @@ class ExportWorkController extends Controller
     //             }else{
     //                 $user_updated = $row->user_updated->name;
     //             }
-	// 			$active_sheet->setCellValue('A' . $count, $row["ID"]);
-	// 			$active_sheet->setCellValue('B' . $count, $row["Name"]);
-	// 			$active_sheet->setCellValue('C' . $count, $row["Symbols"]);
-	// 			$active_sheet->setCellValue('D' . $count, $user_created);
-	// 			$active_sheet->setCellValue('E' . $count, $row["Time_Created"]);
-	// 			$active_sheet->setCellValue('F' . $count, $user_updated);
-	// 			$active_sheet->setCellValue('G' . $count, $row["Time_Updated"]);
-	// 			$active_sheet->setCellValue('H' . $count, $row["IsDelete"]);
-	// 			$styleArray = [
+    // 			$active_sheet->setCellValue('A' . $count, $row["ID"]);
+    // 			$active_sheet->setCellValue('B' . $count, $row["Name"]);
+    // 			$active_sheet->setCellValue('C' . $count, $row["Symbols"]);
+    // 			$active_sheet->setCellValue('D' . $count, $user_created);
+    // 			$active_sheet->setCellValue('E' . $count, $row["Time_Created"]);
+    // 			$active_sheet->setCellValue('F' . $count, $user_updated);
+    // 			$active_sheet->setCellValue('G' . $count, $row["Time_Updated"]);
+    // 			$active_sheet->setCellValue('H' . $count, $row["IsDelete"]);
+    // 			$styleArray = [
     //                 'borders' => [
     //                     'outline' => [
     //                         'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
@@ -54,7 +55,7 @@ class ExportWorkController extends Controller
     //                 ],
     //             ];
     //             $file->getActiveSheet()->getStyle('B6')->applyFromArray($styleArray);
-               
+
     //             // $file->getActiveSheet()->getStyle('A1')->getFont()->setBold(true);
     //             $file->getActiveSheet()
     //             ->duplicateStyle(
@@ -63,27 +64,27 @@ class ExportWorkController extends Controller
     //             );
     //             $file->getActiveSheet()->setAutoFilter('A5:H'.$count);
     //             $count = $count + 1;
-	// 		}
+    // 		}
 
-			
-	// 		$file->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
-	// 		$file->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
-	// 		$file->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
-	// 		$file->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
-	// 		$file->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
-	// 		$file->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
-	// 		$file->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
-	// 		$file->getActiveSheet()->getColumnDimension('H')->setAutoSize(true);
-	// 	$writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($file, 'Xlsx');
-	// 	$file_name = $name . '.' . strtolower('Xlsx');
-	// 	$writer->save($file_name);
-	// 	header('Content-Type: application/x-www-form-urlencoded');
-	// 	header('Content-Transfer-Encoding: Binary');
-	// 	header("Content-disposition: attachment; filename=\"".$file_name."\"");
-	// 	readfile($file_name);
-	// 	unlink($file_name);
-	// 	exit;
-	// }
+
+    // 		$file->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+    // 		$file->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+    // 		$file->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+    // 		$file->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+    // 		$file->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+    // 		$file->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+    // 		$file->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
+    // 		$file->getActiveSheet()->getColumnDimension('H')->setAutoSize(true);
+    // 	$writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($file, 'Xlsx');
+    // 	$file_name = $name . '.' . strtolower('Xlsx');
+    // 	$writer->save($file_name);
+    // 	header('Content-Type: application/x-www-form-urlencoded');
+    // 	header('Content-Transfer-Encoding: Binary');
+    // 	header("Content-disposition: attachment; filename=\"".$file_name."\"");
+    // 	readfile($file_name);
+    // 	unlink($file_name);
+    // 	exit;
+    // }
 
     public function exportWork($type)
     {
@@ -96,7 +97,7 @@ class ExportWorkController extends Controller
         $sheet->setCellValue('D1', 'end_date');
         $sheet->setCellValue('E1', 'status');
         $count = 2;
-        
+
         foreach ($works as $row) {
             $sheet->setCellValue('A' . $count, $row['id']);
             $sheet->setCellValue('B' . $count, $row['detail']);
@@ -113,8 +114,10 @@ class ExportWorkController extends Controller
         header("Content-Type: application/vnd.ms-excel");
         return redirect(url('/') . "/excels" . "/" . $fileName);
     }
+    
 
-    public function exportStaff($type){
+    public function exportStaff($type)
+    {
         $users = User::with('group')->get();
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
@@ -127,8 +130,8 @@ class ExportWorkController extends Controller
         $sheet->setCellValue('G1', 'level');
         $sheet->setCellValue('H1', 'group_id');
         $count = 2;
-        foreach ($users->groupBy('group_id') as $key => $value){
-            if($value->first()->group_id == Auth::user()->group_id){
+        foreach ($users->groupBy('group_id') as $key => $value) {
+            if ($value->first()->group_id == Auth::user()->group_id) {
                 foreach ($value as $row) {
                     $sheet->setCellValue('A' . $count, $row['id']);
                     $sheet->setCellValue('B' . $count, $row['name']);
@@ -142,7 +145,7 @@ class ExportWorkController extends Controller
                 }
             }
         }
-        
+
         $fileName = "Danh_sách_nhân_viên." . $type;
         if ($type == 'xlsx') {
             $writer = new Xlsx($spreadsheet);

@@ -20,11 +20,8 @@ class HomeController extends Controller
     public function index()
     {
         $auth = Auth::user();
-        $users = User::with(['work' => function ($q) {
-            return $q->where('check', '1')->where('status', 'Chưa hoàn thành');
-        }])->withCount(['work' => function ($a) {
-            return $a->where('check', '1')->where('status', 'Chưa hoàn thành');
-        }])->orderBy('work_count')->get();
+       
+        // $date = Carbon::create('2021-05-05');
         $date = Carbon::now();
         $date->startOfDay();
         $works = Work::with('user')->where('check', '1')->where('status', 'Chưa hoàn thành')->orderBy('end_date', 'ASC')->get();
@@ -46,36 +43,58 @@ class HomeController extends Controller
         // $work = Work::with('user')->where('check', '1')->where('status', 'Chưa hoàn thành')->first();
         $work = Work::all();
         // dd($work);   
-        foreach ($user as $key => $value) 
-        {
-            
-            foreach($work as $value0 ) 
-            {
+        foreach ($user as $key => $value) {
+
+            foreach ($work as $value0) {
+            // dd('run');
+
                 // dd($value0);
                 // $progress = $value->progress;
-                if( $date->diffInDays($value0->end_date, false) < 0 && $value0->status == 'Chưa hoàn thành' && $value0->check == 1 && $value0->progress != 2 && $value->id == $value0->user_id )  
-                {            
-                     
-                    $user_progress = User::where('id',$value->id)->first();
+                if ($value->date_work == null || $date->diffInDays($value->date_work, false) < 0) {
+                    if ($date->diffInDays($value0->end_date, false) < 0 && $value0->status == 'Chưa hoàn thành' && $value0->check == 1 && $value->id == $value0->user_id) {
+                        // dd('run');
+                        $user_progress = User::where('id', $value->id)->first();
 
-                    User::where('id', $value->id)->update([
-                        'progress' => $user_progress->progress + 1
-                    ]);
-                    Work::where('id',$value0->id)->update([
-                        'progress' => 2
-                    ]);
+                        User::where('id', $value->id)->update([
+                            'progress' => $user_progress->progress + 1,
+                            'date_work' => $date
+                        ]);
+                    }
                 }
+
+
+                // if ($date->diffInDays($value0->end_date, false) < 0 && $value0->status == 'Chưa hoàn thành' && $value0->check == 1 && $value0->progress != 2 && $value->id == $value0->user_id) {
+
+                //     $user_progress = User::where('id', $value->id)->first();
+
+                //     User::where('id', $value->id)->update([
+                //         'progress' => $user_progress->progress + 1
+                //     ]);
+                //     Work::where('id', $value0->id)->update([
+                //         'progress' => 2
+                //     ]);
+                // }
             }
         }
         
+        $users = User::with(['work' => function ($q) {
+            return $q->where('check', '1')->where('status', 'Chưa hoàn thành');
+        }])->withCount(['work' => function ($a) {
+            return $a->where('check', '1')->where('status', 'Chưa hoàn thành');
+        }])->orderBy('work_count')->get();
+        // dd($users->where('progress' ,'!=' , 0));
+
+
         $array = [];
-        foreach ($user as $key => $value) {  
+        foreach ($users as $key => $value) {
             $a = $value->progress;
             if ($a != 0) {
                 $array[$value->id] = $a;
             }
         }
+        // dd($array,$users->where('progress' ,'!=' , 0));
         
+
         return view('user.Screen.home', compact('users', 'date', 'auth', 'works', 'metting', 'secorndMetting', 'array'));
     }
 
@@ -87,15 +106,15 @@ class HomeController extends Controller
         $user = User::where('id', $request->id)->update([
             'metting' => $request->metting,
         ]);
-        
-        $users1 = User::where('metting','0')->get();
-        
+
+        $users1 = User::where('metting', '0')->get();
+
         $soluong1 = count($users1);
         if ($soluong1 == 0) {
             $user = User::where('id', '<>', '0')->update([
                 'metting' => 0,
             ]);
-            if($request->metting == 1){
+            if ($request->metting == 1) {
                 $user = User::where('id', $request->id)->update([
                     'metting' => $request->metting,
                 ]);
@@ -107,23 +126,21 @@ class HomeController extends Controller
     // notification
     public function notification()
     {
-        $works = Work::where('check',0)->where('status','Chưa hoàn thành')->get();
-        
+        $works = Work::where('check', 0)->where('status', 'Chưa hoàn thành')->get();
+
         $array = [];
-        foreach($works->groupBy('user_name') as $key=> $work)
-        {
-            
+        foreach ($works->groupBy('user_name') as $key => $work) {
+
             $a =  count($work);
-            $array[$key]= $a;
+            $array[$key] = $a;
         }
-        $users = User::where('metting',2)->get();
-        
+        $users = User::where('metting', 2)->get();
+
         $array1 = [];
-        foreach($users->groupBy('name') as $key1=> $user)
-        {
-            
+        foreach ($users->groupBy('name') as $key1 => $user) {
+
             $a1 =  count($user);
-            $array1[$key1]= $a1;
+            $array1[$key1] = $a1;
         }
         return response()->json([
             'data'  => $array,
@@ -203,4 +220,3 @@ class HomeController extends Controller
         //
     }
 }
-

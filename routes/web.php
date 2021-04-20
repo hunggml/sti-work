@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ExportWorkController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ManagerController;
@@ -76,8 +76,8 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     Route::get('/work-history',[WorkController::class,'history'])->name('work.history');
 
     // export-import excel
-    Route::get('/export/work/{type}', [ExportWorkController::class,'exportWork']);
-    Route::get('/export/staff/{type}', [ExportWorkController::class,'exportStaff']);
+    Route::get('/export/work/{type}', [ExportController::class,'exportWork']);
+    Route::get('/export/staff/{type}', [ExportController::class,'exportStaff']);
 
 
     // Change password

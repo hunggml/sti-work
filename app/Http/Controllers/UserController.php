@@ -64,7 +64,7 @@ class UserController extends Controller
         $name1 = array_diff($name,[""]);
         // dd($name1);
         if(count($name1) <= 2)
-        {
+        { 
             toastr()->error('Họ Và Tên Không Thỏa Mãn ( Họ_Tên Đệm_Tên');
             return redirect()->back();
         }
