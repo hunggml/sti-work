@@ -63,17 +63,17 @@ class HomeController extends Controller
                 }
 
 
-                // if ($date->diffInDays($value0->end_date, false) < 0 && $value0->status == 'Chưa hoàn thành' && $value0->check == 1 && $value0->progress != 2 && $value->id == $value0->user_id) {
+                elseif ($date->diffInDays($value0->end_date, false) < 0 && $value0->status == 'Chưa hoàn thành' && $value0->check == 1 && $value0->progress != 2 && $value->id == $value0->user_id) {
 
-                //     $user_progress = User::where('id', $value->id)->first();
+                    $user_progress = User::where('id', $value->id)->first();
 
-                //     User::where('id', $value->id)->update([
-                //         'progress' => $user_progress->progress + 1
-                //     ]);
-                //     Work::where('id', $value0->id)->update([
-                //         'progress' => 2
-                //     ]);
-                // }
+                    User::where('id', $value->id)->update([
+                        'progress' => $user_progress->progress + 1
+                    ]);
+                    Work::where('id', $value0->id)->update([
+                        'progress' => 2
+                    ]);
+                }
             }
         }
         

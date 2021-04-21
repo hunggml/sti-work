@@ -44,7 +44,7 @@
                                 <label>Ngày kết thúc</label>
                                 <input type="date" value="{{ old('end_date') }}"
                                     class="form-control" 
-                                    min ="{{ Carbon\Carbon::now()->format('Y-m-d') }}" 
+                                    {{-- min ="{{ Carbon\Carbon::now()->format('Y-m-d') }}"  --}}
                                     name="end_date"
                                     placeholder="Enter end date">
                                 @error('end_date')
