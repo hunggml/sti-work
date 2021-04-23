@@ -89,32 +89,47 @@ class ExportController extends Controller
     public function exportWork($type)
     {
         $works = Work::Where('user_id', Auth::user()->id)->get();
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1', 'id');
-        $sheet->setCellValue('B1', 'detail');
-        $sheet->setCellValue('C1', 'start_date');
-        $sheet->setCellValue('D1', 'end_date');
-        $sheet->setCellValue('E1', 'status');
+        // $spreadsheet = new Spreadsheet();
+        // $sheet = $spreadsheet->getActiveSheet();
+        $fileType = IOFactory::identify(public_path('excels/excel_template.xlsx'));
+        //Load data
+        $loadFile = IOFactory::createReader($fileType);
+        $file = $loadFile->load(public_path('excels/excel_template.xlsx'));
+    	$active_sheet = $file->getActiveSheet();
+        // $sheet->setCellValue('A1', 'id');
+        // $sheet->setCellValue('B1', 'detail');
+        // $sheet->setCellValue('C1', 'start_date');
+        // $sheet->setCellValue('D1', 'end_date');
+        // $sheet->setCellValue('E1', 'status');
+
+        $active_sheet->getColumnDimension('A')->setAutoSize(true);
+        $active_sheet->getColumnDimension('B')->setAutoSize(true);
+        $active_sheet->getColumnDimension('C')->setAutoSize(true);
+        $active_sheet->getColumnDimension('D')->setAutoSize(true);
+        $active_sheet->getColumnDimension('E')->setAutoSize(true);
         $count = 2;
+        $active_sheet->setAutoFilter('A1:E1');
 
         foreach ($works as $row) {
-            $sheet->setCellValue('A' . $count, $row['id']);
-            $sheet->setCellValue('B' . $count, $row['detail']);
-            $sheet->setCellValue('C' . $count, $row['start_date']);
-            $sheet->setCellValue('D' . $count, $row['end_date']);
-            $sheet->setCellValue('E' . $count, $row['status']);
+            $active_sheet->setCellValue('A' . $count, $row['id']);
+            $active_sheet->setCellValue('B' . $count, $row['detail']);
+            $active_sheet->setCellValue('C' . $count, $row['start_date']);
+            $active_sheet->setCellValue('D' . $count, $row['end_date']);
+            $active_sheet->setCellValue('E' . $count, $row['status']);
             $count++;
         }
+        
         $fileName = "Danh_sách_công_việc." . $type;
-        if ($type == 'xlsx') {
-            $writer = new Xlsx($spreadsheet);
-        }
+        // if ($type == 'xlsx') {
+        //     $writer = new Xlsx($spreadsheet);
+        // }
+        $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($file, 'Xlsx');
+    	// $file_name = $name . '.' . strtolower('Xlsx');
         $writer->save("excels/" . $fileName);
         header("Content-Type: application/vnd.ms-excel");
         return redirect(url('/') . "/excels" . "/" . $fileName);
     }
-    
+
 
     public function exportStaff($type)
     {

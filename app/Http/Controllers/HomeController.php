@@ -21,7 +21,7 @@ class HomeController extends Controller
     {
         $auth = Auth::user();
        
-        // $date = Carbon::create('2021-05-05');
+        // $date = Carbon::create('2021-05-10');
         $date = Carbon::now();
         $date->startOfDay();
         $works = Work::with('user')->where('check', '1')->where('status', 'Chưa hoàn thành')->orderBy('end_date', 'ASC')->get();
