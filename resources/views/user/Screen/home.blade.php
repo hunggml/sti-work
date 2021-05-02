@@ -46,7 +46,7 @@
                                                 <p>{{ $value0->name }}</p>
                                                 @foreach ($array as $key3 => $arr)
                                                     @if ($value0->id == $key3)
-                                                        @if ($value0 != 0)
+                                                        @if ($value0->progress != 0)
                                                             <p style="color: red">{{ $arr }}</p>
                                                         @endif
                                                     @endif

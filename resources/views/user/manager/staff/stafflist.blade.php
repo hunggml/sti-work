@@ -69,6 +69,9 @@
                                                     @endif
                                                     
                                                 </td>
+                                                @if ($auth->id == $user->id)
+                                                    <td></td>
+                                                @else
                                                 <td>
                                                     <a href="{{ route('staff.destroy', ['id' => $user->id]) }}"
                                                         class="btn btn-danger"
@@ -77,6 +80,7 @@
                                                         Xoá nhân viên
                                                     </a>
                                                 </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     @endif
