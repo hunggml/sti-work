@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImportController;
 use App\Http\Controllers\ManagerController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -76,9 +77,11 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     Route::get('/work-history',[WorkController::class,'history'])->name('work.history');
 
     // export-import excel
-    Route::get('/export/work/{type}', [ExportController::class,'exportWork']);
+    Route::get('/export/work/xlsx', [ExportController::class,'exportWork'])->name('exportWork');
     Route::get('/export/staff/{type}', [ExportController::class,'exportStaff']);
 
+    // import excel
+    Route::post('/spreadsheet/import',[ImportController::class,'importGroup'])->name('import.Group');
 
     // Change password
     Route::get('/changePass',[UserController::class,'changePass'])->name('changePass');

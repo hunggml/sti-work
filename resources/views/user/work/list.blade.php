@@ -16,10 +16,14 @@
                         {{-- <a href="{{ url('/home') }}/export/work/xlsx" style="color: white;" class="btn btn-success mb-2">
                             <i class="fas fa-download"></i> Xuất excel
                         </a> --}}
+                        {{-- <a href="{{ route('exportWork')}}" style="color: white;" class="btn btn-success mb-2">
+                            <i class="fas fa-download"></i> Xuất excel
+                        </a> --}}
                         <a style="color: white;float:right !important" class="btn btn-secondary mb-2"
                             href={{ route('warehouse.list') }}>
                             <i class="fas fa-warehouse"></i> Lưu trữ
                         </a>
+
                         <table id="worktable" class="table table-bordered table-striped ">
                             <thead>
                                 <tr>
@@ -47,7 +51,7 @@
                                         <tr>
                                             <td>{{ ++$key }}</td>
                                             @if ($date->diffInDays($value->end_date, false) == 0 && $value->status == 'Chưa hoàn thành')
-                                                <td class="check-time">{{$value->detail}}</td>
+                                                <td class="check-time">{{ $value->detail }}</td>
                                                 <?php
                                                 $start_date = strtotime($value->start_date);
                                                 $end_date = strtotime($value->end_date);
@@ -56,15 +60,15 @@
                                                 <td class="check-time time">{{ date('d-m-Y', $end_date) }}</td>
                                             @elseif ($date->diffInDays($value->end_date,false) < 0 && $value->status
                                                     =='Chưa hoàn thành')
-                                                    <td class="check-timeOut">{{$value->detail}}</td>
+                                                    <td class="check-timeOut">{{ $value->detail }}</td>
                                                     <?php
                                                     $start_date = strtotime($value->start_date);
                                                     $end_date = strtotime($value->end_date);
                                                     ?>
                                                     <td class="check-timeOut time">{{ date('d-m-Y', $start_date) }}</td>
                                                     <td class="check-timeOut time">{{ date('d-m-Y', $end_date) }}</td>
-                                            @else
-                                                    <td>{{$value->detail}}</td>
+                                                @else
+                                                    <td>{{ $value->detail }}</td>
                                                     <?php
                                                     $start_date = strtotime($value->start_date);
                                                     $end_date = strtotime($value->end_date);
@@ -101,12 +105,17 @@
                                             </td>
                                         </tr>
                                     @endif
+
                                 @endforeach
                             </tbody>
                             <tfoot>
 
                             </tfoot>
                         </table>
+                        <p>
+                            {{ $work->links() }}
+
+                        </p>
                     </div>
                     <!-- /.card-body -->
                 </div>

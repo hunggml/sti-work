@@ -142,7 +142,7 @@ class ManagerController extends Controller
             $id->delete();
         }
         toastr()->success('Xoá nhân viên thành công');
-        return redirect()->route('staff.list');
+        return redirect()->route('staff.stafflist');
     }
 
     

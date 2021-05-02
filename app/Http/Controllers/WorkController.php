@@ -29,7 +29,7 @@ class WorkController extends Controller
         $date = Carbon::now();
         $date->startOfDay();
         $auth = Auth::user();
-        $work = Work::Where('user_id', Auth::user()->id)->where('hidden', '0')->orderBy('time_created', 'DESC')->get();
+        $work = Work::Where('user_id', Auth::user()->id)->where('hidden', '0')->orderBy('time_created', 'DESC')->paginate(10);
         return view('user.work.list', compact('work', 'auth', 'date'));
     }
 
