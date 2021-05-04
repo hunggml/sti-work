@@ -8,83 +8,56 @@ use App\Work;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpSpreadsheet\Style;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\IOFactory;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class ImportController extends Controller
 {
 
+    public function readFile(Request $request)
+    {
+        $file     = request()->file('import');
+        $name     = $file->getClientOriginalName();
+        $arr      = explode('.', $name);
+        $fileName = strtolower(end($arr));
+        // dd($file, $name, $arr, $fileName);
+        if ($fileName != 'xlsx' && $fileName != 'xls') {
+            // dd('run');
+            toastr()->error('File import phải là định dạng .xlsx hoặc .xls');
+            return redirect()->route('group.list');
+        } else if ($fileName == 'xls') {
+            $reader  = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+            $spreadsheet = $reader->load($file);
+            $data        = $spreadsheet->getActiveSheet()->toArray();
+        } else if ($fileName == 'xlsx') {
+            $reader  = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            $spreadsheet = $reader->load($file);
+            $data        = $spreadsheet->getActiveSheet()->toArray();
+            // dd($data);
+        }
+        // dd($data);
+        return $data;
+    }
+
     public function importGroup(Request $request)
     {
-        // $title = "Import Spreadsheet";
-        // $template = url('documents/template-users.xlsx');
-        $groups = Group::all();
-        $array_id = [];
-        foreach($groups as $value) {
-            $array_id[] = $value->id;
+        
+        $data = $this->readFile($request);
+        // dd($data);
+        $dataGroups = array();
+        foreach ($data as $key => $value) {
+            // dd($data);
+            $arr = [
+                'name' => $value[0],
+            ];
+            array_push($dataGroups, $arr);
         }
-        if ($_POST) {
-            $request->validate([
-                'import' => 'required|mimes:xlsx|max:10000'
-            ]);
-            $file = $request->file('import');
-            $name = time() . '.xlsx';
-            $path = public_path('documents' . DIRECTORY_SEPARATOR);
-
-            if ($file->move($path, $name)) {
-                $inputFileName = $path . $name;
-                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-                $reader->setReadDataOnly(true);
-                // $reader->setLoadSheetsOnly(["Sheet1"]);
-
-                $spreadSheet = $reader->load($inputFileName);
-                $workSheet = $spreadSheet->getActiveSheet();
-                $workSheet2 = $spreadSheet->getActiveSheet()->toArray();
-                dd($workSheet2);
-                // dd(count($workSheet2)+1);
-                $startRow = 2;
-                $columns = [
-                    "A" => "id",
-                    "B" => "name"
-                ];
-                $data_insert = [];
-                for ($i = $startRow; $i < count($workSheet2)+1; $i++) {
-                    $id = $workSheet->getCell("A" . $i)->getValue();
-                    if (empty($id) || !is_numeric($id)) continue;
-
-                    if($workSheet->getCell("A" . $i)->getValue() == null) {
-                        toastr()->error('Id không được để trống');
-                        return redirect()->route('group.list');
-                    }
-                    if($workSheet->getCell("B" . $i)->getValue() == null) {
-                        toastr()->error('Tên group không được để trống');
-                        return redirect()->route('group.list');
-                    }
-
-                    $data_row = [];
-                    foreach ($columns as $col => $field) {
-                        $val = $workSheet->getCell($col . $i)->getValue();
-                        $data_row[$field] = $val;
-                    }
-                    if(in_array($id,$array_id)) {
-                        toastr()->error('Id : '.$id.' đã tồn tại, import không thành công');
-                        return redirect()->route('group.list');
-                    }
-                    else {
-                        $data_insert[] = $data_row;
-                    }
-                  
-                }
-                // DB::table('groups')->truncate();
-                DB::table('groups')->insert($data_insert);
-                toastr()->success('import thành công');
-                return redirect()->route('group.list');
-            }
-        }
+        // dd($dataGroups);
+        DB::table('groups')->insert($dataGroups);
+        toastr()->success('import thành công');
+        return redirect()->route('group.list');
     }
 }

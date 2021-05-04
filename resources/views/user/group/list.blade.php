@@ -32,7 +32,7 @@
                             <tbody>
                                 @foreach ($groups as $key => $group)
                                     <tr>
-                                        <td>{{ $group->id }}</td>
+                                        <td>{{ ++$key }}</td>
                                         <td>{{ $group->name }}</td>
                                         <td><a class="btn btn-success edit"
                                                 href="{{ route('group.edit', ['id' => $group->id]) }}">

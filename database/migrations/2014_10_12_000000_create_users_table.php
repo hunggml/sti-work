@@ -28,6 +28,10 @@ class CreateUsersTable extends Migration
             $table->softDeletes()->nullable();
             $table->string('level');
             $table->string('group_id');
+            $table->integer('metting')->nullable();
+            $table->integer('progress')->nullable();
+            $table->string('image')->nullable();
+            $table->string('date_work')->nullable();
 
         });
     }

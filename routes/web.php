@@ -31,6 +31,9 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     Route::get('/edit-profile',[UserController::class,'edit'])->name('profile.edit');
     Route::post('/update-profile',[UserController::class,'update'])->name('profile.update');
     Route::get('/destroy-profile',[UserController::class,'destroy'])->name('profile.destroy');
+
+    // choice group
+    // Route::post('/update-group',[UserController::class,'choiceGroup'])->name('profile.choice-group');
     // update avatar
     Route::post('/upload-avatar',[UserController::class,'uploadAvatar'])->name('profile.upload-avatar');
 
@@ -78,7 +81,6 @@ Route::middleware('auth')->prefix('/home')->group(function(){
 
     // export-import excel
     Route::get('/export/work/xlsx', [ExportController::class,'exportWork'])->name('exportWork');
-    Route::get('/export/staff/{type}', [ExportController::class,'exportStaff']);
 
     // import excel
     Route::post('/spreadsheet/import',[ImportController::class,'importGroup'])->name('import.Group');
@@ -91,7 +93,6 @@ Route::middleware('auth')->prefix('/home')->group(function(){
 
 // Route::get('list-image',[UserController::class,'listImage']);
 // Route::get('read-image',[UserController::class,'redData']);
-
 
 // home
 Route::get('/', [HomeController::class,'index'])->name('trangchu');
