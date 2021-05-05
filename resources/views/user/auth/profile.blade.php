@@ -64,9 +64,9 @@
                                         <i class="far fa-edit"></i> Cập nhật hồ sơ</a>
                                     <a href={{ route('changePass') }} class="btn btn-primary" style="color: white">
                                         <i class="fas fa-exchange-alt"></i> Đổi mật khẩu</a>
-                                    {{-- <a class="btn btn-success" data-toggle="modal" data-target="#groupModal"
+                                    <a style="color: white" class="btn btn-success" data-toggle="modal" data-target="#groupModal"
                                         aria-labelledby="dropdownMenuLink">
-                                        <i class="far fa-edit"></i> Chọn phòng ban</a> --}}
+                                        <i class="far fa-edit"></i> Chọn phòng ban</a>
                                     <hr>
                                     <a href={{ route('home') }} class="btn btn-danger"><i class="fas fa-times"></i>
                                         Đóng</a>
@@ -134,7 +134,7 @@
     </div>
 
     {{-- modal choice group --}}
-    {{-- <div class="modal fade" id="groupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="groupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -164,7 +164,7 @@
                 </form>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <script>
         function readURL(input) {

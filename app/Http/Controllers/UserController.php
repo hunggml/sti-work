@@ -169,7 +169,7 @@ class UserController extends Controller
     // update group
     public function choiceGroup(Request $request)
     {
-        dd('run');
+        // dd('run');
         DB::table('users', Auth::user()->id)->where('id', Auth::user()->id)->update([
             'group_id' => $request->group_id,
         ]);

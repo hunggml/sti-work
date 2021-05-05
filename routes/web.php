@@ -33,7 +33,7 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     Route::get('/destroy-profile',[UserController::class,'destroy'])->name('profile.destroy');
 
     // choice group
-    // Route::post('/update-group',[UserController::class,'choiceGroup'])->name('profile.choice-group');
+    Route::post('/choice-group',[UserController::class,'choiceGroup'])->name('profile.choice-group');
     // update avatar
     Route::post('/upload-avatar',[UserController::class,'uploadAvatar'])->name('profile.upload-avatar');
 
