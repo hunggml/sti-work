@@ -125,6 +125,7 @@
                             <p>Danh sách công việc</p>
                         </a>
                     </li>
+                    @if ($auth->level >= 1)
                     <li>
                         <a href={{ route('work.index') }}
                             class="nav-link {{ request()->routeIs('work*') ? 'active font-weight-bolder' : '' }}">
@@ -132,6 +133,8 @@
                             <p>Công việc cá nhân</p>
                         </a>
                     </li>
+                    @endif
+                    
                     @if ($auth->level <= 1)
                         <li class="nav-item has-treeview ">
                             <a href="#" class="nav-link {{ request()->routeIs('staff*','check*','group*','statistical*','chart*') ? 'active font-weight-bolder' : '' }}">

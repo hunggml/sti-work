@@ -13,28 +13,31 @@ use Illuminate\Support\Facades\Response;
 use App\WorkHistoryEdit;
 
 class ManagerController extends Controller
-{ 
-    
+{
+
     // danh sách nhân viên trong phòng ban
-    public function stafflist(){
+    public function stafflist()
+    {
         $auth = Auth::user();
         $users = User::with('group')->get();
-        
-        return view('user.manager.staff.stafflist',compact('users','auth'));
+
+        return view('user.manager.staff.stafflist', compact('users', 'auth'));
     }
 
 
 
     // view edit level + phòng ban của nhân viên
-    public function editLevel(Request $request){
+    public function editLevel(Request $request)
+    {
         $auth = Auth::user();
         $groups = Group::all();
-        $user = User::findOrFail($request -> id);
-        return view('user.manager.staff.editLevel', compact('user','auth','groups'));
+        $user = User::findOrFail($request->id);
+        return view('user.manager.staff.editLevel', compact('user', 'auth', 'groups'));
     }
 
     // cập nhật phòng bàn + level của nhân viên
-    public function updateLevel(Request $request){
+    public function updateLevel(Request $request)
+    {
         $user = User::findOrFail($request->id);
         $user = DB::table('users', $request->id)->where('id', $request->id)->update([
             'level' => $request->level,
@@ -43,17 +46,17 @@ class ManagerController extends Controller
         // $user->save();
         toastr()->success('Cập nhật thành công');
         return redirect()->route('staff.stafflist');
-        
     }
 
     // list thống kê của nhân viên
-    public function statistical(){
+    public function statistical()
+    {
         $users = User::with('work')->paginate(5);
         $auth = Auth::user();
         $date = Carbon::now();
         $date->startOfDay();
         $works = Work::all();
-        return view('user.manager.statistical.statistical',compact('auth','date','works','users'));
+        return view('user.manager.statistical.statistical', compact('auth', 'date', 'works', 'users'));
     }
 
     //lịch sử update work của nhân viên
@@ -68,12 +71,13 @@ class ManagerController extends Controller
 
 
     // bar chart
-    public function chart(){
+    public function chart()
+    {
         $auth = Auth::user();
-        $users = User::with('work')->get(); 
+        $users = User::with('work')->get();
         // dd($users);
         // return Response::json($users);
-        return view('user.manager.chart.chart',compact('auth'));
+        return view('user.manager.chart.chart', compact('auth'));
     }
 
     // list công việc của nhân viên trong phòng ban
@@ -86,33 +90,36 @@ class ManagerController extends Controller
         return view('user.manager.work.listworkofStaff', compact('work', 'auth', 'date'));
     }
 
- 
+
     // view list công việc cần phải xác nhận
-    public function listWorkCheck(){
+    public function listWorkCheck()
+    {
         $date = Carbon::now();
         $date->startOfDay();
         $users = User::with(['work' => function ($q) {
             return $q->where('check', '0')->where('status', 'Chưa hoàn thành');
         }])->withCount(['work' => function ($a) {
             return $a->where('check', '0')->where('status', 'Chưa hoàn thành');
-        }])->orderBy('work_count','DESC')->get();
+        }])->orderBy('work_count', 'DESC')->get();
         $works = Work::where('check', '0')->where('status', 'Chưa hoàn thành')->orderBy('end_date', 'DESC')->get();
         // dd($user);
         $auth = Auth::user();
-        return view('user.manager.work.workcheck', compact('users', 'auth', 'date','works'));
+        return view('user.manager.work.workcheck', compact('users', 'auth', 'date', 'works'));
     }
 
-    
+
     // view check công việc + xác nhận công việc của nhân viên
-    public function editWorkCheck(Request $request){
+    public function editWorkCheck(Request $request)
+    {
         $auth = Auth::user();
         $work = Work::findOrFail($request->id);
-        return view('user.manager.work.editwork', compact('work','auth'));
+        return view('user.manager.work.editwork', compact('work', 'auth'));
     }
 
-    
+
     // cập nhật trạng thái(xác nhận) + công việc của nhân viên
-    public function updateWorkCheck(Request $request){
+    public function updateWorkCheck(Request $request)
+    {
         $this->validation($request);
         $work = Work::findOrFail($request->id);
         $work->fill($request->all());
@@ -123,7 +130,8 @@ class ManagerController extends Controller
 
 
     // xoá công việc của nhân viên
-    public function deleteWorkCheck(Request $request){
+    public function deleteWorkCheck(Request $request)
+    {
         $work = Work::findOrFail($request->id);
         $work->delete();
         toastr()->success('Xoá công việc thành công');
@@ -137,17 +145,18 @@ class ManagerController extends Controller
         $user = User::findOrFail($request->id);
         $user->delete();
         $works = Work::Where('user_id', $user->id)->get();
-        foreach($works as $work){
-            $id = Work::Where('id',$work->id)->first();
+        foreach ($works as $work) {
+            $id = Work::Where('id', $work->id)->first();
             $id->delete();
         }
         toastr()->success('Xoá nhân viên thành công');
         return redirect()->route('staff.stafflist');
     }
 
-    
-    public function validation(Request $request){
-        return $this->validate($request,[
+
+    public function validation(Request $request)
+    {
+        return $this->validate($request, [
             'detail' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
@@ -159,8 +168,14 @@ class ManagerController extends Controller
     {
         $auth = Auth::user();
         $users = User::with('group')->get();
-        
-        return view('admin.manager.staff.stafflist',compact('users','auth'));
+        // $user = User::where('id', $auth->id)->first();
+        // if ($user->level > 0) {
+        //     return view('admin.pageNotFound.404');
+        // } else {
+        //     return view('admin.manager.staff.stafflist', compact('users', 'auth'));
+        // }
+        return view('admin.manager.staff.stafflist', compact('users', 'auth'));
+
     }
 
     public function adminWorkCheck()
@@ -171,12 +186,10 @@ class ManagerController extends Controller
             return $q->where('check', '0')->where('status', 'Chưa hoàn thành');
         }])->withCount(['work' => function ($a) {
             return $a->where('check', '0')->where('status', 'Chưa hoàn thành');
-        }])->orderBy('work_count','DESC')->get();
+        }])->orderBy('work_count', 'DESC')->get();
         $works = Work::where('check', '0')->where('status', 'Chưa hoàn thành')->orderBy('end_date', 'DESC')->get();
         // dd($users);
         $auth = Auth::user();
-        return view('admin.manager.work.workcheck', compact('users', 'auth', 'date','works'));
+        return view('admin.manager.work.workcheck', compact('users', 'auth', 'date', 'works'));
     }
-
-    
 }
