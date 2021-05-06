@@ -16,7 +16,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
     {{-- Toastr --}}
-    <link rel="stylesheet" type="text/css" href="https://.cdnjscloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
+    {{-- <link rel="stylesheet" type="text/css" href="https://.cdnjscloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css"> --}}
     @toastr_css
     {{-- css/style --}}
     <link rel="stylesheet" href="{{asset('css/style.css')}}">

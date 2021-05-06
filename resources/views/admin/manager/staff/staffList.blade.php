@@ -23,26 +23,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users->groupBy('group_id') as $key => $value)
-                                    @if ($value->first()->group_id == Auth::user()->group_id)
-                                        @foreach ($value as $user)
-                                        @if ($user->level == 0)
-                                            <tr hidden></tr>
-                                        @else
+                                @foreach ($users as $key => $user)
+                                    @if ($user->level == 0)
+                                        <tr hidden></tr>
+                                    @else
                                         <tr>
                                             @if ($user->image == null)
                                                 <td style="text-align: center">
-                                                    <img src="{{ asset('img/user.png') }}" style="width: 50px;height:50px;border-radius: 50%;" class="elevation-2" alt="User Image">
+                                                    <img src="{{ asset('img/user.png') }}"
+                                                        style="width: 50px;height:50px;border-radius: 50%;"
+                                                        class="elevation-2" alt="User Image">
                                                 </td>
                                             @else
                                                 <td style="text-align: center">
-                                                    <img style="width: 50px;height:50px;border-radius: 50%;" class="img-user" src={{asset($user->image)}} alt="user image">
+                                                    <img style="width: 50px;height:50px;border-radius: 50%;"
+                                                        class="img-user" src={{ asset($user->image) }} alt="user image">
                                                 </td>
                                             @endif
-                                                <td>{{ $user->name }}</td>
-                                                <td>{{ $user->phone }}</td>
-                                                <td>{{ $user->address }}</td>
-                                                <td>{{ $user->email }}</td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->phone }}</td>
+                                            <td>{{ $user->address }}</td>
+                                            <td>{{ $user->email }}</td>
                                             @if ($user->level == '1')
                                                 <td>Quản lý</td>
                                             @else
@@ -57,34 +58,33 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href={{route('staff.listwork',['id'=>$user->id])}} class="btn btn-success ">
+                                                <a href={{ route('staff.listwork', ['id' => $user->id]) }}
+                                                    class="btn btn-success ">
                                                     <i class="fas fa-briefcase"></i> Công việc
                                                 </a>
-                                            </td> 
+                                            </td>
                                             <td>
                                                 @if ($user->metting == 0)
-                                                <a class="btn btn-success edit" href= '{{route('metting',['metting' => 1, 'id' => $user->id ])}}'>
-                                                    <i class="fas fa-walking"></i> Điều công tác
-                                                </a>
+                                                    <a class="btn btn-success edit"
+                                                        href='{{ route('metting', ['metting' => 1, 'id' => $user->id]) }}'>
+                                                        <i class="fas fa-walking"></i> Điều công tác
+                                                    </a>
                                                 @endif
-                                                
+
                                             </td>
                                             @if ($auth->id == $user->id)
                                                 <td></td>
                                             @else
-                                            <td>
-                                                <a href="{{ route('staff.destroy', ['id' => $user->id]) }}"
-                                                    class="btn btn-danger"
-                                                    onclick="return confirm('Bạn có chắc là muốn xoá không?')">
-                                                    <i class="far fa-trash-alt"></i>
-                                                    Xoá nhân viên
-                                                </a>
-                                            </td>
+                                                <td>
+                                                    <a href="{{ route('staff.destroy', ['id' => $user->id]) }}"
+                                                        class="btn btn-danger"
+                                                        onclick="return confirm('Bạn có chắc là muốn xoá không?')">
+                                                        <i class="far fa-trash-alt"></i>
+                                                        Xoá nhân viên
+                                                    </a>
+                                                </td>
                                             @endif
                                         </tr>
-                                        @endif
-                                            
-                                        @endforeach
                                     @endif
                                 @endforeach
                             </tbody>

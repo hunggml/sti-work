@@ -22,37 +22,42 @@
                             <tbody>
                                 @foreach ($users as $key => $user)
                                     @foreach ($user->work as $key1 => $value)
-                                        @if ($value->detail !== null)
-                                            <tr>
-                                                @if ($key1 == 0)
-                                                    <td rowspan="{{ $user->work->count() }}">
-                                                        {{ $user->name }}
-                                                    </td>
-                                                @endif
-                                                <td>{{ $value->detail }}</td>
-                                                <td>{{ $value->time_updated }}</td>
-                                                <td>{{ $value->end_date }}</td>
-                                                @if ($value->progress == 2)
-                                                    <td class="out-time">Quá hạn</td>
-                                                @elseif ($value->progress == 1)
-                                                    <td class="on-time">Đúng hạn</td>
-                                                @else
-                                                    <td>Chưa đến hạn</td>
-                                                @endif
-                                            </tr>
+                                        @if ($user->level == 0)
+                                            <tr hidden></tr>
                                         @else
-                                            <tr>
-                                                @if ($key1 == 0)
-                                                    <td rowspan="{{ $user->work->count() }}">
-                                                        {{ $user->name }}
-                                                    </td>
-                                                @endif
-                                                <td hidden></td>
-                                                <td hidden></td>
-                                                <td hidden></td>
-                                                <td hidden></td>
-                                            </tr>
+                                            @if ($value->detail !== null)
+                                                <tr>
+                                                    @if ($key1 == 0)
+                                                        <td rowspan="{{ $user->work->count() }}">
+                                                            {{ $user->name }}
+                                                        </td>
+                                                    @endif
+                                                    <td>{{ $value->detail }}</td>
+                                                    <td>{{ $value->time_updated }}</td>
+                                                    <td>{{ $value->end_date }}</td>
+                                                    @if ($value->progress == 2)
+                                                        <td class="out-time">Quá hạn</td>
+                                                    @elseif ($value->progress == 1)
+                                                        <td class="on-time">Đúng hạn</td>
+                                                    @else
+                                                        <td>Chưa đến hạn</td>
+                                                    @endif
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    @if ($key1 == 0)
+                                                        <td rowspan="{{ $user->work->count() }}">
+                                                            {{ $user->name }}
+                                                        </td>
+                                                    @endif
+                                                    <td hidden></td>
+                                                    <td hidden></td>
+                                                    <td hidden></td>
+                                                    <td hidden></td>
+                                                </tr>
+                                            @endif
                                         @endif
+
                                     @endforeach
                                 @endforeach
                             </tbody>

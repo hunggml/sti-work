@@ -132,7 +132,7 @@
                             <p>Công việc cá nhân</p>
                         </a>
                     </li>
-                    @if ($auth->level == 1)
+                    @if ($auth->level <= 1)
                         <li class="nav-item has-treeview ">
                             <a href="#" class="nav-link {{ request()->routeIs('staff*','check*','group*','statistical*','chart*') ? 'active font-weight-bolder' : '' }}">
                                 <i class="fas fa-tasks"></i>
@@ -142,6 +142,29 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
+                                @if ($auth->level == 0)
+                                <li class="nav-item">
+                                    <a href={{ route('staff.adminStaffList') }}
+                                        class="nav-link {{ request()->routeIs('staff*') ? 'active font-weight-bolder' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Danh sách nhân viên</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href={{ route('check.adminCheckList') }}
+                                        class="nav-link {{ request()->routeIs('check*') ? 'active font-weight-bolder' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Xác nhận công việc</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href={{ route('group.list') }}
+                                        class="nav-link {{ request()->routeIs('group*') ? 'active font-weight-bolder' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Phòng ban</p>
+                                    </a>
+                                </li>
+                                @else
                                 <li class="nav-item">
                                     <a href={{ route('staff.stafflist') }}
                                         class="nav-link {{ request()->routeIs('staff*') ? 'active font-weight-bolder' : '' }}">
@@ -156,13 +179,7 @@
                                         <p>Xác nhận công việc</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href={{ route('group.list') }}
-                                        class="nav-link {{ request()->routeIs('group*') ? 'active font-weight-bolder' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Phòng ban</p>
-                                    </a>
-                                </li>
+                                @endif
                                 <li class="nav-item">
                                     <a href={{ route('statistical.list') }}
                                         class="nav-link {{ request()->routeIs('statistical*') ? 'active font-weight-bolder' : '' }}">

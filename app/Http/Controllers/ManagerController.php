@@ -154,5 +154,29 @@ class ManagerController extends Controller
         ]);
     }
 
+    // addmin
+    public function adminStaffList()
+    {
+        $auth = Auth::user();
+        $users = User::with('group')->get();
+        
+        return view('admin.manager.staff.stafflist',compact('users','auth'));
+    }
+
+    public function adminWorkCheck()
+    {
+        $date = Carbon::now();
+        $date->startOfDay();
+        $users = User::with(['work' => function ($q) {
+            return $q->where('check', '0')->where('status', 'Chưa hoàn thành');
+        }])->withCount(['work' => function ($a) {
+            return $a->where('check', '0')->where('status', 'Chưa hoàn thành');
+        }])->orderBy('work_count','DESC')->get();
+        $works = Work::where('check', '0')->where('status', 'Chưa hoàn thành')->orderBy('end_date', 'DESC')->get();
+        // dd($users);
+        $auth = Auth::user();
+        return view('admin.manager.work.workcheck', compact('users', 'auth', 'date','works'));
+    }
+
     
 }

@@ -85,6 +85,10 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     Route::get('/changePass-view',[UserController::class,'changePass'])->name('changePass');
     Route::post('/changePass',[UserController::class,'updatePass'])->name('updatePass');
 
+    // admin
+    Route::get('/admin-staff-list',[ManagerController::class,'adminStaffList'])->name('staff.adminStaffList');
+    Route::get('/admin-check-job',[ManagerController::class,'adminWorkCheck'])->name('check.adminCheckList');
+
 });
 
 

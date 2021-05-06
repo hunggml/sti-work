@@ -32,15 +32,18 @@
                             <tbody>
                                 @foreach ($users as $key => $value0)
                                     @if ($value0->work_count == 0)
+                                        @if ($value0->level == 0)
+                                            <tr hidden></tr>
+                                        @else
                                         <tr>
-                                            @if ($value0->image == null)
-                                                    <td style="text-align: center">
-                                                        <img src="{{ asset('img/user.png') }}" class="elevation-2" style="width: 50px;height:50px;border-radius: 50%;" alt="User Image">
-                                                    </td>
+                                                @if ($value0->image == null)
+                                                        <td style="text-align: center">
+                                                            <img src="{{ asset('img/user.png') }}" class="elevation-2" style="width: 50px;height:50px;border-radius: 50%;" alt="User Image">
+                                                        </td>
                                                 @else
-                                                    <td style="text-align: center">
-                                                        <img style="width: 50px;height:50px;border-radius: 50%;"  class="img-user" src={{$value0->image}} alt="user image">
-                                                    </td>    
+                                                        <td style="text-align: center">
+                                                            <img style="width: 50px;height:50px;border-radius: 50%;"  class="img-user" src={{$value0->image}} alt="user image">
+                                                        </td>    
                                                 @endif
                                             <td>
                                                 <p>{{ $value0->name }}</p>
@@ -56,6 +59,7 @@
                                             <td></td>
                                             <td></td>
                                         </tr>
+                                        @endif
                                     @endif
                                 @endforeach
                                 @foreach ($works->groupBy('user_id') as $key1 => $work)
