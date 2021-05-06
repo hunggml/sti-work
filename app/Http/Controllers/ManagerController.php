@@ -163,7 +163,10 @@ class ManagerController extends Controller
         ]);
     }
 
-    // addmin
+
+
+
+    // ADmin Mangaer
     public function adminStaffList()
     {
         $auth = Auth::user();
@@ -175,9 +178,10 @@ class ManagerController extends Controller
         //     return view('admin.manager.staff.stafflist', compact('users', 'auth'));
         // }
         return view('admin.manager.staff.stafflist', compact('users', 'auth'));
-
     }
 
+
+    // view list công việc cần phải xác nhận
     public function adminWorkCheck()
     {
         $date = Carbon::now();
@@ -192,4 +196,80 @@ class ManagerController extends Controller
         $auth = Auth::user();
         return view('admin.manager.work.workcheck', compact('users', 'auth', 'date', 'works'));
     }
+
+    // xoá nhân viên 
+    public function adminDestroyStaff(Request $request)
+    {
+        $user = User::findOrFail($request->id);
+        $user->delete();
+        $works = Work::Where('user_id', $user->id)->get();
+        foreach ($works as $work) {
+            $id = Work::Where('id', $work->id)->first();
+            $id->delete();
+        }
+        toastr()->success('Xoá nhân viên thành công');
+        return redirect()->route('staff.adminStaffList');
+    }
+
+    // cập nhật phòng bàn + level của nhân viên
+    public function adminUpdateLevel(Request $request)
+    {
+        $user = User::findOrFail($request->id);
+        $user = DB::table('users', $request->id)->where('id', $request->id)->update([
+            'level' => $request->level,
+            'group_id' => $request->group_id,
+        ]);
+        // $user->save();
+        toastr()->success('Cập nhật thành công');
+        return redirect()->route('staff.adminStaffList');
+    }
+
+    // view edit level + phòng ban của nhân viên
+    public function adminEditLevel(Request $request)
+    {
+        $auth = Auth::user();
+        $groups = Group::all();
+        $user = User::findOrFail($request->id);
+        return view('admin.manager.staff.editLevel', compact('user', 'auth', 'groups'));
+    }
+
+    // list công việc của nhân viên trong
+    public function adminWorkStaff(Request $request)
+    {
+        $date = Carbon::now();
+        $date->startOfDay();
+        $auth = Auth::user();
+        $work = Work::Where('user_id', $request->id)->where('hidden', '0')->get();
+        return view('admin.manager.staff.listworkofStaff', compact('work', 'auth', 'date'));
+    }
+
+     // xoá công việc của nhân viên
+     public function adminDeleteWorkCheck(Request $request)
+     {
+         $work = Work::findOrFail($request->id);
+         $work->delete();
+         toastr()->success('Xoá công việc thành công');
+         return redirect()->route('check.adminCheckList');
+     }
+
+     // view check công việc + xác nhận công việc của nhân viên
+    public function admineditWorkCheck(Request $request)
+    {
+        $auth = Auth::user();
+        $work = Work::findOrFail($request->id);
+        return view('admin.manager.work.editwork', compact('work', 'auth'));
+    }
+
+
+    // cập nhật trạng thái(xác nhận) + công việc của nhân viên
+    public function adminupdateWorkCheck(Request $request)
+    {
+        $this->validation($request);
+        $work = Work::findOrFail($request->id);
+        $work->fill($request->all());
+        $work->save();
+        toastr()->success('Cập nhật công việc thành công');
+        return redirect()->route('check.adminCheckList');
+    }
+
 }

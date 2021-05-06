@@ -52,19 +52,19 @@
                                             <td>{{ $user->group->name }}</td>
 
                                             <td><a class="btn btn-success edit"
-                                                    href="{{ route('staff.editLevel', ['id' => $user->id]) }}">
+                                                    href="{{ route('staff.adminEditLevel', ['id' => $user->id]) }}">
                                                     <i class="far fa-edit"></i>
                                                     Chỉnh sửa
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href={{ route('staff.listwork', ['id' => $user->id]) }}
+                                                <a href={{ route('staff.adminWorkStaff', ['id' => $user->id]) }}
                                                     class="btn btn-success ">
                                                     <i class="fas fa-briefcase"></i> Công việc
                                                 </a>
                                             </td>
                                             <td>
-                                                @if ($user->metting == 0)
+                                                @if ($user->metting == 0 || $user->metting == 3)
                                                     <a class="btn btn-success edit"
                                                         href='{{ route('metting', ['metting' => 1, 'id' => $user->id]) }}'>
                                                         <i class="fas fa-walking"></i> Điều công tác
@@ -76,7 +76,7 @@
                                                 <td></td>
                                             @else
                                                 <td>
-                                                    <a href="{{ route('staff.destroy', ['id' => $user->id]) }}"
+                                                    <a href="{{ route('staff.adminDestroy', ['id' => $user->id]) }}"
                                                         class="btn btn-danger"
                                                         onclick="return confirm('Bạn có chắc là muốn xoá không?')">
                                                         <i class="far fa-trash-alt"></i>

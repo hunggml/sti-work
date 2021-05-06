@@ -48,7 +48,7 @@
                                             <td >{{ $value->time_updated }}</td>
                                             <td class="check-timeOut time">{{ $value->status }}</td>
                                         @else
-                                            <td>{{{$value->detail}}</td>
+                                            <td>{{$value->detail}}</td>
                                                 <?php
                                                 $start_date = strtotime($value->start_date);
                                                 $end_date = strtotime($value->end_date);

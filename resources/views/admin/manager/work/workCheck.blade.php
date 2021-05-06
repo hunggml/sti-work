@@ -60,14 +60,14 @@
                                                 <td>Chưa xác nhận</td>
                                                 <td>
                                                     <a class="btn btn-success edit"
-                                                        href="{{ route('check-job.edit', ['id' => $work->id]) }}">
+                                                        href="{{ route('check-job.admineditWorkCheck', ['id' => $work->id]) }}">
                                                         <i class="far fa-edit"></i>
                                                         Chỉnh sửa và xác nhận
                                                     </a>
                                                 </td>
 
                                                 <td>
-                                                    <a href="{{ route('check-job.destroy', ['id' => $work->id]) }}"
+                                                    <a href="{{ route('check-job.adminDeleteWorkCheck', ['id' => $work->id]) }}"
                                                         class="btn btn-danger" style="float: right;"
                                                         onclick="return confirm('Bạn có chắc là muốn xoá không?')">
                                                         <i class="far fa-trash-alt"></i>

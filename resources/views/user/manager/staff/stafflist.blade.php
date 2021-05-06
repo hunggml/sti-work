@@ -62,7 +62,7 @@
                                                 </a>
                                             </td> 
                                             <td>
-                                                @if ($user->metting == 0)
+                                                @if ($user->metting == 0 || $user->metting == 3)
                                                 <a class="btn btn-success edit" href= '{{route('metting',['metting' => 1, 'id' => $user->id ])}}'>
                                                     <i class="fas fa-walking"></i> Điều công tác
                                                 </a>

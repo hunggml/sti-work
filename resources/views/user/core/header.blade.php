@@ -30,20 +30,6 @@
                             <div id="notification-main"></div>
                         </div>
                     </div>
-                {{-- <ul>
-                    <!-- Language Dropdown Menu -->
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="flag-icon flag-icon-us"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right p-0">
-                        <a href="#" class="dropdown-item active">
-                            <i class="flag-icon flag-icon-us mr-2"></i> English
-                        </a>
-                        <a href="#" class="dropdown-item">
-                            <i class="flag-icon flag-icon-vn mr-2"></i> Vietnamese
-                        </a>
-                    </div>
-                </ul> --}}
                 </div>
             </div>
         </div>
