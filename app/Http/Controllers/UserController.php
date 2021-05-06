@@ -278,19 +278,5 @@ class UserController extends Controller
         ]);
     }
 
-    // public function listImage(){
-    //     $dir = '/';
-    //     $recursive = true;
-    //     $contents = collect(Storage::cloud()->listContents($dir,$recursive));
-    //     return $contents; 
-    // }
-
-    // public function redData(){
-    //     $dir = '/';
-    //     $recursive = false;
-    //     $contents = collect(Storage::cloud()->listContents($dir));
-    //     dd($contents);
-    //     return view('user.auth.profile',compact('$contents')); 
-    // }
 
 }

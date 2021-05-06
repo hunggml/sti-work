@@ -31,15 +31,11 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     Route::get('/edit-profile',[UserController::class,'edit'])->name('profile.edit');
     Route::post('/update-profile',[UserController::class,'update'])->name('profile.update');
     Route::get('/destroy-profile',[UserController::class,'destroy'])->name('profile.destroy');
-
-    // choice group
     Route::post('/choice-group',[UserController::class,'choiceGroup'])->name('profile.choice-group');
-    // update avatar
     Route::post('/upload-avatar',[UserController::class,'uploadAvatar'])->name('profile.upload-avatar');
 
     // Staff
     Route::get('/staff-list',[ManagerController::class,'stafflist'])->name('staff.stafflist');
-
     Route::get('/edit-staff',[ManagerController::class,'editLevel'])->name('staff.editLevel');
     Route::post('/update-staff',[ManagerController::class,'updateLevel'])->name('staff.updateLevel');
     Route::get('/staff-destroy',[ManagerController::class,'destroyStaff'])->name('staff.destroy');
@@ -86,13 +82,12 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     Route::post('/spreadsheet/import',[ImportController::class,'importGroup'])->name('import.Group');
 
     // Change password
-    Route::get('/changePass',[UserController::class,'changePass'])->name('changePass');
+    Route::get('/changePass-view',[UserController::class,'changePass'])->name('changePass');
     Route::post('/changePass',[UserController::class,'updatePass'])->name('updatePass');
 
 });
 
-// Route::get('list-image',[UserController::class,'listImage']);
-// Route::get('read-image',[UserController::class,'redData']);
+
 
 // home
 Route::get('/', [HomeController::class,'index'])->name('trangchu');

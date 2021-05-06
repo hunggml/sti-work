@@ -177,7 +177,6 @@
                         .width(150)
                         .height(150);
                 };
-
                 reader.readAsDataURL(input.files[0]);
             }
         }

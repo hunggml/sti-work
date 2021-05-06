@@ -44,12 +44,12 @@ class ImportController extends Controller
 
     public function importGroup(Request $request)
     {
-        
         $data = $this->readFile($request);
-        // dd($data);
+        // dd(intval($data[0]));
         $dataGroups = array();
         foreach ($data as $key => $value) {
-            // dd($data);
+            // dd($data,$value);
+            
             $arr = [
                 'name' => $value[0],
             ];
