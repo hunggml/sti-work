@@ -1,9 +1,10 @@
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
-    
+
     <div class="row">
         <div class="col-md-4 mb-2">
-            <a class="nav-link" data-widget="pushmenu" href="#" style="display: inline-block;padding:0" role="button"><i class="fas fa-bars"></i></a>
+            <a class="nav-link" data-widget="pushmenu" href="#" style="display: inline-block;padding:0" role="button"><i
+                    class="fas fa-bars"></i></a>
             <span id="time" class=" my-text" disabled></span>
         </div>
         <div class="col-md-5 mb-2">
@@ -16,12 +17,13 @@
                 </div>
                 <div class="col-3">
                     <div class="nav-item dropdown">
-                        <a gtm-id="Notifications" class="nav-link " alt="Notifications"
-                            id="navbarNotification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            
+                        <a gtm-id="Notifications" class="nav-link " alt="Notifications" id="navbarNotification"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+
                             <i class="fas fa-bell" alt="Notifications" style="position: relative">
-                                <span id="navbarNotificationCounter" class="badge rounded red z-depth-1" alt="Notifications"
-                                style="color:red;font-size:15px;position: absolute;top:-10px;right:-10px;z-index:1"></span>
+                                <span id="navbarNotificationCounter" class="badge rounded red z-depth-1"
+                                    alt="Notifications"
+                                    style="color:red;font-size:15px;position: absolute;top:-10px;right:-10px;z-index:1"></span>
                             </i>
                         </a>
 
@@ -30,15 +32,30 @@
                             <div id="notification-main"></div>
                         </div>
                     </div>
+                    {{-- <ul>
+                    <!-- Language Dropdown Menu -->
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="flag-icon flag-icon-us"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right p-0">
+                        <a href="#" class="dropdown-item active">
+                            <i class="flag-icon flag-icon-us mr-2"></i> English
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="flag-icon flag-icon-vn mr-2"></i> Vietnamese
+                        </a>
+                    </div>
+                </ul> --}}
                 </div>
             </div>
         </div>
 
     </div>
     <style>
-        .sidebar{
+        .sidebar {
             overflow: auto;
         }
+
         .my-text {
             font-size: 20px;
             border: 0;
@@ -72,12 +89,13 @@
             <div class="image">
                 <a href=# class="btn btn-secondary dropdown-toggle " role="button" id="dropdownMenuLink"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    @if ($auth->image !=null)
-                        <img class="elevation-2" style=" height: 50px;width: 50px;border-radius: 50%;" alt="User Image" src='{{asset("$auth->image")}}'>
+                    @if ($auth->image != null)
+                        <img class="elevation-2" style=" height: 50px;width: 50px;border-radius: 50%;" alt="User Image"
+                            src='{{ asset("$auth->image") }}'>
                     @else
                         <img src="{{ asset('img/user.png') }}" class="img-circle elevation-2" alt="User Image">
                     @endif
-                    
+
                 </a>
                 <div class="dropdown-menu" style="position: fixed" aria-labelledby="dropdownMenuLink">
                     <a class="dropdown-item" href="{{ route('profile.index') }}" style="color: black">Hồ sơ</a>
@@ -88,8 +106,8 @@
                             style="color: black">Xác nhận họp</a>
                     @endif
                     @if ($auth->metting == 1)
-                    <a class="dropdown-item" href='{{ route('metting', ['metting' => 0, 'id' => $auth->id]) }}'
-                        style="color: black">Xác nhận công tác về</a>
+                        <a class="dropdown-item" href='{{ route('metting', ['metting' => 0, 'id' => $auth->id]) }}'
+                            style="color: black">Xác nhận công tác về</a>
                     @endif
 
                     <a class="dropdown-item" href="{{ route('logOut') }}" style="color: black">Đăng xuất</a>
@@ -111,19 +129,19 @@
                             <p>Danh sách công việc</p>
                         </a>
                     </li>
-                    @if ($auth->level >= 1)
-                    <li>
-                        <a href={{ route('work.index') }}
-                            class="nav-link {{ request()->routeIs('work*') ? 'active font-weight-bolder' : '' }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Công việc cá nhân</p>
-                        </a>
-                    </li>
+                    @if ($auth->level != 0)
+                        <li>
+                            <a href={{ route('work.index') }}
+                                class="nav-link {{ request()->routeIs('work*') ? 'active font-weight-bolder' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Công việc cá nhân</p>
+                            </a>
+                        </li>
                     @endif
-                    
                     @if ($auth->level <= 1)
                         <li class="nav-item has-treeview ">
-                            <a href="#" class="nav-link {{ request()->routeIs('staff*','check*','group*','statistical*','chart*') ? 'active font-weight-bolder' : '' }}">
+                            <a href="#"
+                                class="nav-link {{ request()->routeIs('staff*', 'check*', 'group*', 'statistical*', 'chart*') ? 'active font-weight-bolder' : '' }}">
                                 <i class="fas fa-tasks"></i>
                                 <p>
                                     Quản lý
@@ -131,29 +149,6 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                @if ($auth->level == 0)
-                                <li class="nav-item">
-                                    <a href={{ route('staff.adminStaffList') }}
-                                        class="nav-link {{ request()->routeIs('staff*') ? 'active font-weight-bolder' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Danh sách nhân viên</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href={{ route('check.adminCheckList') }}
-                                        class="nav-link {{ request()->routeIs('check*') ? 'active font-weight-bolder' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Xác nhận công việc</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href={{ route('group.list') }}
-                                        class="nav-link {{ request()->routeIs('group*') ? 'active font-weight-bolder' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Phòng ban</p>
-                                    </a>
-                                </li>
-                                @else
                                 <li class="nav-item">
                                     <a href={{ route('staff.stafflist') }}
                                         class="nav-link {{ request()->routeIs('staff*') ? 'active font-weight-bolder' : '' }}">
@@ -168,7 +163,16 @@
                                         <p>Xác nhận công việc</p>
                                     </a>
                                 </li>
+                                @if ($auth->level == 0)
+                                    <li class="nav-item">
+                                        <a href={{ route('group.list') }}
+                                            class="nav-link {{ request()->routeIs('group*') ? 'active font-weight-bolder' : '' }}">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Phòng ban</p>
+                                        </a>
+                                    </li>
                                 @endif
+
                                 <li class="nav-item">
                                     <a href={{ route('statistical.list') }}
                                         class="nav-link {{ request()->routeIs('statistical*') ? 'active font-weight-bolder' : '' }}">

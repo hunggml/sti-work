@@ -60,7 +60,7 @@ class ExportController extends Controller
             $active_sheet->setCellValue('D' . $count, $row['end_date']);
             $active_sheet->setCellValue('E' . $count, $row['status']);
             $count++;
-            // dd($count);
+            // dd($count); 
             $styleArray = [
                 'borders' => [
                     'outline' => [
@@ -91,6 +91,7 @@ class ExportController extends Controller
         return redirect(url('/') . "/excels" . "/" . $fileName);
         // return redirect()->route('work.index');
     }
+    
 
 
     // public function exportBill()

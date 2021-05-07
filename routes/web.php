@@ -86,16 +86,16 @@ Route::middleware('auth')->prefix('/home')->group(function(){
     Route::post('/changePass',[UserController::class,'updatePass'])->name('updatePass');
     
     // admin
-    Route::get('/admin-staff-list',[ManagerController::class,'adminStaffList'])->name('staff.adminStaffList');
-    Route::get('/admin-edit-staff',[ManagerController::class,'adminEditLevel'])->name('staff.adminEditLevel');
-    Route::post('/admin-update-staff',[ManagerController::class,'adminUpdateLevel'])->name('staff.adminUpdateLevel');
-    Route::get('/admin-staff-desstroy',[ManagerController::class,'adminDestroyStaff'])->name('staff.adminDestroy');
-    Route::get('/admin-staff-list-work',[ManagerController::class,'adminWorkStaff'])->name('staff.adminWorkStaff');
+    // Route::get('/admin-staff-list',[ManagerController::class,'adminStaffList'])->name('staff.adminStaffList');
+    // Route::get('/admin-edit-staff',[ManagerController::class,'adminEditLevel'])->name('staff.adminEditLevel');
+    // Route::post('/admin-update-staff',[ManagerController::class,'adminUpdateLevel'])->name('staff.adminUpdateLevel');
+    // Route::get('/admin-staff-desstroy',[ManagerController::class,'adminDestroyStaff'])->name('staff.adminDestroy');
+    // Route::get('/admin-staff-list-work',[ManagerController::class,'adminWorkStaff'])->name('staff.adminWorkStaff');
 
-    Route::get('/admin-check-job',[ManagerController::class,'adminWorkCheck'])->name('check.adminCheckList');
-    Route::get('/admin-check-job-destroy',[ManagerController::class,'adminDeleteWorkCheck'])->name('check-job.adminDeleteWorkCheck');
-    Route::get('/admin-check-job-edit',[ManagerController::class,'admineditWorkCheck'])->name('check-job.admineditWorkCheck');
-    Route::post('/admin-check-job-update',[ManagerController::class,'adminupdateWorkCheck'])->name('check-job.adminupdateWorkCheck');
+    // Route::get('/admin-check-job',[ManagerController::class,'adminWorkCheck'])->name('check.adminCheckList');
+    // Route::get('/admin-check-job-destroy',[ManagerController::class,'adminDeleteWorkCheck'])->name('check-job.adminDeleteWorkCheck');
+    // Route::get('/admin-check-job-edit',[ManagerController::class,'admineditWorkCheck'])->name('check-job.admineditWorkCheck');
+    // Route::post('/admin-check-job-update',[ManagerController::class,'adminupdateWorkCheck'])->name('check-job.adminupdateWorkCheck');
 
 });
 

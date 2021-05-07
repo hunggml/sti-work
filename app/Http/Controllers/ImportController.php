@@ -21,7 +21,7 @@ class ImportController extends Controller
     {
         $file     = request()->file('import');
         $name     = $file->getClientOriginalName();
-        $arr      = explode('.', $name);
+        $arr      = explode('.', $name); 
         $fileName = strtolower(end($arr));
         // dd($file, $name, $arr, $fileName);
         if ($fileName != 'xlsx' && $fileName != 'xls') {
@@ -46,10 +46,11 @@ class ImportController extends Controller
     {
         $data = $this->readFile($request);
         // dd(intval($data[0]));
+        // dd($data);
         $dataGroups = array();
         foreach ($data as $key => $value) {
-            // dd($data,$value);
-            
+            // dd(is_array($value[0]));
+            dd($data,intval($value[0]));
             $arr = [
                 'name' => $value[0],
             ];
@@ -59,5 +60,5 @@ class ImportController extends Controller
         DB::table('groups')->insert($dataGroups);
         toastr()->success('import thành công');
         return redirect()->route('group.list');
-    }
+    }   
 }

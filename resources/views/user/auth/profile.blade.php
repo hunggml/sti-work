@@ -55,10 +55,10 @@
                                                 @if ($value->level == 0)
                                                     <tr hidden></tr>
                                                 @else
-                                                <tr class="profile">
-                                                    <td class="profile">Phòng ban</td>
-                                                    <td class="profile">: {{ $value->group->name }}</td>
-                                                </tr>
+                                                    <tr class="profile">
+                                                        <td class="profile">Phòng ban</td>
+                                                        <td class="profile">: {{ $value->group->name }}</td>
+                                                    </tr>
                                                 @endif
                                             @endforeach
                                         </tbody>
@@ -68,9 +68,11 @@
                                         <i class="far fa-edit"></i> Cập nhật hồ sơ</a>
                                     <a href={{ route('changePass') }} class="btn btn-primary" style="color: white">
                                         <i class="fas fa-exchange-alt"></i> Đổi mật khẩu</a>
-                                    <a style="color: white" class="btn btn-success" data-toggle="modal" data-target="#groupModal"
-                                        aria-labelledby="dropdownMenuLink">
-                                        <i class="far fa-edit"></i> Chọn phòng ban</a>
+                                    @if ($auth->level != 0)
+                                        <a style="color: white" class="btn btn-success" data-toggle="modal"
+                                            data-target="#groupModal" aria-labelledby="dropdownMenuLink">
+                                            <i class="far fa-edit"></i> Chọn phòng ban</a>
+                                    @endif
                                     <hr>
                                     <a href={{ route('home') }} class="btn btn-danger"><i class="fas fa-times"></i>
                                         Đóng</a>
@@ -156,7 +158,8 @@
                             <select class="form-control" name="group_id">
                                 @foreach ($groups as $value)
                                     <option value="{{ $value->id }}"
-                                        {{ $auth->group_id == $value->id ? 'selected' : '' }}>{{ $value->name }}</option>
+                                        {{ $auth->group_id == $value->id ? 'selected' : '' }}>{{ $value->name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
