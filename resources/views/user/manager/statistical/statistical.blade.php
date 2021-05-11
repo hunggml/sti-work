@@ -33,8 +33,13 @@
                                                         </td>
                                                     @endif
                                                     <td>{{ $value->detail }}</td>
-                                                    <td>{{ $value->time_updated }}</td>
-                                                    <td>{{ $value->end_date }}</td>
+                                                        <?php
+                                                        $end_date = strtotime($value->end_date);
+                                                        $time_updated = strtotime($value->time_updated);
+                                                        ?>
+                                                    <td>{{ date('d-m-Y H:m:s', $time_updated) }}</td>
+                                                        
+                                                    <td>{{ date('d-m-Y ', $end_date) }}</td>
                                                     @if ($value->progress == 2)
                                                         <td class="out-time">Quá hạn</td>
                                                     @elseif ($value->progress == 1)

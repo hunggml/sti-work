@@ -31,10 +31,11 @@
                                                 <?php
                                                 $start_date = strtotime($value->start_date);
                                                 $end_date = strtotime($value->end_date);
+                                                $time_updated = strtotime($value->time_updated);
                                                 ?>
                                             <td class="check-time time">{{ date('d-m-Y', $start_date) }}</td>
                                             <td class="check-time time">{{ date('d-m-Y', $end_date) }}</td>
-                                            <td >{{ $value->time_updated }}</td>
+                                            <td >{{ date('d-m-Y H:m:s', $time_updated) }}</td>
                                             <td class="check-time time">{{ $value->status }}</td>
                                         @elseif ($date->diffInDays($value->end_date,false) < 0 && $value->status ==
                                                 'Chưa hoàn thành')
@@ -42,20 +43,22 @@
                                                 <?php
                                                 $start_date = strtotime($value->start_date);
                                                 $end_date = strtotime($value->end_date);
+                                                $time_updated = strtotime($value->time_updated);
                                                 ?>
                                             <td class="check-timeOut time">{{ date('d-m-Y', $start_date) }}</td>
                                             <td class="check-timeOut time">{{ date('d-m-Y', $end_date) }}</td>
-                                            <td >{{ $value->time_updated }}</td>
+                                            <td >{{ date('d-m-Y H:m:s', $time_updated) }}</td>
                                             <td class="check-timeOut time">{{ $value->status }}</td>
                                         @else
                                             <td>{{$value->detail}}</td>
                                                 <?php
                                                 $start_date = strtotime($value->start_date);
                                                 $end_date = strtotime($value->end_date);
+                                                $time_updated = strtotime($value->time_updated);
                                                 ?>
                                             <td class=" time">{{ date('d-m-Y', $start_date) }}</td>
                                             <td class=" time">{{ date('d-m-Y', $end_date) }}</td>
-                                            <td >{{ $value->time_updated }}</td>
+                                            <td >{{ date('d-m-Y H:m:s', $time_updated) }}</td>
                                             <td class="time">{{ $value->status }}</td>
                                         @endif
                                     </tr>
