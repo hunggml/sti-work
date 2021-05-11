@@ -24,7 +24,7 @@ class ManagerController extends Controller
 
     public function chart(){
         $auth = Auth::user();
-        $users = User::with('work')->get();
+        $users = User::with('work')->where('level','<>','0')->get();
         // dd($users);
         return Response::json($users);
     }
