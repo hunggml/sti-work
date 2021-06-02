@@ -95,7 +95,7 @@
                             <tbody>
                                 @foreach ($auth->group as $group)
                                     <tr>
-                                        <td colspan="11">{{ $group->name }}</td>
+                                        <td style="text-align: center;font-size : 25px" colspan="11">Phòng ban : {{ $group->name }}</td>
                                     </tr>
                                     @foreach ($users as $user)
                                         @if ($user->group_id == $group->id && $user->level != 0)
