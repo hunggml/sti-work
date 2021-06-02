@@ -15,8 +15,8 @@ class CreateUserGroupTable extends Migration
     {
         Schema::create('user_group', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->date('group_id');
+            $table->integer('user_id');
+            $table->integer('group_id');
             $table->dateTime('time_created')->nullable();
             $table->dateTime('time_updated')->nullable();
             $table->softDeletes()->nullable();

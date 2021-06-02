@@ -52,14 +52,14 @@
                                                     <td class="profile">Email</td>
                                                     <td class="profile">: {{ $value->email }}</td>
                                                 </tr>
-                                                @if ($value->level == 0)
+                                                {{-- @if ($value->level == 0)
                                                     <tr hidden></tr>
                                                 @else
                                                     <tr class="profile">
                                                         <td class="profile">Phòng ban</td>
                                                         <td class="profile">: {{ $value->group->name }}</td>
                                                     </tr>
-                                                @endif
+                                                @endif --}}
                                             @endforeach
                                         </tbody>
                                     </table>
