@@ -6,21 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Group extends Model
+class UserGroup extends Model
 {
+    
     use Notifiable;
     use SoftDeletes;
     Const CREATED_AT = 'time_created';
     Const UPDATED_AT = 'time_updated';
 
-    protected $table = 'groups';
+    protected $table = 'user_group';
     protected $fillable = [
-        'name'
+        'user_id','group_id'
     ];
 
-
-    public function user(){
-        return $this->belongsToMany('App\User','user_group','group_id','user_id');
-    }
-
+        
 }

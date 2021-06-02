@@ -184,7 +184,7 @@ class UserController extends Controller
     {
         // dd('run');
         $validatedData = $request->validate([
-            'image' => 'required|image',
+            'image' => 'required|image|max:2000',
         ]);
         $auth = Auth::user();
         $avatar = User::Where('id', Auth::user()->id)->first();
@@ -197,7 +197,7 @@ class UserController extends Controller
         File::delete($image);
 
         // upload image drive
-        // $imageName =  time() . '.' . $request->image->extension();
+        // $imageName =  time() . '.' . $request->image->extension(); 
         // // $upload =  $request->file("image")->store("","google");
         // $upload =  Storage::disk("google")->putFileAs("",$request->file("image"),$imageName);
         // // $file = Storage::disk("google")->allFiles();

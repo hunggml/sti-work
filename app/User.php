@@ -33,8 +33,9 @@ class User extends Authenticatable
 
 
     public function group(){
-        return $this->belongsTo('App\Group');
+        return $this->belongsToMany('App\Group','user_group','user_id','group_id')->wherePivot('deleted_at',null);
     }
+
 
     
 

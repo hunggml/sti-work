@@ -341,6 +341,8 @@ class WorkController extends Controller
         $date = Carbon::now();
         $date->startOfDay();
         $history = WorkHistoryEdit::where('work_id', $request->id)->get();
+        // $history = WorkHistoryEdit::with('work')->get();
+        // dd($history);
         return view('user.work.historyWork', compact('history', 'auth', 'date'));
     }
 

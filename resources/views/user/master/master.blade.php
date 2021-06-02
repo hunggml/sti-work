@@ -12,11 +12,11 @@
      <!-- flag-icon-css -->
     <link rel="stylesheet" href="{{asset('plugins/flag-icon-css/css/flag-icon.min.css')}}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="{{asset('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')}}"> --}}
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
     {{-- Toastr --}}
-    {{-- <link rel="stylesheet" type="text/css" href="https://.cdnjscloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css"> --}}
+     {{-- <link rel="stylesheet" type="text/css" href="https://.cdnjscloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css"> --}}
     @toastr_css
     {{-- css/style --}}
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
@@ -24,12 +24,15 @@
     {{-- datatable --}}
     <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+        <!-- Bootstrap4 Duallistbox -->
+
+    <link rel="stylesheet" href="{{asset('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
 
 
 </head>
 <body class="sidebar-mini layout-fixed sidebar-mini sidebar-collapse" data-panel-auto-height-mode="height">
 <div class="wrapper">
-    
+
     <!-- Navbar -->
 @include('user.core.header')
 
@@ -58,20 +61,26 @@
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('dist/js/adminlte.js')}}"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="{{asset('plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.js')}}"></script>
 <!-- DataTables -->
 <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js" integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/additional-methods.min.js" integrity="sha512-6Uv+497AWTmj/6V14BsQioPrm3kgwmK9HYIyWP+vClykX52b0zrDGP7lajZoIY1nNlX4oQuh7zsGjmF7D0VZYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
 @stack('script')
+
 <script>
     $(function(){
+        $('.duallistbox').bootstrapDualListbox();
+
             $.ajax({
             type: "GET",
             url: "{{route('notification')}}",
             // data: { text : text1},
-            success: function(data) 
+            success: function(data)
             {
               //  console.log('run')
               let dem = 0;
@@ -80,7 +89,7 @@
                 dem ++;
                   notification = notification + `<p class="dropdown-item">`+index+` {{__('Cần Xác Nhận Công Việc')}}</p>`
               });
-              
+
               $.each(data.data1 , function (index, value){
                 dem ++;
                   notification = notification + `<p class="dropdown-item">`+index+` {{__('Cần Xác Nhận Đã Họp')}}</p>`
@@ -88,7 +97,7 @@
               $('#notification-main').append(notification)
               $('#navbarNotificationCounter').append(dem)
             },
-            error: function() 
+            error: function()
             {
                 $('#unit').val('');
                 $('#unit1').val('');

@@ -120,7 +120,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('profile.upload-avatar') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('profile.upload-avatar') }}"  method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <input onchange="readURL(this);" type="file" name="image">
@@ -138,6 +139,7 @@
             </div>
         </div>
     </div>
+
 
     {{-- modal choice group --}}
     <div class="modal fade" id="groupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -173,6 +175,7 @@
         </div>
     </div>
 
+    
     <script>
         function readURL(input) {
             if (input.files && input.files[0]) {
