@@ -23,15 +23,8 @@ class ExportController extends Controller
     {
         $date = Carbon::now();
         $user = User::Where('id', Auth::user()->id)->get();
-        // $works = Work::Where('user_id', Auth::user()->id)->offset(0)->limit(500)->get();
-        // $works = Work::Where('user_id', Auth::user()->id)->paginate(10);
         $works = Work::Where('user_id', Auth::user()->id)->get();
         // dd($works,$works->items());
-        // $works['currentPage']=2;
-        // dd($works);
-        // $dem = round(($works/10), 0, PHP_ROUND_HALF_UP);
-        // dd($dem); 
-        // $works = Work::all();
 
         $fileType = IOFactory::identify(public_path('excels/excel_template.xlsx'));
         //Load data

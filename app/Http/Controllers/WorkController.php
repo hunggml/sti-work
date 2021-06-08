@@ -325,10 +325,13 @@ class WorkController extends Controller
     }
 
     // Khôi phục
-    public function restore($id)
+    public function restore(Request $request,$id)
     {
+        $works = Work::where('id', $request->id)->with('workHistoryEdit')->first();
         Work::findOrFail($id)->update([
             'hidden' => 0,
+            'status' => $works->status,
+            'check' => $works->check,
         ]);
         toastr()->success('Khôi phục thành công');
         return redirect()->route('warehouse.list');

@@ -124,7 +124,7 @@ class ManagerController extends Controller
         $date = Carbon::now();
         $date->startOfDay();
         $users = User::with(['work' => function ($q) {
-            return $q->where('check', '0')->where('status', 'Chưa hoàn thành');
+            return $q->where('check', '0')->where('status', 'Chưa hoàn thành')->where('hidden','0');
         }])->with('group')->withCount(['work' => function ($a) {
             return $a->where('check', '0')->where('status', 'Chưa hoàn thành');
         }])->orderBy('work_count', 'DESC')->get();

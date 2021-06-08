@@ -22,9 +22,9 @@ class HomeController extends Controller
         $auth = Auth::user();
        
         // $date = Carbon::create('2021-05-10');
-        $date = Carbon::now();
+        $date = Carbon::now(); 
         $date->startOfDay();
-        $works = Work::with('user')->where('check', '1')->where('status', 'Chưa hoàn thành')->orderBy('end_date', 'ASC')->get();
+        $works = Work::with('user')->where('check', '1')->where('status', 'Chưa hoàn thành')->where('hidden','0')->orderBy('end_date', 'ASC')->get();
         $metting = User::where('deleted_at', null)->where('metting', '<>', '1')->where('metting', '<>', '3')->first();
 
         if ($metting == null) {
@@ -80,9 +80,9 @@ class HomeController extends Controller
         $users = User::with(['work' => function ($q) {
             return $q->where('check', '1')->where('status', 'Chưa hoàn thành');
         }])->withCount(['work' => function ($a) {
-            return $a->where('check', '1')->where('status', 'Chưa hoàn thành');
+            return $a->where('check', '1')->where('status', 'Chưa hoàn thành')->where('hidden','0');
         }])->orderBy('work_count')->get();
-        // dd($users->where('progress' ,'!=' , 0));
+        // dd($users);
 
 
         $array = [];
@@ -126,7 +126,7 @@ class HomeController extends Controller
     // notification
     public function notification()
     {
-        $works = Work::where('check', 0)->where('status', 'Chưa hoàn thành')->get();
+        $works = Work::where('check', 0)->where('status', 'Chưa hoàn thành')->where('hidden','0')->get();
 
         $array = [];
         foreach ($works->groupBy('user_name') as $key => $work) {
